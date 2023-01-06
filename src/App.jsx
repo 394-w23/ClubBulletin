@@ -19,13 +19,12 @@ const App = () => {
   console.log("current", currentClubs);
   console.log("post", postList)
   console.log("filter", postList.filter(([id, value]) => currentClubs.includes(value.clubId)));
+  const filteredList = postList.filter(([id, value]) => currentClubs.includes(value.clubId));
+  // something something postId to delete posts later (warning)
   return (
-    // <div className="App">
-    //   {<Post post={}></Post>}
-    // </div>
-    <div>
-
-    </div>
+    <div className="App">
+      {filteredList.map(elem => <Post post={ elem[1] }></Post>)}
+    </div>    
   );
 };
 
