@@ -13,10 +13,12 @@ const App = () => {
   if (!data) return <h1>No data found</h1>;
 
   const currentUser = data.users["27e416aa-8d61-11ed-a1eb-0242ac120002"];
-  const currentClubs = Object.entries(currentUser.clubs);
+  const currentClubs = Object.values(currentUser.clubs);
   const postList = Object.entries(data.posts);
   //console.log(postList);
-  console.log(postList.filter(([id, value]) => currentClubs.includes(value.clubId)));
+  console.log("current", currentClubs);
+  console.log("post", postList)
+  console.log("filter", postList.filter(([id, value]) => currentClubs.includes(value.clubId)));
   return (
     // <div className="App">
     //   {<Post post={}></Post>}
