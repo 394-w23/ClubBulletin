@@ -12,22 +12,23 @@ const Feed = () => {
 
   const currentUser = data.users["27e416aa-8d61-11ed-a1eb-0242ac120002"];
   const currentClubs = Object.values(currentUser.clubs);
-  const postList = Object.entries(data.posts);
-  //console.log(postList);
+  const allPosts = Object.entries(data.posts);
+
   console.log("current", currentClubs);
-  console.log("post", postList);
+  console.log("post", allPosts);
   console.log(
     "filter",
-    postList.filter(([id, value]) => currentClubs.includes(value.clubId))
+    allPosts.filter(([id, value]) => currentClubs.includes(value.clubId))
   );
-  const filteredList = postList.filter(([id, value]) =>
+  const filteredPosts = allPosts.filter(([id, value]) =>
     currentClubs.includes(value.clubId)
   );
   // something something postId to delete posts later (warning)
+  
   return (
     <div className="App">
-      {filteredList.map((elem) => (
-        <Post post={elem[1]}></Post>
+      {filteredPosts.map(([id, post]) => (
+        <Post key={id} post={post}></Post>
       ))}
     </div>
   );
