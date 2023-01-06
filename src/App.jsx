@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useDbData } from "./utilities/firebase";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [data, error] = useDbData('/');
 
+  console.log(data)
   return (
     <div className="App">
       <header className="App-header">
