@@ -1,6 +1,6 @@
 const ClubButton = ({ club, id, selection, setSelection }) => {
-  console.log("club", club);
-  console.log("id", id);
+  //console.log("club", club);
+  //console.log("id", id);
   return (
   <div>
     <input
@@ -18,8 +18,8 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
 }
 
 const ClubSelector = ({ clubs, selection, setSelection }) => {
-  console.log(clubs);
-  console.log("selection", selection);
+  //console.log(clubs);
+  //console.log("selection", selection);
   return (
   <div className="btn-group">
     {clubs.map(([id, club]) => (
