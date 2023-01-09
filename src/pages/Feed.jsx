@@ -17,13 +17,13 @@ const Feed = () => {
         )[0][0];
 
   const [selection, setSelection] = useState(data);
-
+  
   useEffect(() => {
-    setSelection(initialValue);
+    setSelection(selection);
   });
 
-  console.log("selection:", selection);
-  console.log("initial value", initialValue);
+  // console.log("selection:", selection);
+  // console.log("initial value", initialValue);
 
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;

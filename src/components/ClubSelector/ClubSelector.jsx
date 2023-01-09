@@ -1,4 +1,7 @@
-const ClubButton = ({ club, selection, setSelection }) => (
+const ClubButton = ({ club, id, selection, setSelection }) => {
+  console.log("club", club.name);
+  console.log("selection", id);
+  return (
   <div>
     <input
       type="radio"
@@ -6,19 +9,24 @@ const ClubButton = ({ club, selection, setSelection }) => (
       className="btn-check"
       checked={club === selection}
       autoComplete="off"
-      onChange={() => setSelection(club)}
+      onChange={() => setSelection(id)}
     />
-    <label className="btn btn-success mb-1 p-2" htmlFor={club}>
-      {club}
+    <label className="btn btn-success mb-1 p-2" htmlFor={club.name}>
+      {club.name}
     </label>
   </div>
 );
+}
 
-const ClubSelector = ({ clubs, selection, setSelection }) => (
+const ClubSelector = ({ clubs, selection, setSelection }) => {
+  console.log(clubs);
+  console.log("selection", selection);
+  return (
   <div className="btn-group">
-    {Object.keys(clubs).map((club) => (
+    {clubs.map(([id, club]) => (
       <ClubButton
-        key={club}
+        id={id}
+        key={id}
         club={club}
         selection={selection}
         setSelection={setSelection}
@@ -26,5 +34,6 @@ const ClubSelector = ({ clubs, selection, setSelection }) => (
     ))}
   </div>
 );
+    }
 
 export default ClubSelector;
