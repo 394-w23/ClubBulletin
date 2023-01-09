@@ -1,6 +1,6 @@
 const ClubButton = ({ club, id, selection, setSelection }) => {
-  console.log("club", club.name);
-  console.log("selection", id);
+  console.log("club", club);
+  console.log("id", id);
   return (
   <div>
     <input

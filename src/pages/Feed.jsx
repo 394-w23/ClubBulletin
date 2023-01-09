@@ -19,7 +19,15 @@ const Feed = () => {
   const [selection, setSelection] = useState(data);
   
   useEffect(() => {
-    setSelection(selection);
+    console.log("useEffect")
+    if (selection !== undefined){
+      console.log("not undefined", selection)
+      setSelection(selection);
+    } else{
+      console.log("initalValue")
+      setSelection(initialValue);
+    }
+
   });
 
   // console.log("selection:", selection);
