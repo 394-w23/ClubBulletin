@@ -5,7 +5,7 @@ import ClubSelector from "../components/ClubSelector/ClubSelector";
 
 const Feed = () => {
   const [data, error] = useDbData("/"); // get whole database
-  const [selection, setSelection] = useState("all");  
+  const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
   // console.log("initial value", initialValue);
@@ -19,9 +19,12 @@ const Feed = () => {
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-  const allPosts = Object.entries(data.posts);  
+  const allPosts = Object.entries(data.posts);
+
+  const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];
+
   const filteredPosts = allPosts.filter(([id, value]) =>
-    currentClubsIds.includes(value.clubId)
+    filteredClubIds.includes(value.clubId)
   );
   // something something postId to delete posts later (warning)
 

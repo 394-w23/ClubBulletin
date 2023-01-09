@@ -1,6 +1,9 @@
 const ClubButton = ({ club, id, selection, setSelection }) => {
   //console.log("club", club);
   //console.log("id", id);
+
+  const clubLabel = club === "ALL" ? "All clubs" : club.name;
+
   return (
     <div>
       <input
@@ -12,17 +15,24 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
         onChange={() => setSelection(id)}
       />
       <label htmlFor={id} className="btn btn-success mb-1 p-2">
-        {club.name}
+        {clubLabel}
       </label>
     </div>
   );
-}
+};
 
 const ClubSelector = ({ clubs, selection, setSelection }) => {
   //console.log(clubs);
   console.log("selection", selection);
   return (
     <div className="btn-group">
+      <ClubButton
+        id={"ALL"}
+        key={0}
+        club={"ALL"}
+        selection={selection}
+        setSelection={setSelection}
+      />
       {clubs.map(([id, club]) => (
         <ClubButton
           id={id}
@@ -34,6 +44,6 @@ const ClubSelector = ({ clubs, selection, setSelection }) => {
       ))}
     </div>
   );
-}
+};
 
 export default ClubSelector;
