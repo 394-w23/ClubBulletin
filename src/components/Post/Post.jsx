@@ -1,21 +1,30 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 
 const Post = ({ post }) => {
   return (
-    <div className="post" style={{ border: "1px solid black" }}>
-      <div className="post-header">
-        <h1>{post.title}</h1>
-      </div>
-
-      <div className="post-body">
-        <p>{post.content}</p>
-      </div>
-
-      <div className="post-footer">
-        <p>{post.likeCount}</p>
-      </div>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>
+          {post.title}
+        </Card.Title>
+        <Card.Subtitle>
+          Posted datetime
+        </Card.Subtitle>
+        <Card.Text>
+          {post.content}
+        </Card.Text>        
+      </Card.Body>  
+      <ListGroup variant="flush">
+        { post.likeCount } { post.likeCount == 1 ? "like" : "likes" }
+      </ListGroup>    
+    </Card>
+    
   );
 };
 
 export default Post;
+
+
