@@ -6,12 +6,11 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
     <input
       type="radio"
       id={club}
-      className="btn-check"
       checked={club === selection}
       autoComplete="off"
       onChange={() => setSelection(id)}
     />
-    <label className="btn btn-success mb-1 p-2" htmlFor={club.name}>
+    <label htmlFor={club.name}>
       {club.name}
     </label>
   </div>
