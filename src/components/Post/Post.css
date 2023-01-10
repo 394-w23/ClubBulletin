@@ -1,0 +1,26 @@
+.card {
+  margin: 0 auto;
+  float: none;
+  margin-top: 1rem;
+}
+
+.post-profile-image {
+  height: 3rem;
+}
+
+.post-header-text {
+  text-align: left;
+}
+
+.post-club-name,
+.post-subtext {
+  margin-bottom: 0;
+}
+
+.post-subtext {
+  font-size: 12px;
+}
+
+.card-post-content {
+  text-align: left;
+}

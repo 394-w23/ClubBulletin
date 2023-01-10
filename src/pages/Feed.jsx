@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useDbData } from "../utilities/firebase";
 import Post from "../components/Post/Post";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const Feed = () => {
   const [data, error] = useDbData("/"); // get whole database
@@ -41,17 +41,16 @@ const Feed = () => {
               selection={selection}
               setSelection={setSelection}
             />
-            {filteredPosts.map(([id, post]) => (
-              <Post key={id} post={post} />
-            ))}
+            {filteredPosts.map(([id, post]) => {
+              const currentClub = data.clubs[post.clubId];
+
+              return <Post key={id} post={post} club={currentClub} />;
+            })}
           </Col>
         </Row>
       </Container>
     </div>
-
   );
 };
 
 export default Feed;
-
-
