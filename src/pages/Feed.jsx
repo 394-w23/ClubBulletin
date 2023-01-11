@@ -8,21 +8,12 @@ import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-const Feed = ({data, error}) => {
+const Feed = ({data, error, currentUser, currentClubsIds, currentClubs}) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
   // console.log("initial value", initialValue);
 
-  if (error) return <h1>Error loading data: {error.toString()}</h1>;
-  if (data === undefined) return <h1>Loading data...</h1>;
-  if (!data) return <h1>No data found</h1>;
-
-  const currentUser = data.users["27e416aa-8d61-11ed-a1eb-0242ac120002"];
-  const currentClubsIds = Object.values(currentUser.clubs);
-  const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
-    currentClubsIds.includes(id)
-  );
   const allPosts = Object.entries(data.posts);
 
   const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];

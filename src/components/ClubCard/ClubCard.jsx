@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
-import "./Post.css";
+import Post from "../Post/Post.jsx";
 
 const ClubCard = ({ club }) => {
     const tempImgUrl =
