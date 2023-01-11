@@ -1,16 +1,39 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { unsubscribeFromClub } from "../../utilities/firebase";
+import { useDbUpdate } from "../../utilities/firebase";
+
+
 
 const ClubCard = ({ id, club, currentClubs, user, data }) => {
+  const UnsubscribeFromClub = (data, userId, clubId) => {
+    const [updateClubMembers, resultClubMembers] = useDbUpdate(
+      `/users/clubs/${clubId}/members`
+    );
+  
+    const [updateUserClubs, resultUserClubs] = useDbUpdate(
+      `/users/${userId}/clubs`
+    );
+    console.log('hi');
+    const currentClubs = data.users[userId].clubs;
+    console.log('made it');
+    const updatedClubs = currentClubs.filter(
+      (currentClubId) => currentClubId != clubId
+    );
+  
+    // console.log("updated:", updatedClubs);
+    Object.assign({}, updatedClubs);
+    updateUserClubs(updatedClubs);
+  
+    return 0;
+  };
   const isUserInClub = currentClubs.map(([id]) => id).includes(id)
     ? true
     : false;
 
   const userId = "27e416aa-8d61-11ed-a1eb-0242ac120002";
 
-  //   unsubscribeFromClub(data, userId, id);
+  //   
 
   return (
     <Card class="post-card" style={{ width: "24rem" }}>
@@ -25,7 +48,7 @@ const ClubCard = ({ id, club, currentClubs, user, data }) => {
       <Card.Body>
         <Card.Text class="card-post-content">{club.description}</Card.Text>
 
-        <Button variant={isUserInClub ? "danger" : "primary"}>
+        <Button onClick={() => UnsubscribeFromClub(data, userId, id)} variant={isUserInClub ? "danger" : "primary"}>
           {isUserInClub ? "Unsubscribe" : "Subscribe"}
         </Button>
       </Card.Body>

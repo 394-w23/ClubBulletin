@@ -60,24 +60,4 @@ export const useDbUpdate = (path) => {
   return [updateData, result];
 };
 
-export const unsubscribeFromClub = (data, userId, clubId) => {
-  const [updateClubMembers, resultClubMembers] = useDbUpdate(
-    `/users/clubs/${clubId}/members`
-  );
 
-  const [updateUserClubs, resultUserClubs] = useDbUpdate(
-    `/users/${userId}/clubs`
-  );
-
-  const currentClubs = data.users[userId].clubs;
-
-  const updatedClubs = currentClubs.filter(
-    (currentClubId) => currentClubId != clubId
-  );
-
-  // console.log("updated:", updatedClubs);
-
-  updateUserClubs(Object.assign({}, updatedClubs));
-
-  return 0;
-};
