@@ -6,14 +6,15 @@ import { useDbUpdate } from "../../utilities/firebase";
 
 
 const ClubCard = ({ id, club, currentClubs, user, data }) => {
+  const [updateClubMembers, resultClubMembers] = useDbUpdate(
+    `/users/clubs/${id}/members`
+  );
+
+  const [updateUserClubs, resultUserClubs] = useDbUpdate(
+    `/users/27e416aa-8d61-11ed-a1eb-0242ac120002/clubs`
+  );
   const UnsubscribeFromClub = (data, userId, clubId) => {
-    const [updateClubMembers, resultClubMembers] = useDbUpdate(
-      `/users/clubs/${clubId}/members`
-    );
-  
-    const [updateUserClubs, resultUserClubs] = useDbUpdate(
-      `/users/${userId}/clubs`
-    );
+    
     console.log('hi');
     const currentClubs = data.users[userId].clubs;
     console.log('made it');
@@ -22,8 +23,8 @@ const ClubCard = ({ id, club, currentClubs, user, data }) => {
     );
   
     // console.log("updated:", updatedClubs);
-    Object.assign({}, updatedClubs);
-    updateUserClubs(updatedClubs);
+    ;
+    updateUserClubs(Object.assign({}, updatedClubs));
   
     return 0;
   };
