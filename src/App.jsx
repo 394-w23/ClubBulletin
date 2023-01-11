@@ -13,11 +13,13 @@ function App() {
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
+
   const currentUserId = "27e416aa-8d61-11ed-a1eb-0242ac120002";
   // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
-  const currentUser = data.users[currentUserId];
-  const allClubs = data.clubs;
-  const currentClubsIds = Object.values(currentUser.clubs);
+  const currentUserData = data.users[currentUserId];
+  // allClubs is an array <Array: [clubId, clubData], ... >
+  const allClubs = Object.entries(data.clubs);
+  const currentClubsIds = Object.values(currentUserData.clubs);
   // currentClubs is an array [ [clubId, clubData]], ...  ]
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
@@ -28,13 +30,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Feed data={data} 
                                              currentUserId={currentUserId}        
-                                             currentUser={currentUser} 
+                                             currentUserData={currentUserData} 
                                              currentClubsIds={currentClubsIds} 
                                              currentClubs={currentClubs}/>}>                          
         </Route>
         <Route exact path="/organizations" element={<Organizations data={data} 
                                                                    currentUserId={currentUserId} 
-                                                                   currentUser={currentUser} 
+                                                                   currentUserData={currentUserData} 
                                                                    currentClubsIds={currentClubsIds}
                                                                    allClubs={allClubs}/>}>
         </Route>

@@ -4,8 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-const Organizations = ({ data, currentUserId, currentClubsIds, currentUser }) => {
-  const allClubs = Object.entries(data.clubs);
+const Organizations = ({ data, currentUserId, currentClubsIds, currentUserData, allClubs }) => {
 
   return (
     <div>
@@ -18,13 +17,13 @@ const Organizations = ({ data, currentUserId, currentClubsIds, currentUser }) =>
       <Container>
         <Row>
           <Col>
-            {allClubs.map(([id, club]) => {
+            {allClubs.map(([id, clubData]) => {
               return (
                 <ClubCard key={id}
                           clubId={id}
-                          clubData={club}
+                          clubData={clubData}
                           currentClubsIds={currentClubsIds}
-                          currentUser={currentUser}
+                          currentUserData={currentUserData}
                           currentUserId={currentUserId}
                           data={data} />
               );

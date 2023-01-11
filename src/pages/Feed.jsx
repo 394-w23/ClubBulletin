@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-const Feed = ({data, currentUser, currentClubsIds, currentClubs}) => {
+const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);

@@ -5,48 +5,37 @@ import { useDbUpdate } from "../../utilities/firebase";
 
 
 
-const ClubCard = ({ clubId, clubData, currentClubsIds, currentUser, currentUserId, data }) => {  
-  const [updateClub, resultClubMembers] = useDbUpdate(`/clubs/${clubId}`);
-  const [updateUser, resultUserClubs] = useDbUpdate(`/users/${currentUserId}`);
-  // console.log(clubData);
-  const userInClub = clubData.members.includes(currentUserId);
+const ClubCard = ({ clubId, clubData, currentClubsIds, currentUserData, currentUserId, data }) => {  
+  const [updateClub] = useDbUpdate(`/clubs/${clubId}`);
+  const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
+  // console.log('clubData members', clubData.members);  
+  const userInClub = clubData.members !== undefined ? clubData.members.includes(currentUserId) : false;
   const toggleClubSubscription = () => {    
-    // remove club id from user's clubs
+    // toggle userId from clubs's members
       // if user is in club, return filtered list of members without the user
       // else return list of members with user added
-    // updateClub( {["/members"]: userInClub ? clubData.members} )
-    // remove user from club members
-    // const newUserData = {...currentUser, [clubs]: }
-    // const newClubData = {}
-
-
-    const currentClubs = data.users[userId].clubs;
-    console.log('made it');
-    const updatedClubs = currentClubs.filter(
-      (currentClubId) => currentClubId != clubId
-    );
-  
-    console.log("updated:", updatedClubs);
-    const out = {};
-    Object.assign(out, updatedClubs);
-    updateUserClubs(out);
-  
-    return 0;
+    updateClub( { ["/members"]: userInClub 
+                                ? clubData.members.filter((memberId) => (memberId !== currentUserId)) 
+                                : [...clubData?.members, currentUserId] } );
+    // toggle clubId from current
+    updateUser( { ["/clubs"]: userInClub
+                                ? currentUserData.clubs.filter((cId) => (cId !== clubId))
+                                : [...currentUserData?.clubs, clubId] } );
   };
 
   //   
 
   return (
-    <Card class="post-card" style={{ width: "24rem" }}>
+    <Card className="post-card" style={{ width: "24rem" }}>
       <Card.Header>
-        <div class="row">
-          <div class="col-sm-8 post-header-text">
-            <Card.Text class="post-club-name">{clubData.name}</Card.Text>
+        <div className="row">
+          <div className="col-sm-8 post-header-text">
+            <Card.Text className="post-club-name">{clubData.name}</Card.Text>
           </div>
         </div>
       </Card.Header>
       <Card.Body>
-        <Card.Text class="card-post-content">{clubData.description}</Card.Text>
+        <Card.Text className="card-post-content">{clubData.description}</Card.Text>
         <Button onClick={() => toggleClubSubscription()} variant={userInClub ? "danger" : "primary"}>
           {userInClub ? "Unsubscribe" : "Subscribe"}
         </Button>
