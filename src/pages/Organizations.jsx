@@ -4,17 +4,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import Navigation from "../components/Navigation/Navigation";
+
 const Organizations = ({ data, currentUserId, currentClubsIds, currentUserData, allClubs }) => {
 
   return (
-    <div>
-      <div>
-          <Link to ="/" relative="path">
-          <Button varient="primary">Back</Button>
-          </Link>
-        </div>
-      <h1>Organization list: </h1>
+    <div>            
       <Container>
+        <Navigation currentUserData={currentUserData} />
+        <h1>Organizations list</h1>
+        <Link to ="/" relative="path">
+            <Button varient="primary">Back</Button>
+        </Link>
         <Row>
           <Col>
             {allClubs.map(([id, clubData]) => {

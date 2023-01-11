@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useDbData } from "../utilities/firebase";
 import Post from "../components/Post/Post";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
 import Container from "react-bootstrap/Container";
@@ -7,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+import Navigation from "../components/Navigation/Navigation";
 
 const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
   const [selection, setSelection] = useState("ALL");
@@ -26,6 +26,8 @@ const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
   return (
     <div className="App">
       <Container>
+        <Navigation currentUserData={currentUserData} />
+        <h1>Your Feed</h1>
         <Row>
           <Col>
             <ClubSelector
