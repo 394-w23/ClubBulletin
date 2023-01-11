@@ -1,4 +1,4 @@
-const Organizations = () => {
+const Organizations = ({data, error}) => {
   return (
     <div>
       <h1>orgs list: </h1>

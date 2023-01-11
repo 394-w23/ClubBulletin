@@ -5,9 +5,10 @@ import ClubSelector from "../components/ClubSelector/ClubSelector";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
-const Feed = () => {
-  const [data, error] = useDbData("/"); // get whole database
+const Feed = ({data, error}) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
@@ -41,6 +42,11 @@ const Feed = () => {
               selection={selection}
               setSelection={setSelection}
             />
+            <div>
+              <Link to ="/organizations" relative="path">
+              <Button varient="primary">Manage</Button>
+              </Link>
+            </div>
             {filteredPosts.map(([id, post]) => {
               const currentClub = data.clubs[post.clubId];
 
