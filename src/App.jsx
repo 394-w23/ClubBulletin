@@ -13,18 +13,31 @@ function App() {
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
-  const currentUser = data.users["27e416aa-8d61-11ed-a1eb-0242ac120002"];
+  const currentUserId = "27e416aa-8d61-11ed-a1eb-0242ac120002";
+  // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
+  const currentUser = data.users[currentUserId];
+  const allClubs = data.clubs;
   const currentClubsIds = Object.values(currentUser.clubs);
+  // currentClubs is an array [ [clubId, clubData]], ...  ]
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-  console.log('currentclubs', currentClubs);
 
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Feed data={data} error={error} currentUser={currentUser} currentClubsIds={currentClubsIds} currentClubs={currentClubs}/>}></Route>
-        <Route exact path="/organizations" element={<Organizations data={data} error={error} currentClubs={currentClubs}/>}></Route>
+        <Route exact path="/" element={<Feed data={data} 
+                                             currentUserId={currentUserId}        
+                                             currentUser={currentUser} 
+                                             currentClubsIds={currentClubsIds} 
+                                             currentClubs={currentClubs}/>}>                          
+        </Route>
+        <Route exact path="/organizations" element={<Organizations data={data} 
+                                                                   currentUserId={currentUserId} 
+                                                                   currentUser={currentUser} 
+                                                                   currentClubsIds={currentClubsIds}
+                                                                   allClubs={allClubs}/>}>
+        </Route>
       </Routes>
     </Router>
   );
