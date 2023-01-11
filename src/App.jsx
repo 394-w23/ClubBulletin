@@ -18,6 +18,7 @@ function App() {
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
+  console.log('currentclubs', currentClubs);
 
   return (
     <Router>

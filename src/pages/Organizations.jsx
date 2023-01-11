@@ -13,7 +13,7 @@ const Organizations = ({data, error, currentClubs}) => {
         <Row>
           <Col>
             {allClubs.map(([id, club]) => {
-              return <ClubCard key={id} club={club} />;
+              return <ClubCard key={id} id={id} club={club} currentClubs={currentClubs} />;
             })}
           </Col>
         </Row>
