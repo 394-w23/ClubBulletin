@@ -22,9 +22,10 @@ const ClubCard = ({ id, club, currentClubs, user, data }) => {
       (currentClubId) => currentClubId != clubId
     );
   
-    // console.log("updated:", updatedClubs);
-    ;
-    updateUserClubs(Object.assign({}, updatedClubs));
+    console.log("updated:", updatedClubs);
+    const out = {};
+    Object.assign(out, updatedClubs);
+    updateUserClubs(out);
   
     return 0;
   };
