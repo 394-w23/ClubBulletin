@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,6 +12,8 @@ function App() {
   const [data, error] = useDbData("/"); // get whole database
 
   const [profile, profileLoading, profileError] = useProfile();
+  const user = profile.user;
+  console.log(profile.user);
 
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
@@ -35,14 +37,16 @@ function App() {
         <Route
           exact
           path="/"
-          element={
-            <Feed
-              data={data}
-              currentUserId={currentUserId}
-              currentUserData={currentUserData}
-              currentClubsIds={currentClubsIds}
-              currentClubs={currentClubs}
-            />
+          element={ user ? 
+              <Feed
+                data={data}
+                currentUserId={currentUserId}
+                currentUserData={currentUserData}
+                currentClubsIds={currentClubsIds}
+                currentClubs={currentClubs}
+              />
+            :
+              <Navigate replace to="/login" state={{inviteLink: window.location.search}}/>
           }
         ></Route>
         <Route
