@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 
+
 const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
   const [selection, setSelection] = useState("ALL");
 
@@ -28,9 +29,13 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
       <Container>
         <Navigation currentUserData={currentUserData} />
         <h1>Your Feed</h1>
-        <Container>
-          <ClubTabs currentClubs={currentClubs}/>
-        </Container>
+        <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+</ul>
+        <ClubTabs currentClubs={currentClubs}/>
+        
         <Row>
           <Col>
             {/* <ClubSelector
