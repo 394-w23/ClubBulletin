@@ -30,12 +30,15 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
         <Navigation currentUserData={currentUserData} />
         <h1>Your Feed</h1>
         <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-</ul>
-        <ClubTabs currentClubs={currentClubs}/>
-        
+          {currentClubs.map(([id, club]) => (
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+          ))}
+
+        </ul>
+        {/* <ClubTabs currentClubs={currentClubs} /> */}
+
         <Row>
           <Col>
             {/* <ClubSelector
