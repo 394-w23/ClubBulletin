@@ -30,11 +30,20 @@ const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
         <h1>Your Feed</h1>
         <Row>
           <Col>
-            <ClubSelector
+            {/* <ClubSelector
               clubs={currentClubs}
               selection={selection}
               setSelection={setSelection}
-            />
+            /> */}
+            <Container>
+              <ul class="nav nav-tabs">
+                {currentClubs.map((club) => {
+                  <ClubSelector
+                    club={club}
+                  />
+                })}
+              </ul>
+            </Container>
             <div>
               <Link to ="/organizations" relative="path">
               <Button varient="primary">Manage</Button>

@@ -21,28 +21,31 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
   );
 };
 
-const ClubSelector = ({ clubs, selection, setSelection }) => {
+const ClubSelector = ({ club }) => {
   //console.log(clubs);
   console.log("selection", selection);
   return (
-    <div className="btn-group">
-      <ClubButton
-        id={"ALL"}
-        key={0}
-        club={"ALL"}
-        selection={selection}
-        setSelection={setSelection}
-      />
-      {clubs.map(([id, club]) => (
-        <ClubButton
-          id={id}
-          key={id}
-          club={club}
-          selection={selection}
-          setSelection={setSelection}
-        />
-      ))}
-    </div>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    // <div className="btn-group">
+    //   <ClubButton
+    //     id={"ALL"}
+    //     key={0}
+    //     club={"ALL"}
+    //     selection={selection}
+    //     setSelection={setSelection}
+    //   />
+    //   {clubs.map(([id, club]) => (
+    //     <ClubButton
+    //       id={id}
+    //       key={id}
+    //       club={club}
+    //       selection={selection}
+    //       setSelection={setSelection}
+    //     />
+    //   ))}
+    // </div>
   );
 };
 
