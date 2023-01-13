@@ -4,7 +4,7 @@ import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDbData } from "./utilities/firebase";
-
+import LogIn from "./pages/LogIn";
 import "./App.css";
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route exact path="/login" element={<LogIn />}></Route>
         <Route exact path="/" element={<Feed data={data} 
                                              currentUserId={currentUserId}        
                                              currentUserData={currentUserData} 
