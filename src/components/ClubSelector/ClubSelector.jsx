@@ -26,24 +26,41 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
 };
 
 
-const ClubSelector = ({ currentClubs }) => {
+const ClubSelector = ({ currentClubs, selection, setSelection}) => {
   // console.log(club);
   // console.log("selection", selection);
   return (
-    <Tabs
-      defaultActiveKey="all"
-      id="filterClubs"
-      className="mb-3"
-    >
-      <Tab eventKey="all" title="All Clubs">
-      </Tab>
+    // <Tabs
+    //   defaultActiveKey="all"
+    //   id="filterClubs"
+    //   className="mb-3"
+    // >
+    //   <Tab eventKey="all" title="All Clubs">
+    //   </Tab>
+    // {currentClubs.map(([id, club]) => (
+    //   <Tab eventKey={club.name} title={club.name}>
+
+    //   </Tab>
+    // ))
+
+    // }
+    // </Tabs>
+
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <a className="nav-link active" aria-current="page" key="ALL" onClick={() => setSelection("ALL")}>All Clubs</a>
+      </li>
       {currentClubs.map(([id, club]) => (
-        <Tab eventKey={club.name} title={club.name}>
-        </Tab>
-      ))
-      
-      }
-    </Tabs>
+        <li className="nav-item">
+          <a className="nav-link" key={club.id} onClick={() => setSelection(club.id)}>{club.name}</a>
+        </li>
+      ))}
+    </ul>
+
+
+
+
+    // PREVIOUS
     // <li className="nav-item">
     //   <a className="nav-link active" aria-current="page" href="#">Something</a>
     // </li>

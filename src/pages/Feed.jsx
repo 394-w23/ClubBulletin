@@ -29,7 +29,11 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
       <Container>
         <Navigation currentUserData={currentUserData} />
         <h1>Your Feed</h1>
-        <ClubSelector currentClubs={currentClubs} />
+        <ClubSelector
+          currentClubs={currentClubs}
+          selection={selection}
+          setSelection={setSelection}
+        />
 
         <Row>
           <Col>
