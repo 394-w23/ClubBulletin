@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Post from "../components/Post/Post";
-import ClubSelector from "../components/ClubSelector/ClubSelector";
+import ClubTabs from "../components/ClubSelector/ClubSelector";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 
-const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
+const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
@@ -28,6 +28,9 @@ const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
       <Container>
         <Navigation currentUserData={currentUserData} />
         <h1>Your Feed</h1>
+        <Container>
+          <ClubTabs currentClubs={currentClubs}/>
+        </Container>
         <Row>
           <Col>
             {/* <ClubSelector
@@ -35,18 +38,10 @@ const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
               selection={selection}
               setSelection={setSelection}
             /> */}
-            <Container>
-              <ul class="nav nav-tabs">
-                {currentClubs.map((club) => {
-                  <ClubSelector
-                    club={club}
-                  />
-                })}
-              </ul>
-            </Container>
+
             <div>
-              <Link to ="/organizations" relative="path">
-              <Button varient="primary">Manage</Button>
+              <Link to="/organizations" relative="path">
+                <Button varient="primary">Manage</Button>
               </Link>
             </div>
             {filteredPosts.map(([id, post]) => {

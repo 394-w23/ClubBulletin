@@ -21,12 +21,24 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
   );
 };
 
-const ClubSelector = ({ club }) => {
-  //console.log(clubs);
-  console.log("selection", selection);
+const ClubTabs = ({ currentClubs }) => {
   return (
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    <ul className="nav nav-tabs">
+      {currentClubs.map(([id, club]) => (
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="#">Something</a>
+        </li>)
+      )}
+    </ul>
+  );
+};
+
+const ClubSelector = ({ club }) => {
+  // console.log(club);
+  // console.log("selection", selection);
+  return (
+    <li className="nav-item">
+      <a className="nav-link active" aria-current="page" href="#">Something</a>
     </li>
     // <div className="btn-group">
     //   <ClubButton
