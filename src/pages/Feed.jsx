@@ -17,7 +17,7 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
 
   const allPosts = Object.entries(data.posts);
 
-  const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];
+  const filteredClubIds = selection.id === "ALL" ? currentClubsIds : [selection.id];
 
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)

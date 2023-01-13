@@ -4,19 +4,20 @@ import Tabs from 'react-bootstrap/Tabs';
 
 const ClubButton = ({ club, id, selection, setSelection }) => {
   console.log("club", club);
-  //console.log("id", id);
-
+  console.log("id", id);
+  console.log("selection", selection.id);
   const clubLabel = club === "ALL" ? "All clubs" : club.name;
-  const isActive = id === selection ? "nav-link active" : "nav-link";
-
+  const isActive = id === selection.id ? "nav-link active" : "nav-link";
+  console.log("isActive", isActive);
   return (
     <div>
       <li
         className="nav-item"
         id={id}
         autoComplete="off"
-        onChange={() => setSelection(id)}
-      ><a className={isActive} aria-current="page" key={id} onClick={() => setSelection({id})}>{clubLabel}</a>
+        // onChange={() => setSelection(id)}
+      >
+        <a className={isActive} aria-current="page" key={id} onClick={() => setSelection({id})}>{clubLabel}</a>
       </li>
       {/* <label htmlFor={id} className="btn btn-success mb-1 p-2">
         {clubLabel}
@@ -55,7 +56,7 @@ const ClubSelector = ({ currentClubs, selection, setSelection}) => {
           <a className="nav-link" key={club.id} onClick={() => setSelection(club.id)}>{club.name}</a>
         </li>
       ))} */}
-      <ClubButton club="ALL" id={0} selection={selection} setSelection={setSelection}></ClubButton>
+      <ClubButton club="ALL" id="ALL" selection={selection} setSelection={setSelection}></ClubButton>
       {currentClubs.map(([id, club]) => (
         <ClubButton club={club} id={id} selection={selection} setSelection={setSelection}>
     
