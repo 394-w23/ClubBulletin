@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import Post from "../components/Post/Post";
-import ClubTabs from "../components/ClubSelector/ClubSelector";
+import Post from "../components/Post/Post";;
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
+import ClubSelector from "../components/ClubSelector/ClubSelector";
 
 
 const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
@@ -29,15 +29,7 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
       <Container>
         <Navigation currentUserData={currentUserData} />
         <h1>Your Feed</h1>
-        <ul class="nav nav-tabs">
-          {currentClubs.map(([id, club]) => (
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Active</a>
-            </li>
-          ))}
-
-        </ul>
-        {/* <ClubTabs currentClubs={currentClubs} /> */}
+        <ClubSelector currentClubs={currentClubs} />
 
         <Row>
           <Col>

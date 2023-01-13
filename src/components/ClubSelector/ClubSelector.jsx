@@ -1,5 +1,6 @@
 import Navigation from "../Navigation/Navigation";
 import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const ClubButton = ({ club, id, selection, setSelection }) => {
   //console.log("club", club);
@@ -24,40 +25,28 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
   );
 };
 
-const ClubTabs = ({ currentClubs }) => {
-  return (
-    <Tabs
-      defaultActiveKey="profile"
-      id="uncontrolled-tab-example"
-      className="mb-3"
-    >
-      <Tab eventKey="home" title="Home">
-        <Sonnet />
-      </Tab>
-      <Tab eventKey="profile" title="Profile">
-        <Sonnet />
-      </Tab>
-      <Tab eventKey="contact" title="Contact" disabled>
-        <Sonnet />
-      </Tab>
-    </Tabs>
-    // <Tabs >
-    //   {currentClubs.map(([id, club]) => (
-    //     <li className="nav-item">
-    //       <a className="nav-link active" aria-current="page" href="#">Something</a>
-    //     </li>)
-    //   )}
-    // </ul>
-  );
-};
 
-const ClubSelector = ({ club }) => {
+const ClubSelector = ({ currentClubs }) => {
   // console.log(club);
   // console.log("selection", selection);
   return (
-    <li className="nav-item">
-      <a className="nav-link active" aria-current="page" href="#">Something</a>
-    </li>
+    <Tabs
+      defaultActiveKey="all"
+      id="filterClubs"
+      className="mb-3"
+    >
+      <Tab eventKey="all" title="All Clubs">
+      </Tab>
+      {currentClubs.map(([id, club]) => (
+        <Tab eventKey={club.name} title={club.name}>
+        </Tab>
+      ))
+      
+      }
+    </Tabs>
+    // <li className="nav-item">
+    //   <a className="nav-link active" aria-current="page" href="#">Something</a>
+    // </li>
     // <div className="btn-group">
     //   <ClubButton
     //     id={"ALL"}
