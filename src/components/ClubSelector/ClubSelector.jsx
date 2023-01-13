@@ -3,24 +3,24 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 const ClubButton = ({ club, id, selection, setSelection }) => {
-  //console.log("club", club);
+  console.log("club", club);
   //console.log("id", id);
 
   const clubLabel = club === "ALL" ? "All clubs" : club.name;
+  const isActive = id === selection ? "nav-link active" : "nav-link";
 
   return (
     <div>
-      <input
-        type="radio"
-        className="btn-check"
+      <li
+        className="nav-item"
         id={id}
-        checked={id === selection}
         autoComplete="off"
         onChange={() => setSelection(id)}
-      />
-      <label htmlFor={id} className="btn btn-success mb-1 p-2">
+      ><a className={isActive} aria-current="page" key={id} onClick={() => setSelection({id})}>{clubLabel}</a>
+      </li>
+      {/* <label htmlFor={id} className="btn btn-success mb-1 p-2">
         {clubLabel}
-      </label>
+      </label> */}
     </div>
   );
 };
@@ -47,13 +47,19 @@ const ClubSelector = ({ currentClubs, selection, setSelection}) => {
     // </Tabs>
 
     <ul className="nav nav-tabs">
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <a className="nav-link active" aria-current="page" key="ALL" onClick={() => setSelection("ALL")}>All Clubs</a>
       </li>
       {currentClubs.map(([id, club]) => (
         <li className="nav-item">
           <a className="nav-link" key={club.id} onClick={() => setSelection(club.id)}>{club.name}</a>
         </li>
+      ))} */}
+      <ClubButton club="ALL" id={0} selection={selection} setSelection={setSelection}></ClubButton>
+      {currentClubs.map(([id, club]) => (
+        <ClubButton club={club} id={id} selection={selection} setSelection={setSelection}>
+    
+        </ClubButton>
       ))}
     </ul>
 
