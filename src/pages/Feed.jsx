@@ -4,11 +4,11 @@ import ClubSelector from "../components/ClubSelector/ClubSelector";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 
-const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
+const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
@@ -36,14 +36,16 @@ const Feed = ({data, currentUserData, currentClubsIds, currentClubs}) => {
               setSelection={setSelection}
             />
             <div>
-              <Link to ="/organizations" relative="path">
-              <Button varient="primary">Manage</Button>
+              <Link to="/organizations" relative="path">
+                <Button varient="primary">Manage</Button>
               </Link>
             </div>
             {filteredPosts.map(([id, post]) => {
               const currentClub = data.clubs[post.clubId];
 
-              return <Post key={id} post={post} club={currentClub} />;
+              return (
+                <Post key={id} post={post} postId={id} club={currentClub} />
+              );
             })}
           </Col>
         </Row>

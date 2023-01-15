@@ -24,3 +24,12 @@
 .card-post-content {
   text-align: left;
 }
+
+.post-like-icon {
+  height: 1.5em;
+  margin: 0.5em;
+}
+
+.post-like-icon:hover {
+  cursor: pointer;
+}
