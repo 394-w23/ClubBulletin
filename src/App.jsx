@@ -13,25 +13,24 @@ function App() {
 
   const [updateDb] = useDbUpdate('/');
 
-  const [profile, profileLoading, profileError] = useProfile();
+  const [profile, profileLoading, profileError] = useProfile();  
   const user = profile.user;
-  console.log(profile.user);
+  console.log(user);
+
+  const currentUserId = user.uid;
 
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
 
-  const currentUserId = user.uid
-  
   // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
-  if (data.users[currentUserId] === undefined) {
-    const [updateDb] = useDbUpdate('/');
+  if (!(currentUserId in data.users)) {
     updateDb( { ['/users']: {
       ...data.users, 
-      [user.uid]: {'clubs': ['']},
-      ['name']: user.displayName
+      [user.uid]: {'clubs': [''], 'name': user.displayName},
     } } );    
   }
+
   const currentUserData = data.users[currentUserId];
   // allClubs is an array <Array: [clubId, clubData], ... >
   const allClubs = Object.entries(data.clubs);
