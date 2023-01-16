@@ -20,7 +20,7 @@ function App() {
 
   const [profile, profileLoading, profileError] = useProfile();
   const user = profile.user;
-  console.log(profile.user);
+  // console.log(profile.user);
 
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;

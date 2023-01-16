@@ -57,11 +57,11 @@ const Feed = ({ user, data }) => {
 
         <Row>
           <Col>            
-            <div>
+            {/* <div>
               <Link to ="/organizations" relative="path">
               <Button varient="primary">Manage</Button>
               </Link>
-            </div>
+            </div> */}
             {filteredPosts.map(([id, post]) => {
               const currentClub = data.clubs[post.clubId];
 

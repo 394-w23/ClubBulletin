@@ -31,12 +31,12 @@ const Navigation = ({ currentUserData }) => {
                 Manage Clubs
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.2">
+              {/* <NavDropdown.Item href="#action/3.2">
                 Notifications
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">
                 Bookmarked Posts
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 <SignOutButton></SignOutButton>
