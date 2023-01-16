@@ -7,7 +7,7 @@ import { useDbData } from "./utilities/firebase";
 import LogIn from "./pages/LogIn";
 import { useProfile } from "./utilities/profile";
 import "./App.css";
-
+import { v4 as uuidv4 } from "uuid";
 function App() {
   const [data, error] = useDbData("/"); // get whole database
 
@@ -19,8 +19,12 @@ function App() {
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
 
-  const currentUserId = "27e416aa-8d61-11ed-a1eb-0242ac120002";
+  const currentUserId = user.uid
+  
   // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
+  if (data.users[currentUserId] === undefined) {
+    data.users[currentUserId] = { clubs: [], name: user.displayName };
+  }
   const currentUserData = data.users[currentUserId];
   // allClubs is an array <Array: [clubId, clubData], ... >
   const allClubs = Object.entries(data.clubs);
@@ -33,7 +37,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/login" element={<LogIn />}></Route>
+        <Route exact path="/login" element={ user ? 
+          <Navigate replace to="/" state={{inviteLink: window.location.search}}/>:
+          <LogIn />}>
+        </Route>
         <Route
           exact
           path="/"
