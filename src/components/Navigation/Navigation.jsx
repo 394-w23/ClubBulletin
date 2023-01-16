@@ -25,7 +25,7 @@ const Navigation = ({ currentUserData }) => {
             <NavDropdown.Item href="/">Home</NavDropdown.Item>
               <NavDropdown.Item href="/organizations">Manage Clubs</NavDropdown.Item>
 
-              {/* <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="#action/3.2">
                 Notifications
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">

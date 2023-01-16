@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 
 const ClubButton = ({ club, id, selection, setSelection }) => {
   console.log("selection", selection);
-  const clubLabel = club === "ALL" ? "All clubs" : club.name;
+  const clubLabel = club === "all" ? "All clubs" : club.name;
   const isActive = id === selection.id ? "nav-link active" : "nav-link";
   return (
     <div>
@@ -25,9 +25,9 @@ const ClubSelector = ({ currentClubs, selection, setSelection}) => {
 
   return (
     <ul className="nav nav-tabs">
-      <ClubButton club="ALL" id="ALL" selection={selection} setSelection={setSelection}></ClubButton>
+      <ClubButton club="all" id="all" selection={selection} setSelection={setSelection}></ClubButton>
       {currentClubs.map(([id, club]) => (
-        <ClubButton club={club} id={id} selection={selection} setSelection={setSelection}>
+        <ClubButton key={id} club={club} id={id} selection={selection} setSelection={setSelection}>
     
         </ClubButton>
       ))}

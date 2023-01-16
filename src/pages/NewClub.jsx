@@ -5,7 +5,9 @@ import Container from "react-bootstrap/Container";
 import { useDbUpdate } from "../utilities/firebase";
 import { v4 as uuidv4 } from 'uuid';
 
-function NewClub({ data, currentUserId, currentUserData }) {
+function NewClub({ data, user }) {
+  const currentUserId = user.uid
+  const currentUserData = data.users[currentUserId];
   const { ...allUsers } = data.users;
   const [update] = useDbUpdate(`/`);
 

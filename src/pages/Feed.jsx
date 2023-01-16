@@ -7,15 +7,17 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
+import ClubSelector from "../components/ClubSelector/ClubSelector";
 
 const Feed = ({ user, data }) => {
-  const [selection, setSelection] = useState("ALL");
+  const [selection, setSelection] = useState({id:'all'});
 
   const allPosts = Object.entries(data.posts);
-
-  const filteredClubIds = selection.id === "ALL" ? currentClubsIds : [selection.id];
-
   const currentUserId = user.uid
+  const currentUserData = data.users[currentUserId];
+  const currentClubsIds = Object.values(currentUserData.clubs);
+  const filteredClubIds = selection.id === "all" ? currentClubsIds : [selection.id];  
+
   // something something postId to delete posts later (warning)
   if (data.users[currentUserId] === undefined) {
     const [updateDb] = useDbUpdate('/');
@@ -26,15 +28,15 @@ const Feed = ({ user, data }) => {
     } } );    
   }
 
-  const currentUserData = data.users[currentUserId];
+  
   // allClubs is an array <Array: [clubId, clubData], ... >
-  const allClubs = Object.entries(data.clubs);
-  const currentClubsIds = Object.values(currentUserData.clubs);
+  const allClubs = Object.entries(data.clubs);  
   // currentClubs is an array [ [clubId, clubData]], ...  ]
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-  const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];
+  console.log(currentClubs);
+  
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
   );
@@ -52,12 +54,7 @@ const Feed = ({ user, data }) => {
         />
 
         <Row>
-          <Col>
-            {/* <ClubSelector
-              clubs={currentClubs}
-              selection={selection}
-              setSelection={setSelection}
-            />
+          <Col>            
             <div>
               <Link to ="/organizations" relative="path">
               <Button varient="primary">Manage</Button>

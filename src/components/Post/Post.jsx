@@ -25,16 +25,16 @@ const Post = ({ post, postId, club }) => {
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
-    <Card class="post-card" style={{ width: "24rem" }}>
+    <Card className="post-card" style={{ width: "24rem" }}>
       <Card.Header>
-        <div class="col-sm-12">
-          <div class="row">
-            {/* <div class="col-sm-3">
-              <Card.Img src={tempImgUrl} class="post-profile-image"></Card.Img>
+        <div className="col-sm-12">
+          <div className="row">
+            {/* <div className="col-sm-3">
+              <Card.Img src={tempImgUrl} className="post-profile-image"></Card.Img>
             </div> */}
-            <div class="col-sm-8 post-header-text">
-              <Card.Text class="post-club-name">{club.name}</Card.Text>
-              <Card.Text class="post-subtext">{tempTimeMessage}</Card.Text>
+            <div className="col-sm-8 post-header-text">
+              <Card.Text className="post-club-name">{club.name}</Card.Text>
+              <Card.Text className="post-subtext">{tempTimeMessage}</Card.Text>
             </div>
           </div>
         </div>
@@ -42,20 +42,20 @@ const Post = ({ post, postId, club }) => {
 
       <Card.Body>
         <Card.Text as="h5">{post.title}</Card.Text>
-        <Card.Text class="card-post-content">{post.content}</Card.Text>
+        <Card.Text className="card-post-content">{post.content}</Card.Text>
       </Card.Body>
       <ListGroup variant="flush">
         <div>
           {isPostLiked ? (
             <FavoriteIcon
               onClick={() => updateLikeCount(-1)}
-              class="post-like-icon"
+              className="post-like-icon"
               style={{ fill: "red" }}
             ></FavoriteIcon>
           ) : (
             <FavoriteBorderIcon
               onClick={() => updateLikeCount(1)}
-              class="post-like-icon"
+              className="post-like-icon"
             ></FavoriteBorderIcon>
           )}
           {post.likeCount} {post.likeCount == 1 ? "like" : "likes"}
