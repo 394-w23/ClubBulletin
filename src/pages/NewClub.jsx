@@ -2,7 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Navigation from "../components/Navigation/Navigation";
 import Container from "react-bootstrap/Container";
-import { useDbUpdate } from "../../utilities/firebase";
+import { useDbUpdate } from "../utilities/firebase";
+import { v4 as uuidv4 } from 'uuid';
 
 function NewClub({ data, currentUserId, currentUserData }) {
   const { ...allUsers } = data.users;
@@ -13,7 +14,15 @@ function NewClub({ data, currentUserId, currentUserData }) {
     const formDataObj = Object.fromEntries(formData.entries());
     console.log(formDataObj);
 
-    const [updateClub] = useDbUpdate(`/clubs`);
+    // update /clubs with a new club 
+    const [update] = useDbUpdate(`/`);
+    update(['/clubs']: {...data.clubs, 
+      `${uuidv4()}`}: 
+        'description': formDataObj.ClubDescription,
+        'admins': ['', currentUserId],
+        'name': formDataObj.ClubName,
+        'members': [''])
+    // TODO: update /users.<adminId>.clubs with the new club 
 
   };
 
