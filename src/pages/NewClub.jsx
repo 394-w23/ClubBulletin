@@ -1,28 +1,29 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Navigation from "../components/Navigation/Navigation";
+import Container from "react-bootstrap/Container";
 
-function NewClub() {
+function NewClub({ data, currentUserId, currentUserData }) {
+  const {...allUsers} = data.users;
+  console.log(allUsers);
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <Container>
+      <Navigation currentUserData={currentUserData} />
+      <Button varient="primary" href="/organizations">Back</Button>
+      <Form>
+      <Form.Label>Club Admin</Form.Label>
+        <Form.Select aria-label="Club Admins"> 
+          <option>Choose admin</option>
+          {allUsers.map(([id, user]) => {
+              return <option value={id}>{user.name}</option>;
+            })}
+        </Form.Select>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
   );
 }
 

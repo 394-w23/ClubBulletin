@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
+import NewClub from "./pages/NewClub";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDbData } from "./utilities/firebase";
 
@@ -28,17 +29,24 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Feed data={data} 
-                                             currentUserId={currentUserId}        
-                                             currentUserData={currentUserData} 
-                                             currentClubsIds={currentClubsIds} 
-                                             currentClubs={currentClubs}/>}>                          
+        <Route exact path="/" element={<Feed
+          data={data}
+          currentUserId={currentUserId}
+          currentUserData={currentUserData}
+          currentClubsIds={currentClubsIds}
+          currentClubs={currentClubs} />}>
         </Route>
-        <Route exact path="/organizations" element={<Organizations data={data} 
-                                                                   currentUserId={currentUserId} 
-                                                                   currentUserData={currentUserData} 
-                                                                   currentClubsIds={currentClubsIds}
-                                                                   allClubs={allClubs}/>}>
+        <Route exact path="/organizations" element={<Organizations
+          data={data}
+          currentUserId={currentUserId}
+          currentUserData={currentUserData}
+          currentClubsIds={currentClubsIds}
+          allClubs={allClubs} />}>
+        </Route>
+        <Route exact path="/newclub" element={<NewClub
+          data={data}
+          currentUserId={currentUserId}
+          currentUserData={currentUserData} />}>
         </Route>
       </Routes>
     </Router>
