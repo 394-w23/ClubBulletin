@@ -10,14 +10,18 @@ import ClubSelector from "../components/ClubSelector/ClubSelector";
 
 
 const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
-  const [selection, setSelection] = useState("ALL");
+  const [selection, setSelection] = useState({id:"ALL"});
 
   // console.log("selection:", selection);
   // console.log("initial value", initialValue);
 
   const allPosts = Object.entries(data.posts);
-
+  // const x = "ALL";
+  // if(selection == "ALL"){
+  //   setSelection({x})
+  // }
   const filteredClubIds = selection.id === "ALL" ? currentClubsIds : [selection.id];
+
 
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
@@ -43,11 +47,11 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
               setSelection={setSelection}
             /> */}
 
-            <div>
+            {/* <div>
               <Link to="/organizations" relative="path">
                 <Button varient="primary">Manage</Button>
               </Link>
-            </div>
+            </div> */}
             {filteredPosts.map(([id, post]) => {
               const currentClub = data.clubs[post.clubId];
 

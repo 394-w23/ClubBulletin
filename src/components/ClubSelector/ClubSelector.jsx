@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 const ClubButton = ({ club, id, selection, setSelection }) => {
-
+  console.log("selection", selection);
   const clubLabel = club === "ALL" ? "All clubs" : club.name;
   const isActive = id === selection.id ? "nav-link active" : "nav-link";
   return (
