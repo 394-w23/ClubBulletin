@@ -1,22 +1,36 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
-import NewClub from "./pages/NewClub";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDbData } from "./utilities/firebase";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useDbData, useDbUpdate } from "./utilities/firebase";
+import LogIn from "./pages/LogIn";
+import { useProfile } from "./utilities/profile";
 import "./App.css";
-
+import { v4 as uuidv4 } from "uuid";
 function App() {
   const [data, error] = useDbData("/"); // get whole database
+
+  const [updateDb] = useDbUpdate('/');
+
+  const [profile, profileLoading, profileError] = useProfile();  
+  const user = profile.user;
+  console.log(user);
+
+  const currentUserId = user.uid;
 
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
 
-  const currentUserId = "27e416aa-8d61-11ed-a1eb-0242ac120002";
   // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
+  if (!(currentUserId in data.users)) {
+    updateDb( { ['/users']: {
+      ...data.users, 
+      [user.uid]: {'clubs': [''], 'name': user.displayName},
+    } } );    
+  }
+
   const currentUserData = data.users[currentUserId];
   // allClubs is an array <Array: [clubId, clubData], ... >
   const allClubs = Object.entries(data.clubs);
@@ -29,25 +43,38 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Feed
-          data={data}
-          currentUserId={currentUserId}
-          currentUserData={currentUserData}
-          currentClubsIds={currentClubsIds}
-          currentClubs={currentClubs} />}>
+        <Route exact path="/login" element={ user ? 
+          <Navigate replace to="/" state={{inviteLink: window.location.search}}/>:
+          <LogIn />}>
         </Route>
-        <Route exact path="/organizations" element={<Organizations
-          data={data}
-          currentUserId={currentUserId}
-          currentUserData={currentUserData}
-          currentClubsIds={currentClubsIds}
-          allClubs={allClubs} />}>
-        </Route>
-        <Route exact path="/newclub" element={<NewClub
-          data={data}
-          currentUserId={currentUserId}
-          currentUserData={currentUserData} />}>
-        </Route>
+        <Route
+          exact
+          path="/"
+          element={ user ? 
+              <Feed
+                data={data}
+                currentUserId={currentUserId}
+                currentUserData={currentUserData}
+                currentClubsIds={currentClubsIds}
+                currentClubs={currentClubs}
+              />
+            :
+              <Navigate replace to="/login" state={{inviteLink: window.location.search}}/>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/organizations"
+          element={
+            <Organizations
+              data={data}
+              currentUserId={currentUserId}
+              currentUserData={currentUserData}
+              currentClubsIds={currentClubsIds}
+              allClubs={allClubs}
+            />
+          }
+        ></Route>
       </Routes>
     </Router>
   );

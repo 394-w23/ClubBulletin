@@ -1,9 +1,17 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
-const Navigation = ({currentUserData}) => {
+import { signOut } from "../../utilities/firebase";
+
+const SignOutButton = () => (
+  <button className="ms-auto btn btn-dark" onClick={signOut}>
+    Sign out
+  </button>
+);
+
+const Navigation = ({ currentUserData }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -20,10 +28,12 @@ const Navigation = ({currentUserData}) => {
               {/* <NavDropdown.Item href="#action/3.2">
                 Notifications
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Bookmarked Posts</NavDropdown.Item> */}
+              <NavDropdown.Item href="#action/3.3">
+                Bookmarked Posts
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Log Out
+                <SignOutButton></SignOutButton>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
