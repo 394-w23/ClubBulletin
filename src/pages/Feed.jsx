@@ -7,8 +7,9 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
+import { useDbData, useDbUpdate } from "../utilities/firebase";
 
-const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
+const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState("ALL");
 
   // console.log("selection:", selection);
@@ -16,12 +17,31 @@ const Feed = ({ data, currentUserData, currentClubsIds, currentClubs }) => {
 
   const allPosts = Object.entries(data.posts);
 
-  const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];
 
+  const currentUserId = user.uid
+  // something something postId to delete posts later (warning)
+  if (data.users[currentUserId] === undefined) {
+    const [updateDb] = useDbUpdate('/');
+    updateDb( { ['/users']: {
+      ...data.users, 
+      [user.uid]: {'clubs': [''], ['name']: user.displayName},
+      
+    } } );    
+  }
+
+  const currentUserData = data.users[currentUserId];
+  // allClubs is an array <Array: [clubId, clubData], ... >
+  const allClubs = Object.entries(data.clubs);
+  const currentClubsIds = Object.values(currentUserData.clubs);
+  // currentClubs is an array [ [clubId, clubData]], ...  ]
+  const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
+    currentClubsIds.includes(id)
+  );
+  const filteredClubIds = selection === "ALL" ? currentClubsIds : [selection];
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
   );
-  // something something postId to delete posts later (warning)
+
 
   return (
     <div className="App">

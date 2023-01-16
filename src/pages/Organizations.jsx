@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Navigation from "../components/Navigation/Navigation";
 
-const Organizations = ({ data, currentUserId, currentClubsIds, currentUserData, allClubs }) => {
-
+const Organizations = ({ user, data }) => {
+  const currentUserId = user.uid
+  const currentUserData = data.users[currentUserId];
+  const currentClubsIds = Object.values(currentUserData.clubs);
+  const allClubs = Object.entries(data.clubs);
   return (
     <div>            
       <Container>
