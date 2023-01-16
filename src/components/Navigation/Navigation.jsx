@@ -22,8 +22,14 @@ const Navigation = ({ currentUserData }) => {
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link> */}
             <NavDropdown title={currentUserData.name} id="basic-nav-dropdown">
-            <NavDropdown.Item href="/">Home</NavDropdown.Item>
-              <NavDropdown.Item href="/organizations">Manage Clubs</NavDropdown.Item>
+              <NavDropdown.Item href="/">Home</NavDropdown.Item>
+              <NavDropdown.Item href="/organizations">
+                Join Clubs
+              </NavDropdown.Item>
+
+              <NavDropdown.Item href="/manageclubs">
+                Manage Clubs
+              </NavDropdown.Item>
 
               <NavDropdown.Item href="#action/3.2">
                 Notifications
