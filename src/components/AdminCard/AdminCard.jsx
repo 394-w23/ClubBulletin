@@ -11,7 +11,7 @@ const ClubCard = ({
   currentUserData,
   currentUserId,
   modalShow,
-  setModalShow
+  setModalShow,
   data,
 }) => {  
 

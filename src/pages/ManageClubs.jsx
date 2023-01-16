@@ -5,8 +5,9 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Navigation from "../components/Navigation/Navigation";
-import CreatePost from "../CreatePost/CreatePost";
-import { Modal, Button, FloatingLabel } from "react-bootstrap";
+import CreatePost from "../components/CreatePost/CreatePost";
+import { Modal, FloatingLabel } from "react-bootstrap";
+import { useState } from "react";
 
 const ManageClubs = ({ user, data }) => {
   const currentUserId = user.uid;
@@ -19,10 +20,11 @@ const ManageClubs = ({ user, data }) => {
     value.admins.includes(currentUserId)
   );
   const [modalShow, setModalShow] = useState(false);
+  console.log(modalShow);
 
   return (
     <div>
-      {allAdminClubs.map(([id, value]) => (<Modal key={id}><CreatePost clubId={id} clubData={value} /></ Modal>)) }
+      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} /></ Modal>)) }
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
-import { Modal, Button, FloatingLabel } from "react-bootstrap";
+import { Modal, FloatingLabel } from "react-bootstrap";
 
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({id:'all'});
