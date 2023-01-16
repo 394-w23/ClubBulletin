@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useDbData } from "./utilities/firebase";
+import { useDbData, useDbUpdate } from "./utilities/firebase";
 import LogIn from "./pages/LogIn";
 import { useProfile } from "./utilities/profile";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 function App() {
   const [data, error] = useDbData("/"); // get whole database
+
+  const [updateDb] = useDbUpdate('/');
 
   const [profile, profileLoading, profileError] = useProfile();
   const user = profile.user;
@@ -23,7 +25,12 @@ function App() {
   
   // currentUser is an obj { clubs: <Array: clubIds>, name: <String> }
   if (data.users[currentUserId] === undefined) {
-    data.users[currentUserId] = { clubs: [], name: user.displayName };
+    const [updateDb] = useDbUpdate('/');
+    updateDb( { ['/users']: {
+      ...data.users, 
+      [user.uid]: {'clubs': ['']},
+      ['name']: user.displayName
+    } } );    
   }
   const currentUserData = data.users[currentUserId];
   // allClubs is an array <Array: [clubId, clubData], ... >
