@@ -40,3 +40,14 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+a:hover {
+  cursor: pointer;
+}
+
+.org-title{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}

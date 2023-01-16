@@ -12,24 +12,27 @@ const Organizations = ({ user, data }) => {
   const currentClubsIds = Object.values(currentUserData.clubs);
   const allClubs = Object.entries(data.clubs);
   return (
-    <div>            
+    <div>
       <Container>
         <Navigation currentUserData={currentUserData} />
-        <h1>Organizations list</h1>
-        <Link to ="/" relative="path">
-            <Button varient="primary">Back</Button>
+        <div className="org-title">
+          <h1>Organizations list</h1>
+          <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
+        </div>
+        <Link to="/" relative="path">
+          <Button varient="primary">Back</Button>
         </Link>
         <Row>
           <Col>
             {allClubs.map(([id, clubData]) => {
               return (
                 <ClubCard key={id}
-                          clubId={id}
-                          clubData={clubData}
-                          currentClubsIds={currentClubsIds}
-                          currentUserData={currentUserData}
-                          currentUserId={currentUserId}
-                          data={data} />
+                  clubId={id}
+                  clubData={clubData}
+                  currentClubsIds={currentClubsIds}
+                  currentUserData={currentUserData}
+                  currentUserId={currentUserId}
+                  data={data} />
               );
             })}
           </Col>

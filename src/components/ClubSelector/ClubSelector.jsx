@@ -1,48 +1,62 @@
+import Navigation from "../Navigation/Navigation";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
 const ClubButton = ({ club, id, selection, setSelection }) => {
-  //console.log("club", club);
-  //console.log("id", id);
-
+  console.log("selection", selection);
   const clubLabel = club === "ALL" ? "All clubs" : club.name;
-
+  const isActive = id === selection.id ? "nav-link active" : "nav-link";
   return (
     <div>
-      <input
-        type="radio"
-        className="btn-check"
+      <li
+        className="nav-item"
         id={id}
-        checked={id === selection}
         autoComplete="off"
-        onChange={() => setSelection(id)}
-      />
-      <label htmlFor={id} className="btn btn-success mb-1 p-2">
-        {clubLabel}
-      </label>
+      >
+        <a className={isActive} aria-current="page" key={id} onClick={() => setSelection({id})}>{clubLabel}</a>
+      </li>
+
     </div>
   );
 };
 
-const ClubSelector = ({ clubs, selection, setSelection }) => {
-  //console.log(clubs);
-  console.log("selection", selection);
+
+const ClubSelector = ({ currentClubs, selection, setSelection}) => {
+
   return (
-    <div className="btn-group">
-      <ClubButton
-        id={"ALL"}
-        key={0}
-        club={"ALL"}
-        selection={selection}
-        setSelection={setSelection}
-      />
-      {clubs.map(([id, club]) => (
-        <ClubButton
-          id={id}
-          key={id}
-          club={club}
-          selection={selection}
-          setSelection={setSelection}
-        />
+    <ul className="nav nav-tabs">
+      <ClubButton club="ALL" id="ALL" selection={selection} setSelection={setSelection}></ClubButton>
+      {currentClubs.map(([id, club]) => (
+        <ClubButton club={club} id={id} selection={selection} setSelection={setSelection}>
+    
+        </ClubButton>
       ))}
-    </div>
+    </ul>
+
+
+
+    // PREVIOUS
+    // <li className="nav-item">
+    //   <a className="nav-link active" aria-current="page" href="#">Something</a>
+    // </li>
+    // <div className="btn-group">
+    //   <ClubButton
+    //     id={"ALL"}
+    //     key={0}
+    //     club={"ALL"}
+    //     selection={selection}
+    //     setSelection={setSelection}
+    //   />
+    //   {clubs.map(([id, club]) => (
+    //     <ClubButton
+    //       id={id}
+    //       key={id}
+    //       club={club}
+    //       selection={selection}
+    //       setSelection={setSelection}
+    //     />
+    //   ))}
+    // </div>
   );
 };
 
