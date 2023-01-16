@@ -12,11 +12,7 @@ import ClubSelector from "../components/ClubSelector/ClubSelector";
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({id:'all'});
 
-  const allPosts = Object.entries(data.posts);
-  const currentUserId = user.uid
-  const currentUserData = data.users[currentUserId];
-  const currentClubsIds = Object.values(currentUserData.clubs);
-  const filteredClubIds = selection.id === "all" ? currentClubsIds : [selection.id];  
+  const currentUserId = user.uid;
 
   // something something postId to delete posts later (warning)
   if (data.users[currentUserId] === undefined) {
@@ -27,6 +23,11 @@ const Feed = ({ user, data }) => {
       
     } } );    
   }
+
+  const allPosts = Object.entries(data.posts);
+  const currentUserData = data.users[currentUserId];
+  const currentClubsIds = Object.values(currentUserData.clubs);
+  const filteredClubIds = selection.id === "all" ? currentClubsIds : [selection.id];  
 
   
   // allClubs is an array <Array: [clubId, clubData], ... >
