@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useDbUpdate } from "../../utilities/firebase";
+import { useState } from "react";
 
 const ClubCard = ({
   clubId,
@@ -9,8 +10,11 @@ const ClubCard = ({
   currentClubsIds,
   currentUserData,
   currentUserId,
+  modalShow,
+  setModalShow
   data,
-}) => {
+}) => {  
+
   const userInClub =
     clubData.members !== undefined
       ? clubData.members.includes(currentUserId)
@@ -31,7 +35,7 @@ const ClubCard = ({
         </Card.Text>
 
         <Button variant="primary">Edit</Button>
-        <Button variant="primary">Create Post</Button>
+        <Button variant="primary" onClick={() => setModalShow(true)}>Create Post</Button>
       </Card.Body>
     </Card>
   );
