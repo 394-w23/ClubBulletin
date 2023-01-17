@@ -20,22 +20,23 @@ const ManageClubs = ({ user, data }) => {
     value.admins.includes(currentUserId)
   );
   const [modalShow, setModalShow] = useState(false);
-  console.log(modalShow);
+  // console.log(modalShow);
 
   return (
     <div>
-      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} /></ Modal>)) }
+      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} setModalShow={setModalShow}/></ Modal>)) }
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">
-          <h1>Organizations list</h1>
-          <Button href="/newclub" variant="outline-primary">
-            Add New Club
-          </Button>{" "}
+          <Link to="/" relative="path">
+            <Button varient="primary">Back</Button>
+          </Link>
+          <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
         </div>
-        <Link to="/" relative="path">
-          <Button varient="primary">Back</Button>
-        </Link>
+
+        <div className="pageTitle">
+          <h1>Your Organizations</h1>
+        </div>
         <Row>
           <Col>
             {allAdminClubs.map(([id, clubData]) => {

@@ -51,3 +51,12 @@ a:hover {
   align-content: center;
   align-items: center;
 }
+
+.newClubForm {
+  margin-top: 20px;
+}
+
+.pageTitle {
+  display: flex;
+  justify-content: center;
+}

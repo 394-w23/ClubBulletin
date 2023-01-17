@@ -6,6 +6,7 @@ import { useDbUpdate } from "../utilities/firebase";
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from "react";
 import Alert from 'react-bootstrap/Alert';
+import { Link } from "react-router-dom";
 
 function NewClub({ data, user }) {
   const [success, setSuccess] = useState();
@@ -49,11 +50,13 @@ function NewClub({ data, user }) {
   return (
     <Container>
       <Navigation currentUserData={currentUserData} />
-      <Button varient="primary" href="/organizations">Back</Button>
+      <Link to="/" relative="path">
+        <Button varient="primary">Back</Button>
+      </Link>
       {success && <Alert key={success} variant={success}>
         Club creation was a {success}!
       </Alert>}
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="newClubForm">
         {/* <Form.Label>Club Admin</Form.Label>
         <Form.Select aria-label="Club Admins" name="ClubAdmin">
           <option>Choose admin</option>
@@ -61,15 +64,18 @@ function NewClub({ data, user }) {
             return <option key={key}>{allUsers[key].name}</option>;
           })}
         </Form.Select> */}
+        <div className="pageTitle">
+          <h1>Create New Club</h1>
+        </div>
 
         <Form.Label>Club Name</Form.Label>
         <Form.Control type="text" name="ClubName"></Form.Control>
 
-        <Form.Label>Club Description</Form.Label>
-        <Form.Control type="text" name="ClubDescription"></Form.Control>
+        <Form.Label style={{ marginTop: "20px" }}>Club Description</Form.Label>
+        <Form.Control type="text" name="ClubDescription" as="textarea" rows={3}></Form.Control>
 
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
+          Create
         </Button>
       </Form>
     </Container>

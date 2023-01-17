@@ -16,12 +16,16 @@ const Organizations = ({ user, data }) => {
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">
-          <h1>Organizations list</h1>
+          <Link to="/" relative="path">
+            <Button varient="primary">Back</Button>
+          </Link>
           <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
         </div>
-        <Link to="/" relative="path">
-          <Button varient="primary">Back</Button>
-        </Link>
+
+        <div className="pageTitle">
+          <h1>Organizations list</h1>
+        </div>
+
         <Row>
           <Col>
             {allClubs.map(([id, clubData]) => {

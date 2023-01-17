@@ -4,8 +4,9 @@ import { useDbUpdate } from '../../utilities/firebase';
 import { Container } from 'react-bootstrap';
 import Navigation from '../Navigation/Navigation';
 import { v4 as uuidv4 } from 'uuid';
+import CloseButton from 'react-bootstrap/CloseButton';
 
-function CreatePost({ currentUserData, clubId, data, clubData }) {
+function CreatePost({ currentUserData, clubId, data, clubData, setModalShow}) {
     const [update] = useDbUpdate(`/`);
 
     const handleSubmit = (event) => {
@@ -30,17 +31,20 @@ function CreatePost({ currentUserData, clubId, data, clubData }) {
         });
     }
     return (
-        <Container>
-            <Navigation currentUserData={currentUserData} />
-            <Button varient="primary" href="/organizations">Back</Button>
-            <Form onSubmit={handleSubmit}>
+        <Container style={{ padding: "15px"}}>
+
+            <div style={{ display: "flex", justifyContent: "flex-end"}}>
+               <CloseButton onClick={() => setModalShow(false)}/> 
+            </div>
+            <h1>New Post</h1>
+            <Form onSubmit={handleSubmit} >
                 <Form.Label>Post Title</Form.Label>
                 <Form.Control type="text" name="PostTitle"></Form.Control>
 
                 <Form.Label>Post Content</Form.Label>
                 <Form.Control type="text" name="PostContent"></Form.Control>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" style={{ marginTop: "10px"}}>
                     Submit
                 </Button>
             </Form>

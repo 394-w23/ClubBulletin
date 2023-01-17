@@ -15,7 +15,7 @@ const Navigation = ({ currentUserData }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Club-Bulletin</Navbar.Brand>
+        <Navbar.Brand href="/">ClubBulletin</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
