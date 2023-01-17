@@ -19,12 +19,9 @@ const ManageClubs = ({ user, data }) => {
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
-  const [modalShow, setModalShow] = useState(false);
-  console.log(modalShow);
 
   return (
     <div>
-      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} /></ Modal>)) }
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">
@@ -48,8 +45,6 @@ const ManageClubs = ({ user, data }) => {
                   currentUserData={currentUserData}
                   currentUserId={currentUserId}
                   data={data}
-                  modalShow={modalShow}
-                  setModalShow={setModalShow}
                 />
               );
             })}
