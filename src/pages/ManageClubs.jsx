@@ -5,9 +5,6 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Navigation from "../components/Navigation/Navigation";
-import CreatePost from "../components/CreatePost/CreatePost";
-import { Modal, FloatingLabel } from "react-bootstrap";
-import { useState } from "react";
 
 const ManageClubs = ({ user, data }) => {
   const currentUserId = user.uid;
@@ -19,22 +16,18 @@ const ManageClubs = ({ user, data }) => {
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
-  const [modalShow, setModalShow] = useState(false);
-  const handleClose = () => setModalShow(false);
-  // console.log(modalShow);
 
   return (
     <div>
-      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}>
-        <CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} handleClose={handleClose}/>
-        </ Modal>))}
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">
           <Link to="/" relative="path">
             <Button varient="primary">Back</Button>
           </Link>
-          <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
+          <Button href="/newclub" variant="outline-primary">
+            Add New Club
+          </Button>{" "}
         </div>
 
         <div className="pageTitle">
