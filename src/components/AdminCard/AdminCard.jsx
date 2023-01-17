@@ -32,7 +32,7 @@ const AdminCard = ({
           data={data}
           clubData={clubData}
           modalShow={modalShow}
-          setModalShow={setModalShow}
+          handleClose={handleClose}
         ></CreatePost>
       </Modal>
 
