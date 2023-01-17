@@ -21,39 +21,46 @@ function NewClub({ data, user }) {
     const formData = new FormData(event.target);
     const formDataObj = Object.fromEntries(formData.entries());
 
-    // update /clubs with a new club
-    const newid = uuidv4();
+    if (formDataObj.ClubName != "" && formDataObj.ClubDescription != "") {
+      // update /clubs with a new club
+      const newid = uuidv4();
 
-    update({
-      ["/clubs"]: {
-        ...data.clubs,
-        [newid]: {
-          description: formDataObj.ClubDescription,
-          admins: ["", currentUserId],
-          name: formDataObj.ClubName,
-          members: ["", currentUserId],
+      update({
+        ["/clubs"]: {
+          ...data.clubs,
+          [newid]: {
+            description: formDataObj.ClubDescription,
+            admins: ["", currentUserId],
+            name: formDataObj.ClubName,
+            members: ["", currentUserId],
+          },
         },
-      },
-    });
+      });
 
-    // update /users.<adminId>.clubs with the new club
-    updateUser({
-      ["/clubs"]: [...currentUserData.clubs, newid],
-    });
+      // update /users.<adminId>.clubs with the new club
+      updateUser({
+        ["/clubs"]: [...currentUserData.clubs, newid],
+      });
 
-    // display success to user
-    setSuccess("success");
-    // submitMessage("warning");
+      // display success to user
+      setSuccess("success");
+    }
+    else {
+      setSuccess("danger");
+    }
   };
 
   return (
     <Container>
       <Navigation currentUserData={currentUserData} />
-      <Link to="/" relative="path">
+      <Link to="/manageclubs" relative="path">
         <Button varient="primary">Back</Button>
       </Link>
-      {success && <Alert key={success} variant={success}>
+      {success == "success" && <Alert key={success} variant={success}>
         Club creation was a {success}!
+      </Alert>}
+      {success == "danger" && <Alert key={success} variant={success}>
+        Club creation failed. Please check your inputs and try again.
       </Alert>}
       <Form onSubmit={handleSubmit}>
         {/* <Form.Label>Club Admin</Form.Label>
