@@ -49,7 +49,9 @@ function NewClub({ data, user }) {
   return (
     <Container>
       <Navigation currentUserData={currentUserData} />
-      <Button varient="primary" href="/organizations">Back</Button>
+      <Link to="/" relative="path">
+        <Button varient="primary">Back</Button>
+      </Link>
       {success && <Alert key={success} variant={success}>
         Club creation was a {success}!
       </Alert>}

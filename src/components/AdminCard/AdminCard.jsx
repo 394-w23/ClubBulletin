@@ -48,12 +48,16 @@ const AdminCard = ({
           <Card.Text className="card-post-content">
             {clubData.description}
           </Card.Text>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button variant="primary">
+              Edit Club
+            </Button>
 
-          <Button variant="primary">Edit</Button>
+            <Button variant="primary" onClick={handleShow}>
+              Create Post
+            </Button>
+          </div>
 
-          <Button variant="primary" onClick={handleShow}>
-            Create Post
-          </Button>
         </Card.Body>
       </Card>
     </div>
