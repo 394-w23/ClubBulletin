@@ -24,7 +24,7 @@ const ManageClubs = ({ user, data }) => {
 
   return (
     <div>
-      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} setModalShow={setModalShow}/></ Modal>)) }
+      {allAdminClubs.map(([id, value]) => (<Modal show={modalShow} key={id}><CreatePost currentUserData={currentUserData} clubId={id} data={data} clubData={value} /></ Modal>)) }
       <Container>
         <Navigation currentUserData={currentUserData} />
         <div className="org-title">
@@ -49,8 +49,6 @@ const ManageClubs = ({ user, data }) => {
                   currentUserData={currentUserData}
                   currentUserId={currentUserId}
                   data={data}
-                  modalShow={modalShow}
-                  setModalShow={setModalShow}
                 />
               );
             })}

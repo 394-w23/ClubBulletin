@@ -3,42 +3,61 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useDbUpdate } from "../../utilities/firebase";
 import { useState } from "react";
+import CreatePost from "../CreatePost/CreatePost";
+import { Modal, FloatingLabel } from "react-bootstrap";
 
-const ClubCard = ({
+const AdminCard = ({
   clubId,
   clubData,
   currentClubsIds,
   currentUserData,
   currentUserId,
-  modalShow,
-  setModalShow,
   data,
-}) => {  
-
+}) => {
   const userInClub =
     clubData.members !== undefined
       ? clubData.members.includes(currentUserId)
       : false;
 
-  return (
-    <Card className="post-card" style={{ width: "24rem" }}>
-      <Card.Header>
-        <div className="row">
-          <div className="col-sm-8 post-header-text">
-            <Card.Text className="post-club-name">{clubData.name}</Card.Text>
-          </div>
-        </div>
-      </Card.Header>
-      <Card.Body>
-        <Card.Text className="card-post-content">
-          {clubData.description}
-        </Card.Text>
+  const [modalShow, setModalShow] = useState(false);
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
 
-        <Button variant="primary">Edit</Button>
-        <Button variant="primary" onClick={() => setModalShow(true)}>Create Post</Button>
-      </Card.Body>
-    </Card>
+  return (
+    <div>
+      <Modal show={modalShow} onHide={handleClose}>
+        <CreatePost
+          currentUserData={currentUserData}
+          clubId={clubId}
+          data={data}
+          clubData={clubData}
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+        ></CreatePost>
+      </Modal>
+
+      <Card className="post-card" style={{ width: "24rem" }}>
+        <Card.Header>
+          <div className="row">
+            <div className="col-sm-8 post-header-text">
+              <Card.Text className="post-club-name">{clubData.name}</Card.Text>
+            </div>
+          </div>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text className="card-post-content">
+            {clubData.description}
+          </Card.Text>
+
+          <Button variant="primary">Edit</Button>
+
+          <Button variant="primary" onClick={handleShow}>
+            Create Post
+          </Button>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
-export default ClubCard;
+export default AdminCard;
