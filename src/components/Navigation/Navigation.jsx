@@ -2,14 +2,24 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useNavigate } from 'react-router-dom';
 
 import { signOut } from "../../utilities/firebase";
 
-const SignOutButton = () => (
-  <button className="ms-auto btn btn-dark" onClick={signOut}>
-    Sign out
-  </button>
-);
+const SignOutButton = () => {
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
+  return (
+    <button className="ms-auto btn btn-dark" onClick={() => {
+      signOut(); 
+      routeChange();
+      }}>
+      Sign out
+    </button>
+);}
 
 const Navigation = ({ currentUserData }) => {
   return (

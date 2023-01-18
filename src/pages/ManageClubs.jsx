@@ -38,7 +38,6 @@ const ManageClubs = ({ user, data }) => {
         </div>
 
         <div className="pageTitle">
-          <h1>Your Organizations</h1>
           {msgSuccess == "success" && <Alert key="success" variant="success">
                 Post was successfully uploaded!
             </Alert>

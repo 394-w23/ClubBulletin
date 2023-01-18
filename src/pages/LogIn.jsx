@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState } from "../utilities/firebase";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import "../styles/logIn.css";
 const SignInButton = () => (
   <button className="ms-auto btn btn-dark" onClick={signInWithGoogle}>
@@ -8,11 +8,20 @@ const SignInButton = () => (
   </button>
 );
 
-const SignOutButton = () => (
-  <button className="ms-auto btn btn-dark" onClick={signOut}>
-    Sign out
-  </button>
-);
+const SignOutButton = () => {
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
+  return (
+    <button className="ms-auto btn btn-dark" onClick={() => {
+      signOut(); 
+      routeChange();
+      }}>
+      Sign out
+    </button>
+);}
 
 const AuthButton = () => {
   const [user] = useAuthState();
