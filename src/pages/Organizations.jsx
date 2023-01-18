@@ -14,16 +14,16 @@ const Organizations = ({ user, data }) => {
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} />
-        <div className="org-title">
-          <Link to="/" relative="path">
-            <Button varient="primary">Back</Button>
-          </Link>
-          <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
-        </div>
+        <Navigation currentUserData={currentUserData} />        
 
         <div className="pageTitle">
-          <h1>Organizations list</h1>
+          <h1>Join Clubs</h1>
+        </div>
+        <div className="org-title">
+          <Link to="/" relative="path">
+            <Button variant="outline-secondary">Back to feed</Button>
+          </Link>
+          <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
         </div>
 
         <Row>

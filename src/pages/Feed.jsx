@@ -62,7 +62,7 @@ const Feed = ({ user, data }) => {
               <Button varient="primary">Manage</Button>
               </Link>
             </div> */}
-            {filteredPosts.map(([id, post]) => {
+            {filteredPosts.sort(([_1, post1], [_2, post2]) => (post1.datetime - post2.datetime)).map(([id, post]) => {
               const currentClub = data.clubs[post.clubId];
 
               return (

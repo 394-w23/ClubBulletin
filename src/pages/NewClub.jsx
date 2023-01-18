@@ -52,10 +52,7 @@ function NewClub({ data, user }) {
 
   return (
     <Container>
-      <Navigation currentUserData={currentUserData} />
-      <Link to="/manageclubs" relative="path">
-        <Button varient="primary">Back</Button>
-      </Link>
+      <Navigation currentUserData={currentUserData} />      
       {success == "success" && <Alert key={success} variant={success}>
         Club creation was a {success}!
       </Alert>}
@@ -73,6 +70,11 @@ function NewClub({ data, user }) {
         <div className="pageTitle">
           <h1>Create New Club</h1>
         </div>
+        <div className="mb-3">
+          <Link to="/manageclubs" relative="path">
+            <Button variant="outline-secondary">Back to manage</Button>
+          </Link>
+        </div>        
 
         <Form.Label>Club Name</Form.Label>
         <Form.Control type="text" name="ClubName"></Form.Control>

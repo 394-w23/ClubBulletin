@@ -20,22 +20,22 @@ const ManageClubs = ({ user, data }) => {
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} />
+        <Navigation currentUserData={currentUserData} />        
+
+        <div className="pageTitle">
+          <h1>Manage Clubs</h1>
+        </div>
         <div className="org-title">
           <Link to="/" relative="path">
-            <Button varient="primary">Back</Button>
+            <Button variant="outline-secondary">Back to feed</Button>
           </Link>
           <Button href="/newclub" variant="outline-primary">
             Add New Club
           </Button>{" "}
         </div>
-
-        <div className="pageTitle">
-          <h1>Your Organizations</h1>
-        </div>
         <Row>
           <Col>
-            {allAdminClubs.map(([id, clubData]) => {
+            {allAdminClubs.length !== 0 ? allAdminClubs.map(([id, clubData]) => {
               return (
                 <AdminCard
                   key={id}
@@ -47,7 +47,9 @@ const ManageClubs = ({ user, data }) => {
                   data={data}
                 />
               );
-            })}
+            }            
+            ): <Container className="text-center">Clubs that you are an admin for will appear here. Add a new club to get started.</Container>
+          }
           </Col>
         </Row>
       </Container>
