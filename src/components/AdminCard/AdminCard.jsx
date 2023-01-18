@@ -13,6 +13,8 @@ const AdminCard = ({
   currentUserData,
   currentUserId,
   data,
+  msgSuccess,
+  setMsgSuccess
 }) => {
   const userInClub =
     clubData.members !== undefined
@@ -20,7 +22,10 @@ const AdminCard = ({
       : false;
 
   const [modalShow, setModalShow] = useState(false);
-  const handleClose = () => setModalShow(false);
+  const handleClose = () => {
+    setMsgSuccess("");
+    setModalShow(false);
+  }
   const handleShow = () => setModalShow(true);
 
   return (
@@ -33,6 +38,8 @@ const AdminCard = ({
           clubData={clubData}
           modalShow={modalShow}
           handleClose={handleClose}
+          msgSuccess={msgSuccess}
+          setMsgSuccess={setMsgSuccess}
         ></CreatePost>
       </Modal>
 
@@ -48,16 +55,15 @@ const AdminCard = ({
           <Card.Text className="card-post-content">
             {clubData.description}
           </Card.Text>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="primary">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            {/* <Button variant="primary">
               Edit Club
-            </Button>
+            </Button> */}
 
             <Button variant="primary" onClick={handleShow}>
               Create Post
             </Button>
           </div>
-
         </Card.Body>
       </Card>
     </div>
