@@ -29,7 +29,7 @@ const Post = ({ post, postId, club }) => {
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
-    <Card className="post-card" style={{ width: "24rem" }}>
+    <Card className="post-card" >
       <Card.Header>
         <div className="col-sm-12">
           <div className="row">
