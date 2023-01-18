@@ -60,7 +60,7 @@ const ManageClubs = ({ user, data }) => {
                 />
               );
             }            
-            ): <Container className="text-center">Clubs that you are an admin for will appear here. Add a new club to get started.</Container>
+            ): <div className="text-center m-3">Clubs that you are an admin for will appear here. Add a new club to get started.</div>
           }
           </Col>
         </Row>

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState } from "../utilities/firebase";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import "../styles/logIn.css";
+import { Container } from "react-bootstrap";
 const SignInButton = () => (
   <button className="ms-auto btn btn-dark" onClick={signInWithGoogle}>
     Sign in
@@ -9,19 +10,20 @@ const SignInButton = () => (
 );
 
 const SignOutButton = () => {
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/`; 
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/`;
     navigate(path);
   }
   return (
     <button className="ms-auto btn btn-dark" onClick={() => {
-      signOut(); 
+      signOut();
       routeChange();
-      }}>
+    }}>
       Sign out
     </button>
-);}
+  );
+}
 
 const AuthButton = () => {
   const [user] = useAuthState();
@@ -32,11 +34,13 @@ const activation = ({ isActive }) => (isActive ? "active" : "inactive");
 
 const LogIn = () => (
   <div className="main">
-    <div className="text">
-      <h1>Club Bulletin</h1>
-      <p>Sign in to view posts and join clubs.</p>
-      <AuthButton />
-    </div>
+    <Container>
+      <div className="text form-signin">
+        <h1>Club Bulletin</h1>
+        <p>Sign in to view posts and join clubs.</p>
+        <AuthButton />
+      </div>      
+    </Container >    
   </div>
 );
 

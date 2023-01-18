@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useState, useEffect } from "react";
-import * as moment from "moment";
 
 import { useDbUpdate } from "../../utilities/firebase";
 
@@ -31,7 +30,7 @@ const Post = ({ post, postId, club }) => {
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
-    <Card className="post-card">
+    <Card className="post-card my-3">
       <Card.Header>
         <div className="col-sm-12">
           <div className="row">

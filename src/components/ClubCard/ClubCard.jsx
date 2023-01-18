@@ -26,7 +26,7 @@ const ClubCard = ({ clubId, clubData, currentClubsIds, currentUserData, currentU
   //   
 
   return (
-    <Card className="post-card" >
+    <Card className="post-card my-3" >
       <Card.Header>
         <div className="row">
           <div className="col-sm-8 post-header-text">
