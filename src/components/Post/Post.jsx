@@ -22,14 +22,16 @@ const Post = ({ post, postId, club }) => {
     updatePost({ ["/likeCount"]: (post.likeCount += change) });
   };
 
-  const timestamp = new Date(post.posted);
-  const postTimeLabel =
-    post.posted === "datetime" ? "3 hours ago" : moment(timestamp).fromNow();
+  // const timestamp = new Date(post.posted);
+  // const postTimeLabel =
+  //   post.posted === "datetime" ? "3 hours ago" : moment(timestamp).fromNow();
+
+  const postTimeLabel = "3 hours ago";
 
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
-    <Card className="post-card" >
+    <Card className="post-card">
       <Card.Header>
         <div className="col-sm-12">
           <div className="row">
