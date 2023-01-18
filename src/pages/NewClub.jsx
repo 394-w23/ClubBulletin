@@ -15,7 +15,6 @@ function NewClub({ data, user }) {
   const { ...allUsers } = data.users;
   const [update] = useDbUpdate(`/`);
   const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

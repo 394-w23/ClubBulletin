@@ -5,8 +5,11 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Navigation from "../components/Navigation/Navigation";
+import { useState, useEffect } from "react";
+import Alert from 'react-bootstrap/Alert';
 
 const ManageClubs = ({ user, data }) => {
+  const [msgSuccess, setMsgSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
@@ -33,6 +36,14 @@ const ManageClubs = ({ user, data }) => {
             Add New Club
           </Button>{" "}
         </div>
+
+        <div className="pageTitle">
+          <h1>Your Organizations</h1>
+          {msgSuccess == "success" && <Alert key="success" variant="success">
+                Post was successfully uploaded!
+            </Alert>
+          }
+        </div>
         <Row>
           <Col>
             {allAdminClubs.length !== 0 ? allAdminClubs.map(([id, clubData]) => {
@@ -45,6 +56,8 @@ const ManageClubs = ({ user, data }) => {
                   currentUserData={currentUserData}
                   currentUserId={currentUserId}
                   data={data}
+                  msgSuccess={msgSuccess}
+                  setMsgSuccess={setMsgSuccess}
                 />
               );
             }            
