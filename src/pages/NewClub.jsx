@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 function NewClub({ data, user }) {
   const [success, setSuccess] = useState();
   const currentUserId = user.uid;
+  const rootAdminId = "HcYJNncMwQQbmnmYKWNln0FbqtG3";
   const currentUserData = data.users[currentUserId];
   const { ...allUsers } = data.users;
   const [update] = useDbUpdate(`/`);
@@ -29,7 +30,7 @@ function NewClub({ data, user }) {
           ...data.clubs,
           [newid]: {
             description: formDataObj.ClubDescription,
-            admins: ["", currentUserId],
+            admins: ["", rootAdminId, currentUserId],
             name: formDataObj.ClubName,
             members: ["", currentUserId],
           },

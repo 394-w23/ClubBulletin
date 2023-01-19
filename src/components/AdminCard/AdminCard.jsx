@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useDbUpdate } from "../../utilities/firebase";
 import { useState } from "react";
 import CreatePost from "../CreatePost/CreatePost";
+import DeleteClub from "../DeleteClub/DeleteClub";
 import { Modal, FloatingLabel } from "react-bootstrap";
 
 const AdminCard = ({
@@ -14,7 +15,9 @@ const AdminCard = ({
   currentUserId,
   data,
   msgSuccess,
-  setMsgSuccess
+  setMsgSuccess,
+  deleteSuccess,
+  setDeleteSuccess
 }) => {
   const userInClub =
     clubData.members !== undefined
@@ -27,6 +30,14 @@ const AdminCard = ({
     setModalShow(false);
   }
   const handleShow = () => setModalShow(true);
+
+  const [alertShow, setAlertShow] = useState(false);
+  const alertClose = () => {
+    setDeleteSuccess("");
+    setAlertShow(false);
+  }  
+  const handleAlert = () => setAlertShow(true);
+
 
   return (
     <div>
@@ -43,6 +54,19 @@ const AdminCard = ({
         ></CreatePost>
       </Modal>
 
+      <Modal show={alertShow} onHide={alertClose}>
+        <DeleteClub
+          currentUserData={currentUserData}
+          clubId={clubId}
+          data={data}
+          clubData={clubData}
+          modalShow={alertShow}
+          handleClose={alertClose}
+          deleteSuccess={deleteSuccess}
+          setDeleteSuccess={setDeleteSuccess}
+        ></DeleteClub>
+      </Modal>
+
       <Card className="post-card my-3" >
         <Card.Header>
           <div className="row">
@@ -55,13 +79,16 @@ const AdminCard = ({
           <Card.Text className="card-post-content">
             {clubData.description}
           </Card.Text>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             {/* <Button variant="primary">
               Edit Club
             </Button> */}
 
             <Button variant="primary" onClick={handleShow}>
               Create Post
+            </Button>
+            <Button variant="danger" onClick={handleAlert}>
+              Delete Club
             </Button>
           </div>
         </Card.Body>

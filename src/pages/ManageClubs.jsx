@@ -5,11 +5,12 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Navigation from "../components/Navigation/Navigation";
-import { useState, useEffect } from "react";
 import Alert from 'react-bootstrap/Alert';
+import { useState, useEffect } from "react";
 
 const ManageClubs = ({ user, data }) => {
   const [msgSuccess, setMsgSuccess] = useState();
+  const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
@@ -43,6 +44,11 @@ const ManageClubs = ({ user, data }) => {
             </Alert>
           }
         </div>
+        {/* fix width of alert */}
+        <div width="70px" align="center">{deleteSuccess == "success" && <Alert key="success" variant="success">
+          Club was successfully deleted!
+        </Alert>
+        }</div>
         <Row>
           <Col>
             {allAdminClubs.length !== 0 ? allAdminClubs.map(([id, clubData]) => {
@@ -57,6 +63,8 @@ const ManageClubs = ({ user, data }) => {
                   data={data}
                   msgSuccess={msgSuccess}
                   setMsgSuccess={setMsgSuccess}
+                  deleteSuccess={deleteSuccess}
+                  setDeleteSuccess={setDeleteSuccess}
                 />
               );
             }            
