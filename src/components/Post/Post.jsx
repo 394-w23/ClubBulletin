@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useState, useEffect } from "react";
+import moment from "moment/moment";
 
 import { useDbUpdate } from "../../utilities/firebase";
 
@@ -21,11 +22,12 @@ const Post = ({ post, postId, club }) => {
     updatePost({ ["/likeCount"]: (post.likeCount += change) });
   };
 
-  // const timestamp = new Date(post.posted);
-  // const postTimeLabel =
-  //   post.posted === "datetime" ? "3 hours ago" : moment(timestamp).fromNow();
+  const postTimeLabel =
+    post.posted === "datetime"
+      ? "3 hours ago"
+      : moment(new Date(parseInt(post.posted))).fromNow();
 
-  const postTimeLabel = "3 hours ago";
+  console.log(postTimeLabel);
 
   const [isPostLiked, setIsPostLiked] = useState(false);
 

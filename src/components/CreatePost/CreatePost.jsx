@@ -28,7 +28,8 @@ function CreatePost({
     if (formDataObj.PostTitle != "" && formDataObj.PostContent != "") {
       // update /posts with a new post
       const newid = uuidv4();
-      // const postTime = new Date().getTime();
+      const postTime = new Date().getTime();
+      const stringTime = postTime.toString();
 
       update({
         ["/posts"]: {
@@ -37,7 +38,7 @@ function CreatePost({
             clubId: clubId,
             content: formDataObj.PostContent,
             title: formDataObj.PostTitle,
-            posted: "datetime",
+            posted: stringTime,
             likeCount: 0,
           },
         },
