@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Navigation from "../components/Navigation/Navigation";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Organizations = ({ user, data }) => {
   const currentUserId = user.uid
@@ -24,6 +25,7 @@ const Organizations = ({ user, data }) => {
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
+          <SearchBar />
           <Button href="/newclub" variant="outline-primary">Add New Club</Button>{' '}
         </div>
 
