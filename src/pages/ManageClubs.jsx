@@ -32,10 +32,10 @@ const ManageClubs = ({ user, data }) => {
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
-
           <Button href="/newclub" variant="outline-primary">
             Add New Club
           </Button>{" "}
+
         </div>
         <ul className="nav nav-tabs">
           <li

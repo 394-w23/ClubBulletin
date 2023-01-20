@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { Link } from "react-router-dom";
-
 function NewClub({ data, user }) {
   const [success, setSuccess] = useState();
   const currentUserId = user.uid;
