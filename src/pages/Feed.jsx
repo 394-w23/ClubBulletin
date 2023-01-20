@@ -62,17 +62,20 @@ const Feed = ({ user, data }) => {
               <Button varient="primary">Manage</Button>
               </Link>
             </div> */}
-            {filteredPosts
-              .sort(
-                ([_1, post1], [_2, post2]) => post1.datetime - post2.datetime
-              )
-              .map(([id, post]) => {
-                const currentClub = data.clubs[post.clubId];
+            {filteredPosts.length == 0 ? 
+              <div className="text-center m-3">You haven't joined any clubs yet! Go to "Subscribe" to subscribe to a club.</div> :
+              filteredPosts
+                .sort(
+                  ([_1, post1], [_2, post2]) => post1.datetime - post2.datetime
+                )
+                .map(([id, post]) => {
+                  const currentClub = data.clubs[post.clubId];
 
-                return (
-                  <Post key={id} post={post} postId={id} club={currentClub} />
-                );
-              })}
+                  return (
+                    <Post key={id} post={post} postId={id} club={currentClub} />
+                  );
+              })
+            }
           </Col>
         </Row>
       </Container>

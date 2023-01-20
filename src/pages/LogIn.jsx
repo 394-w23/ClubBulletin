@@ -37,7 +37,7 @@ const LogIn = () => (
     <Container>
       <div className="text form-signin">
         <h1>Club Bulletin</h1>
-        <p>Sign in to view posts and join clubs.</p>
+        <p>Sign in to view posts and subscribe to clubs.</p>
         <AuthButton />
       </div>      
     </Container >    
