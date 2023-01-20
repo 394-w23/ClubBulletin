@@ -13,6 +13,7 @@ const Organizations = ({ user, data }) => {
   const currentClubsIds = Object.values(currentUserData.clubs);
   
   const allClubs = Object.entries(data.clubs);
+  console.log(allClubs);
   return (
     <div>
       <Container>
@@ -32,6 +33,7 @@ const Organizations = ({ user, data }) => {
         <Row>
           <Col>
             {allClubs.map(([id, clubData]) => {
+              console.log(id);
               return (
                 <ClubCard key={id}
                   clubId={id}

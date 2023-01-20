@@ -15,13 +15,22 @@ const ManageClubs = ({ user, data }) => {
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
-  const currentClubsIds = Object.values(currentUserData.clubs); 
+  const currentClubsIds = Object.values(currentUserData.clubs).shift(); 
   // TODO: filter admin clubs from current clubs
   const allClubs = Object.entries(data.clubs);
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
-  console.log("currentClubsIds", data.clubs[currentClubsIds[1]]);
+  const allAdminClubIds = allAdminClubs.map(([id, value]) => {id});
+  const allSubscribedClubs = currentClubsIds.filter((id) =>
+    !(allAdminClubIds.includes(id))
+  );
+  // const allSubscribedClubs = [];
+  // currentClubsIds.forEach((elem) => {
+  //   if()
+  // })
+
+  // console.log("currentClubsIds", data.clubs[currentClubsIds[1]]);
 
   const isActive = (tab) => {
     if (tab === selection) {
@@ -67,9 +76,9 @@ const ManageClubs = ({ user, data }) => {
         {selection == tabOptions[0] &&
           <Row>
             <Col>
-              {currentClubsIds.map((id) => {
+              {allSubscribedClubs.map((id) => {
                 const clubData = data.clubs[id];
-                console.log("clubData", clubData, "id", id);
+                console.log(clubData);
                 return (
                   <ClubCard key={id}
                     clubId={id}
