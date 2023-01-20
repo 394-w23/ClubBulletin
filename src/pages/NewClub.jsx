@@ -17,11 +17,11 @@ function NewClub({ data, user, handleClose }) {
   const { ...allUsers } = data.users;
   const [update] = useDbUpdate(`/`);
   const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
-
+  const [msgSuccess, setMsgSuccess] = useState();
   const closeWindow = () => {
     setMsgSuccess("");
     handleClose();
-}
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -60,7 +60,7 @@ function NewClub({ data, user, handleClose }) {
 
   return (
     <Container>
-      <Navigation currentUserData={currentUserData} />      
+      <Navigation currentUserData={currentUserData} />
       {success == "success" && <Alert key={success} variant={success}>
         Club creation was a {success}!
       </Alert>}
@@ -82,7 +82,7 @@ function NewClub({ data, user, handleClose }) {
           <Link to="/manageclubs" relative="path">
             <Button variant="outline-secondary">Back to manage</Button>
           </Link>
-        </div>        
+        </div>
 
         <Form.Label>Club Name</Form.Label>
         <Form.Control type="text" name="ClubName"></Form.Control>

@@ -31,9 +31,6 @@ const Organizations = ({ user, data }) => {
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
           <SearchBar query={query} setQuery={setQuery} />
-          <Button href="/newclub" variant="outline-primary">
-            Add New Club
-          </Button>{" "}
         </div>
 
         <Row>

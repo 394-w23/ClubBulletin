@@ -9,6 +9,7 @@ const ClubCard = ({ clubId, clubData, currentClubsIds, currentUserData, currentU
   const [updateClub] = useDbUpdate(`/clubs/${clubId}`);
   const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
   // console.log('clubData members', clubData.members);  
+
   const userInClub = clubData.members !== undefined ? clubData.members.includes(currentUserId) : false;
   const toggleClubSubscription = () => {    
     // toggle userId from clubs's members

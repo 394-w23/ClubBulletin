@@ -18,14 +18,16 @@ const ManageClubs = ({ user, data }) => {
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
+  console.log(currentClubsIds);
   currentClubsIds.shift();
   const allClubs = Object.entries(data.clubs);
+  const allClubsIds = allClubs.map(([id, value]) => id)
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
   const allAdminClubIds = allAdminClubs.map(([id, value]) => id);
   const allSubscribedClubs = currentClubsIds.filter((id) =>
-    !(allAdminClubIds.includes(id))
+    (!(allAdminClubIds.includes(id)) && allClubsIds.includes(id))
   );
   const isActive = (tab) => {
     if (tab === selection) {
@@ -35,11 +37,11 @@ const ManageClubs = ({ user, data }) => {
   }
 
   // Modal variables
-  const [modalShow, setModalShow] = useState(false);
+  const [newClubModalShow, setNewClubModalShow] = useState(false);
   const handleClose = () => {
-    setModalShow(false);
+    setNewClubModalShow(false);
   }
-  const handleShow = () => setModalShow(true);
+  const handleShow = () => setNewClubModalShow(true);
 
   const [alertShow, setAlertShow] = useState(false);
   const alertClose = () => {
@@ -58,16 +60,16 @@ const ManageClubs = ({ user, data }) => {
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
           <h1>Manage Clubs</h1>
-          <Modal show={modalShow} onHide={handleClose}>
+          <Modal show={newClubModalShow} onHide={handleClose}>
             <NewClub
               data={data}
               user={user}
               handleClose={handleClose}
             ></NewClub>
           </Modal>
-          {/* <Button href="/newclub" variant="outline-primary">
+          <Button href="/newclub" variant="outline-primary">
             Add New Club
-          </Button>{" "} */}
+          </Button>{" "}
         </div>
         {/* <div className="pageTitle" >
           
@@ -94,7 +96,9 @@ const ManageClubs = ({ user, data }) => {
           <Row>
             <Col>
               {allSubscribedClubs.map((id) => {
+                console.log("clubId", id);
                 const clubData = data.clubs[id];
+                console.log("allclubs", data.clubs);
                 return (
                   <ClubCard key={id}
                     clubId={id}
