@@ -15,23 +15,16 @@ const ManageClubs = ({ user, data }) => {
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
-  const currentClubsIds = Object.values(currentUserData.clubs).shift(); 
-  // TODO: filter admin clubs from current clubs
+  const currentClubsIds = Object.values(currentUserData.clubs);
+  currentClubsIds.shift(); 
   const allClubs = Object.entries(data.clubs);
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
-  const allAdminClubIds = allAdminClubs.map(([id, value]) => {id});
+  const allAdminClubIds = allAdminClubs.map(([id, value]) => id);
   const allSubscribedClubs = currentClubsIds.filter((id) =>
     !(allAdminClubIds.includes(id))
   );
-  // const allSubscribedClubs = [];
-  // currentClubsIds.forEach((elem) => {
-  //   if()
-  // })
-
-  // console.log("currentClubsIds", data.clubs[currentClubsIds[1]]);
-
   const isActive = (tab) => {
     if (tab === selection) {
       return "nav-link active";
@@ -43,18 +36,19 @@ const ManageClubs = ({ user, data }) => {
     <div>
       <Container>
         <Navigation currentUserData={currentUserData} />
-        <div className="pageTitle">
-          <h1>Manage Clubs</h1>
-        </div>
-        <div className="org-title">
+        
+        <div className="org-title" style={{marginBottom: "50px"}}>
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
+          <h1>Manage Clubs</h1>
           <Button href="/newclub" variant="outline-primary">
             Add New Club
           </Button>{" "}
-
         </div>
+        {/* <div className="pageTitle" >
+          
+        </div> */}
         <ul className="nav nav-tabs">
           <li
             className="nav-item"
@@ -78,7 +72,6 @@ const ManageClubs = ({ user, data }) => {
             <Col>
               {allSubscribedClubs.map((id) => {
                 const clubData = data.clubs[id];
-                console.log(clubData);
                 return (
                   <ClubCard key={id}
                     clubId={id}
