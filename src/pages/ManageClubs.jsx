@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import Navigation from "../components/Navigation/Navigation";
 import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react";
+import { Modal } from "react-bootstrap";
+import NewClub from "./NewClub";
 
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin"];
@@ -16,7 +18,7 @@ const ManageClubs = ({ user, data }) => {
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
-  currentClubsIds.shift(); 
+  currentClubsIds.shift();
   const allClubs = Object.entries(data.clubs);
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
@@ -32,19 +34,40 @@ const ManageClubs = ({ user, data }) => {
     return "nav-link";
   }
 
+  // Modal variables
+  const [modalShow, setModalShow] = useState(false);
+  const handleClose = () => {
+    setModalShow(false);
+  }
+  const handleShow = () => setModalShow(true);
+
+  const [alertShow, setAlertShow] = useState(false);
+  const alertClose = () => {
+    setDeleteSuccess("");
+    setAlertShow(false);
+  }
+  const handleAlert = () => setAlertShow(true);
+
   return (
     <div>
       <Container>
         <Navigation currentUserData={currentUserData} />
-        
-        <div className="org-title" style={{marginBottom: "50px"}}>
+
+        <div className="org-title" style={{ marginBottom: "50px" }}>
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
           <h1>Manage Clubs</h1>
-          <Button href="/newclub" variant="outline-primary">
+          <Modal show={modalShow} onHide={handleClose}>
+            <NewClub
+              data={data}
+              user={user}
+              handleClose={handleClose}
+            ></NewClub>
+          </Modal>
+          {/* <Button href="/newclub" variant="outline-primary">
             Add New Club
-          </Button>{" "}
+          </Button>{" "} */}
         </div>
         {/* <div className="pageTitle" >
           

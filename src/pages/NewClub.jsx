@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { Link } from "react-router-dom";
-function NewClub({ data, user }) {
+import CloseButton from "react-bootstrap/CloseButton";
+
+function NewClub({ data, user, handleClose }) {
   const [success, setSuccess] = useState();
   const currentUserId = user.uid;
   const rootAdminId = "HcYJNncMwQQbmnmYKWNln0FbqtG3";
@@ -15,6 +17,12 @@ function NewClub({ data, user }) {
   const { ...allUsers } = data.users;
   const [update] = useDbUpdate(`/`);
   const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
+
+  const closeWindow = () => {
+    setMsgSuccess("");
+    handleClose();
+}
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -43,6 +51,7 @@ function NewClub({ data, user }) {
 
       // display success to user
       setSuccess("success");
+      setTimeout(() => closeWindow(), 1000);
     }
     else {
       setSuccess("danger");
@@ -84,6 +93,7 @@ function NewClub({ data, user }) {
         <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
           Create
         </Button>
+        <CloseButton onClick={closeWindow} />
       </Form>
     </Container>
   );
