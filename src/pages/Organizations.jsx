@@ -14,6 +14,7 @@ const Organizations = ({ user, data }) => {
   const currentClubsIds = Object.values(currentUserData.clubs);
 
   const allClubs = Object.entries(data.clubs);
+  console.log(allClubs);
 
   const [query, setQuery] = useState({values: { Search: "" }});
 
