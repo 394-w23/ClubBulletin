@@ -9,14 +9,13 @@ import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react";
 
 const ManageClubs = ({ user, data }) => {
-  
+  const [selection, setSelection] = useState("subscribed");
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
 
   const allClubs = Object.entries(data.clubs);
-
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
@@ -24,7 +23,7 @@ const ManageClubs = ({ user, data }) => {
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} />        
+        <Navigation currentUserData={currentUserData} />
 
         <div className="pageTitle">
           <h1>Manage Clubs</h1>
@@ -33,11 +32,27 @@ const ManageClubs = ({ user, data }) => {
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
+
           <Button href="/newclub" variant="outline-primary">
             Add New Club
           </Button>{" "}
         </div>
-
+        <ul className="nav nav-tabs">
+          <li
+            className="nav-item"
+            id="subscribed"
+            autoComplete="off"
+          >
+            <a className="nav-link active" aria-current="page" key="2" onClick={() => setSelection("subscribed")}>Subscribed Clubs</a>
+          </li>
+          <li
+            className="nav-item"
+            id="admin"
+            autoComplete="off"
+          >
+            <a className="nav-link" aria-current="page" key="1" onClick={() => setSelection("admin")}>Admin Clubs</a>
+          </li>
+        </ul>
         {/* fix width of alert */}
         <div width="70px" align="center">{deleteSuccess == "success" && <Alert key="success" variant="success">
           Club was successfully deleted!
@@ -59,9 +74,9 @@ const ManageClubs = ({ user, data }) => {
                   setDeleteSuccess={setDeleteSuccess}
                 />
               );
-            }            
-            ): <div className="text-center m-3">Clubs that you are an admin for will appear here. Add a new club to get started.</div>
-          }
+            }
+            ) : <div className="text-center m-3">Clubs that you are an admin for will appear here. Add a new club to get started.</div>
+            }
           </Col>
         </Row>
       </Container>
