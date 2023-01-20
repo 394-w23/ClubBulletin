@@ -15,9 +15,9 @@ const Organizations = ({ user, data }) => {
 
   const allClubs = Object.entries(data.clubs);
 
-  const [query, setQuery] = useState({ Search: "" });
+  const [query, setQuery] = useState({values: { Search: "" }});
 
-  console.log(query);
+  const filteredClubs = allClubs.filter(([id,val]) => val.name.toLowerCase().includes(query.values.Search));
 
   return (
     <div>
@@ -39,8 +39,9 @@ const Organizations = ({ user, data }) => {
 
         <Row>
           <Col>
-            {allClubs.map(([id, clubData]) => {
+            {filteredClubs.map(([id, clubData]) => {
               return (
+                
                 <ClubCard
                   key={id}
                   clubId={id}

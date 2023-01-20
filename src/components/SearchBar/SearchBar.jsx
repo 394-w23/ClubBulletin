@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useFormData } from "../../utilities/utilities";
 
 const InputField = ({ name, text, state, change }) => (
@@ -19,7 +20,9 @@ const InputField = ({ name, text, state, change }) => (
 const SearchBar = ({ query, setQuery }) => {
   const [state, change] = useFormData(() => {}, query);
 
-  console.log("state: ", state);
+  //console.log("state: ", state);
+
+  useEffect(() => {setQuery(state)}, [state])
 
   return (
     <div>
@@ -28,7 +31,7 @@ const SearchBar = ({ query, setQuery }) => {
           name="Search"
           text="Search"
           state={state}
-          change={() => setQuery(state)}
+          change={change}
         />
       </form>
     </div>
