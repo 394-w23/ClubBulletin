@@ -1,16 +1,37 @@
-import "font-awesome/css/font-awesome.min.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useFormData } from "../../utilities/utilities";
 
-const SearchBar = (props) => {
-    return (
-        <div>
-            <form class="d-flex">
-                <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-primary" type="submit">
-                    <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-                </button>
-            </form>
-        </div>
-    );
-}
+const InputField = ({ name, text, state, change }) => (
+  <div className="mb-3">
+    <label htmlFor={name} className="form-label">
+      {text}
+    </label>
+    <input
+      className="form-control"
+      id={name}
+      name={name}
+      defaultValue={state.values?.[name]}
+      onChange={change}
+    />
+    <div className="invalid-feedback">{state.errors?.[name]}</div>
+  </div>
+);
+
+const SearchBar = ({ query, setQuery }) => {
+  const [state, change] = useFormData(() => {}, query);
+
+  console.log("state: ", state);
+
+  return (
+    <div>
+      <form noValidate>
+        <InputField
+          name="Search"
+          text="Search"
+          state={state}
+          change={() => setQuery(state)}
+        />
+      </form>
+    </div>
+  );
+};
 export default SearchBar;
