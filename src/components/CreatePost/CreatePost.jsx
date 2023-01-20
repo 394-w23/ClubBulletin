@@ -72,7 +72,7 @@ function CreatePost({
             }
             {msgSuccess == "danger" && (
                 <Alert key="danger" variant="danger">
-                    Failed to create post. Please check your inputs and try again.
+                    Failed to create post. Please make sure you filled all inputs and try again.
                 </Alert>
             )}
             <Form onSubmit={handleSubmit}>
