@@ -9,7 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import { useState, useEffect } from "react";
 
 const ManageClubs = ({ user, data }) => {
-  const [msgSuccess, setMsgSuccess] = useState();
+  
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
@@ -38,12 +38,6 @@ const ManageClubs = ({ user, data }) => {
           </Button>{" "}
         </div>
 
-        <div className="pageTitle">
-          {msgSuccess == "success" && <Alert key="success" variant="success">
-                Post was successfully uploaded!
-            </Alert>
-          }
-        </div>
         {/* fix width of alert */}
         <div width="70px" align="center">{deleteSuccess == "success" && <Alert key="success" variant="success">
           Club was successfully deleted!
@@ -61,8 +55,6 @@ const ManageClubs = ({ user, data }) => {
                   currentUserData={currentUserData}
                   currentUserId={currentUserId}
                   data={data}
-                  msgSuccess={msgSuccess}
-                  setMsgSuccess={setMsgSuccess}
                   deleteSuccess={deleteSuccess}
                   setDeleteSuccess={setDeleteSuccess}
                 />

@@ -9,82 +9,89 @@ import { useState, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
 
 function CreatePost({
-  currentUserData,
-  clubId,
-  data,
-  clubData,
-  modalShow,
-  handleClose,
-  msgSuccess,
-  setMsgSuccess,
+    currentUserData,
+    clubId,
+    data,
+    clubData,
+    modalShow,
+    handleClose
 }) {
-  const [update] = useDbUpdate(`/`);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const formDataObj = Object.fromEntries(formData.entries());
-
-    if (formDataObj.PostTitle != "" && formDataObj.PostContent != "") {
-      // update /posts with a new post
-      const newid = uuidv4();
-      const postTime = new Date().getTime();
-      const stringTime = postTime.toString();
-
-      update({
-        ["/posts"]: {
-          ...data.posts,
-          [newid]: {
-            clubId: clubId,
-            content: formDataObj.PostContent,
-            title: formDataObj.PostTitle,
-            posted: stringTime,
-            likeCount: 0,
-          },
-        },
-      });
-      handleClose();
-      setMsgSuccess("success");
-    } else {
-      setMsgSuccess("danger");
+    const [update] = useDbUpdate(`/`);
+    const [msgSuccess, setMsgSuccess] = useState();
+    const closeWindow = () => {
+        setMsgSuccess("");
+        handleClose();
     }
-  };
-  return (
-    <Container style={{ padding: "10px" }}>
-      {/* <Navigation currentUserData={currentUserData} />
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formDataObj = Object.fromEntries(formData.entries());
+
+        if (formDataObj.PostTitle != "" && formDataObj.PostContent != "") {
+            // update /posts with a new post
+            const newid = uuidv4();
+            const postTime = new Date().getTime();
+            const stringTime = postTime.toString();
+
+            update({
+                ["/posts"]: {
+                    ...data.posts,
+                    [newid]: {
+                        clubId: clubId,
+                        content: formDataObj.PostContent,
+                        title: formDataObj.PostTitle,
+                        posted: stringTime,
+                        likeCount: 0,
+                    },
+                },
+            });
+            setMsgSuccess("success");
+            setTimeout(() => closeWindow(), 1000);
+            
+        } else {
+            setMsgSuccess("danger");
+        }
+    };
+    return (
+        <Container style={{ padding: "10px" }}>
+            {/* <Navigation currentUserData={currentUserData} />
             <Button varient="primary" href="/organizations">Back</Button> */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-        }}
-      >
-        <h2>Create New Post</h2>
-        <CloseButton onClick={handleClose} />
-      </div>
-      {msgSuccess == "danger" && (
-        <Alert key="danger" variant="danger">
-          Failed to create post. Please check your inputs and try again.
-        </Alert>
-      )}
-      <Form onSubmit={handleSubmit}>
-        <Form.Label>Post Title</Form.Label>
-        <Form.Control type="text" name="PostTitle"></Form.Control>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: "10px",
+                }}
+            >
+                <h2>Create New Post</h2>
+                <CloseButton onClick={closeWindow} />
+            </div>
+            {msgSuccess == "success" && <Alert key="success" variant="success">
+                Post was successfully uploaded!
+            </Alert>
+            }
+            {msgSuccess == "danger" && (
+                <Alert key="danger" variant="danger">
+                    Failed to create post. Please check your inputs and try again.
+                </Alert>
+            )}
+            <Form onSubmit={handleSubmit}>
+                <Form.Label>Post Title</Form.Label>
+                <Form.Control type="text" name="PostTitle"></Form.Control>
 
-        <Form.Label>Post Content</Form.Label>
-        <Form.Control
-          type="text"
-          name="PostContent"
-          as="textarea"
-          rows={3}
-        ></Form.Control>
+                <Form.Label>Post Content</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="PostContent"
+                    as="textarea"
+                    rows={3}
+                ></Form.Control>
 
-        <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
-          Submit
-        </Button>
-      </Form>
-    </Container>
-  );
+                <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
+                    Submit
+                </Button>
+            </Form>
+        </Container>
+    );
 }
 export default CreatePost;

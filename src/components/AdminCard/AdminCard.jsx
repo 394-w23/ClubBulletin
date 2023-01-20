@@ -14,8 +14,6 @@ const AdminCard = ({
   currentUserData,
   currentUserId,
   data,
-  msgSuccess,
-  setMsgSuccess,
   deleteSuccess,
   setDeleteSuccess
 }) => {
@@ -26,7 +24,6 @@ const AdminCard = ({
 
   const [modalShow, setModalShow] = useState(false);
   const handleClose = () => {
-    setMsgSuccess("");
     setModalShow(false);
   }
   const handleShow = () => setModalShow(true);
@@ -49,8 +46,6 @@ const AdminCard = ({
           clubData={clubData}
           modalShow={modalShow}
           handleClose={handleClose}
-          msgSuccess={msgSuccess}
-          setMsgSuccess={setMsgSuccess}
         ></CreatePost>
       </Modal>
 
