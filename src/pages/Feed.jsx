@@ -38,7 +38,7 @@ const Feed = ({ user, data }) => {
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-  console.log(currentClubs);
+  // console.log(currentClubs);
 
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
@@ -66,11 +66,13 @@ const Feed = ({ user, data }) => {
               <div className="text-center m-3">You haven't joined any clubs yet! Go to "Subscribe" to subscribe to a club.</div> :
               filteredPosts
                 .sort(
-                  ([_1, post1], [_2, post2]) => post1.datetime - post2.datetime
+                  ([_1, post1], [_2, post2]) => {
+                    return(parseInt(post2.posted) - parseInt(post1.posted));
+                  }
                 )
                 .map(([id, post]) => {
                   const currentClub = data.clubs[post.clubId];
-
+                  
                   return (
                     <Post key={id} post={post} postId={id} club={currentClub} />
                   );

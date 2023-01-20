@@ -14,11 +14,9 @@ const Organizations = ({ user, data }) => {
   const currentClubsIds = Object.values(currentUserData.clubs);
 
   const allClubs = Object.entries(data.clubs);
-  console.log(allClubs);
 
   const [query, setQuery] = useState({values: { Search: "" }});
-
-  const filteredClubs = allClubs.filter(([id,val]) => val.name.toLowerCase().includes(query.values.Search));
+  const filteredClubs = query.values.Search === undefined ? allClubs : allClubs.filter(([,val]) => val.name.toLowerCase().includes(query.values.Search));
 
   return (
     <div>
