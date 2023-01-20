@@ -13,12 +13,19 @@ const ManageClubs = ({ user, data }) => {
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
-  const currentClubsIds = Object.values(currentUserData.clubs);
 
+  const currentClubsIds = Object.values(currentUserData.clubs); // clubs you're subscribed to
   const allClubs = Object.entries(data.clubs);
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
+  
+  const isActive = (tab) => {
+    if (tab === selection) {
+      return "nav-link active";
+    }
+    return "nav-link";
+  }
 
   return (
     <div>
@@ -43,14 +50,14 @@ const ManageClubs = ({ user, data }) => {
             id="subscribed"
             autoComplete="off"
           >
-            <a className="nav-link active" aria-current="page" key="2" onClick={() => setSelection("subscribed")}>Subscribed Clubs</a>
+            <a className={isActive("subscribed")} aria-current="page" key="2" onClick={() => setSelection("subscribed")}>Subscribed Clubs</a>
           </li>
           <li
             className="nav-item"
             id="admin"
             autoComplete="off"
           >
-            <a className="nav-link" aria-current="page" key="1" onClick={() => setSelection("admin")}>Admin Clubs</a>
+            <a className={isActive("admin")} aria-current="page" key="1" onClick={() => setSelection("admin")}>Admin Clubs</a>
           </li>
         </ul>
         {/* fix width of alert */}
