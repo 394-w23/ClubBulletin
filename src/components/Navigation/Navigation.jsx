@@ -30,7 +30,7 @@ const Navigation = ({ currentUserData }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Feed</Nav.Link>
-            <Nav.Link href="/organizations">Join</Nav.Link>
+            <Nav.Link href="/organizations">Subscribe</Nav.Link>
             <Nav.Link href="/manageclubs">Manage</Nav.Link>
             <NavDropdown title={currentUserData.name} id="basic-nav-dropdown">
               {/* <NavDropdown.Divider /> */}

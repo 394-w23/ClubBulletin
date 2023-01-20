@@ -28,7 +28,7 @@ function DeleteClub({
         
         console.log(data);
 
-        if (formDataObj.Confirmation == data.clubs[clubId].name) {
+        if (formDataObj.Confirmation === data.clubs[clubId].name) {
             handleClose();
             setDeleteSuccess("success");
         } else {
@@ -39,7 +39,7 @@ function DeleteClub({
         let updatedClubs = {};
 
         for (const [key,value] of Object.entries(data["clubs"])) {
-            if (key != clubId) {
+            if (key !== clubId) {
                 updatedClubs[key] = value;
             }
         }
@@ -47,7 +47,7 @@ function DeleteClub({
         let updatedPosts = {};
 
         for (const [key,value] of Object.entries(data["posts"])) {
-            if (value["clubId"] != clubId) {
+            if (value["clubId"] !== clubId) {
                 updatedPosts[key] = value;
             }
         }
@@ -71,11 +71,11 @@ function DeleteClub({
 
         
 
-        // update({
-        //     ["/clubs"]: updatedClubs,
-        //     ["/posts"]: updatedPosts,
-        //     ["/users"]: updatedUsers    
-        // });
+        update({
+            ["/clubs"]: updatedClubs,
+            ["/posts"]: updatedPosts,
+            ["/users"]: updatedUsers    
+        });
 
     };
     return (

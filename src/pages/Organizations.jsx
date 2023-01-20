@@ -18,7 +18,7 @@ const Organizations = ({ user, data }) => {
         <Navigation currentUserData={currentUserData} />        
 
         <div className="pageTitle">
-          <h1>Join Clubs</h1>
+          <h1>Subscribe to Clubs</h1>
         </div>
         <div className="org-title">
           <Link to="/" relative="path">
