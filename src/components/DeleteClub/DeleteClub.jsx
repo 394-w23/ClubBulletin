@@ -26,57 +26,54 @@ function DeleteClub({
         const formData = new FormData(event.target);
         const formDataObj = Object.fromEntries(formData.entries());
         
-        console.log(data);
-
         if (formDataObj.Confirmation === data.clubs[clubId].name) {
+            // construct new object
+            let updatedClubs = {};
+
+            for (const [key, value] of Object.entries(data["clubs"])) {
+                if (key !== clubId) {
+                    updatedClubs[key] = value;
+                }
+            }
+
+            let updatedPosts = {};
+
+            for (const [key, value] of Object.entries(data["posts"])) {
+                if (value["clubId"] !== clubId) {
+                    updatedPosts[key] = value;
+                }
+            }
+
+            let updatedUsers = {};
+            let updatedUser = {};
+            let userClubs = [];
+
+            for (const [key, value] of Object.entries(data["users"])) {
+                updatedUser = {};
+                userClubs = []
+                for (var i = 0; i < value["clubs"].length; i++) {
+                    if (value["clubs"][i] != clubId) {
+                        userClubs.push(value["clubs"][i]);
+                    }
+                }
+                updatedUser["clubs"] = userClubs;
+                updatedUser["name"] = value["name"];
+                updatedUsers[key] = updatedUser;
+            }
+
+            update({
+                ["/clubs"]: updatedClubs,
+                ["/posts"]: updatedPosts,
+                ["/users"]: updatedUsers
+            });
+
             handleClose();
             setDeleteSuccess("success");
         } else {
             setDeleteSuccess("danger");
         }
 
-        // construct new object
-        let updatedClubs = {};
-
-        for (const [key,value] of Object.entries(data["clubs"])) {
-            if (key !== clubId) {
-                updatedClubs[key] = value;
-            }
-        }
-
-        let updatedPosts = {};
-
-        for (const [key,value] of Object.entries(data["posts"])) {
-            if (value["clubId"] !== clubId) {
-                updatedPosts[key] = value;
-            }
-        }
-
-        let updatedUsers = {};
-        let updatedUser = {};
-        let userClubs = [];
-
-        for (const [key,value] of Object.entries(data["users"])) {
-            updatedUser = {};
-            userClubs = []
-            for (var i=0; i < value["clubs"].length; i++) {
-                if (value["clubs"][i] != clubId) {
-                    userClubs.push(value["clubs"][i]);
-                }
-            }
-            updatedUser["clubs"] = userClubs;
-            updatedUser["name"] = value["name"];
-            updatedUsers[key] = updatedUser;
-        }
-
         
-
-        update({
-            ["/clubs"]: updatedClubs,
-            ["/posts"]: updatedPosts,
-            ["/users"]: updatedUsers    
-        });
-
     };
     return (
         <Container style={{ padding: "10px" }}>
