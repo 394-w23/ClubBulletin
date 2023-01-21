@@ -23,6 +23,13 @@ const Organizations = ({ user, data }) => {
           val.name.toLowerCase().includes(query.values.Search)
         );
 
+  const sortedClubs = filteredClubs.sort(function(club1, club2) {
+    if (club1[1].name < club2[1].name) {
+      return -1;
+    }
+    return 0;
+  });
+
   return (
     <div>
       <Container>
@@ -43,7 +50,7 @@ const Organizations = ({ user, data }) => {
 
         <Row>
           <Col>
-            {filteredClubs.map(([id, clubData]) => {
+            {sortedClubs.map(([id, clubData]) => {
               return (
                 <ClubCard
                   key={id}
