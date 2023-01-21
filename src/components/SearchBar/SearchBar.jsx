@@ -7,6 +7,7 @@ const InputField = ({ name, text, state, change }) => (
       {text}
     </label>
     <input
+      placeholder="Search"
       className="form-control"
       id={name}
       name={name}
@@ -22,14 +23,16 @@ const SearchBar = ({ query, setQuery }) => {
 
   //console.log("state: ", state);
 
-  useEffect(() => {setQuery(state)}, [state])
+  useEffect(() => {
+    setQuery(state);
+  }, [state]);
 
   return (
     <div>
       <form noValidate>
         <InputField
           name="Search"
-          text="Search"
+          // text="Search"
           state={state}
           change={change}
         />

@@ -54,12 +54,12 @@ const ManageClubs = ({ user, data }) => {
     <div>
       <Container>
         <Navigation currentUserData={currentUserData} currentLabel="Manage" />
+        <h1 className="pageTitle">Manage Clubs</h1>
 
         <div className="org-title" style={{ marginBottom: "50px" }}>
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>
           </Link>
-          <h1>Manage Clubs</h1>
           <Modal show={newClubModalShow} onHide={handleClose}>
             <NewClub
               data={data}

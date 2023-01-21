@@ -38,9 +38,7 @@ const Organizations = ({ user, data }) => {
           currentLabel="Subscribe"
         />
 
-        <div className="pageTitle">
-          <h1>Subscribe to Clubs</h1>
-        </div>
+        <h1 className="pageTitle">Subscribe to Clubs</h1>
         <div className="org-title">
           <Link to="/" relative="path">
             <Button variant="outline-secondary">Back to feed</Button>

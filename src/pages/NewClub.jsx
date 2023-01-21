@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import { useDbUpdate } from "../utilities/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import CloseButton from "react-bootstrap/CloseButton";
 
@@ -21,7 +21,7 @@ function NewClub({ data, user, handleClose }) {
   const closeWindow = () => {
     setMsgSuccess("");
     handleClose();
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -52,8 +52,7 @@ function NewClub({ data, user, handleClose }) {
       // display success to user
       setSuccess("success");
       setTimeout(() => closeWindow(), 1000);
-    }
-    else {
+    } else {
       setSuccess("danger");
     }
   };
@@ -61,12 +60,16 @@ function NewClub({ data, user, handleClose }) {
   return (
     <Container>
       <Navigation currentUserData={currentUserData} />
-      {success == "success" && <Alert key={success} variant={success}>
-        Club creation was a {success}!
-      </Alert>}
-      {success == "danger" && <Alert key={success} variant={success}>
-        Club creation failed. Please check your inputs and try again.
-      </Alert>}
+      {success == "success" && (
+        <Alert key={success} variant={success}>
+          Club creation was a {success}!
+        </Alert>
+      )}
+      {success == "danger" && (
+        <Alert key={success} variant={success}>
+          Club creation failed. Please check your inputs and try again.
+        </Alert>
+      )}
       <Form onSubmit={handleSubmit}>
         {/* <Form.Label>Club Admin</Form.Label>
         <Form.Select aria-label="Club Admins" name="ClubAdmin">
@@ -75,7 +78,7 @@ function NewClub({ data, user, handleClose }) {
             return <option key={key}>{allUsers[key].name}</option>;
           })}
         </Form.Select> */}
-        <div className="pageTitle">
+        <div className="">
           <h1>Create New Club</h1>
         </div>
         <div className="mb-3">
@@ -88,7 +91,12 @@ function NewClub({ data, user, handleClose }) {
         <Form.Control type="text" name="ClubName"></Form.Control>
 
         <Form.Label style={{ marginTop: "20px" }}>Club Description</Form.Label>
-        <Form.Control type="text" name="ClubDescription" as="textarea" rows={3}></Form.Control>
+        <Form.Control
+          type="text"
+          name="ClubDescription"
+          as="textarea"
+          rows={3}
+        ></Form.Control>
 
         <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
           Create

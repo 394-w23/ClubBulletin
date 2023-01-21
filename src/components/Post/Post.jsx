@@ -48,7 +48,9 @@ const Post = ({ post, postId, club }) => {
       </Card.Header>
 
       <Card.Body>
-        <Card.Text as="h5">{post.title}</Card.Text>
+        <Card.Text as="h5" className="post-title">
+          {post.title}
+        </Card.Text>
         <Card.Text className="card-post-content">{post.content}</Card.Text>
       </Card.Body>
       <ListGroup variant="flush">
