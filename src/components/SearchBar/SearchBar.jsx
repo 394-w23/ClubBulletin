@@ -3,9 +3,6 @@ import { useFormData } from "../../utilities/utilities";
 
 const InputField = ({ name, text, state, change }) => (
   <div className="mb-3">
-    <label htmlFor={name} className="form-label">
-      {text}
-    </label>
     <input
       placeholder="Search"
       className="form-control"

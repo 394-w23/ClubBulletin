@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { signOut } from "../../utilities/firebase";
 import "./Navigation.css";
+import "../../styles/navigation.css"
 
 const SignOutButton = () => {
   let navigate = useNavigate();
@@ -34,7 +35,7 @@ const Navigation = ({ currentUserData, currentLabel }) => {
   ];
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navBar" bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/" className="nav-title">
           ClubBulletin
