@@ -3,15 +3,13 @@ import { useFormData } from "../../utilities/utilities";
 
 const InputField = ({ name, text, state, change }) => (
   <div className="mb-3">
-    <label htmlFor={name} className="form-label">
-      {text}
-    </label>
     <input
       className="form-control"
       id={name}
       name={name}
       defaultValue={state.values?.[name]}
       onChange={change}
+      placeholder="Search for a club!"
     />
     <div className="invalid-feedback">{state.errors?.[name]}</div>
   </div>

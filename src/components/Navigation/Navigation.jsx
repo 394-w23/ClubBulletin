@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from 'react-router-dom';
-
+import "../../styles/navigation.css"
 import { signOut } from "../../utilities/firebase";
 
 const SignOutButton = () => {
@@ -23,7 +23,7 @@ const SignOutButton = () => {
 
 const Navigation = ({ currentUserData }) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="navBar" bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/">ClubBulletin</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
