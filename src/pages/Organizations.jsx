@@ -15,13 +15,21 @@ const Organizations = ({ user, data }) => {
 
   const allClubs = Object.entries(data.clubs);
 
-  const [query, setQuery] = useState({values: { Search: "" }});
-  const filteredClubs = query.values.Search === undefined ? allClubs : allClubs.filter(([,val]) => val.name.toLowerCase().includes(query.values.Search));
+  const [query, setQuery] = useState({ values: { Search: "" } });
+  const filteredClubs =
+    query.values.Search === undefined
+      ? allClubs
+      : allClubs.filter(([, val]) =>
+          val.name.toLowerCase().includes(query.values.Search)
+        );
 
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} />
+        <Navigation
+          currentUserData={currentUserData}
+          currentLabel="Subscribe"
+        />
 
         <div className="pageTitle">
           <h1>Subscribe to Clubs</h1>
@@ -37,7 +45,6 @@ const Organizations = ({ user, data }) => {
           <Col>
             {filteredClubs.map(([id, clubData]) => {
               return (
-                
                 <ClubCard
                   key={id}
                   clubId={id}

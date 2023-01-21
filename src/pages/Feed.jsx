@@ -47,7 +47,7 @@ const Feed = ({ user, data }) => {
   return (
     <div className="App">
       <Container>
-        <Navigation currentUserData={currentUserData} />
+        <Navigation currentUserData={currentUserData} currentLabel="Feed" />
         <h1>Your Feed</h1>
         <ClubSelector
           currentClubs={currentClubs}
@@ -62,22 +62,24 @@ const Feed = ({ user, data }) => {
               <Button varient="primary">Manage</Button>
               </Link>
             </div> */}
-            {filteredPosts.length == 0 ? 
-              <div className="text-center m-3">You haven't joined any clubs yet! Go to "Subscribe" to subscribe to a club.</div> :
+            {filteredPosts.length == 0 ? (
+              <div className="text-center m-3">
+                You haven't joined any clubs yet! Go to "Subscribe" to subscribe
+                to a club.
+              </div>
+            ) : (
               filteredPosts
-                .sort(
-                  ([_1, post1], [_2, post2]) => {
-                    return(parseInt(post2.posted) - parseInt(post1.posted));
-                  }
-                )
+                .sort(([_1, post1], [_2, post2]) => {
+                  return parseInt(post2.posted) - parseInt(post1.posted);
+                })
                 .map(([id, post]) => {
                   const currentClub = data.clubs[post.clubId];
-                  
+
                   return (
                     <Post key={id} post={post} postId={id} club={currentClub} />
                   );
-              })
-            }
+                })
+            )}
           </Col>
         </Row>
       </Container>
