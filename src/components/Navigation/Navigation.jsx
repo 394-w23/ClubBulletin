@@ -2,36 +2,62 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useNavigate } from 'react-router-dom';
-import "../../styles/navigation.css"
+import { useNavigate } from "react-router-dom";
+
 import { signOut } from "../../utilities/firebase";
+import "./Navigation.css";
+import "../../styles/navigation.css"
 
 const SignOutButton = () => {
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/`; 
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/`;
     navigate(path);
-  }
+  };
   return (
-    <button className="ms-auto btn btn-dark" onClick={() => {
-      signOut(); 
-      routeChange();
-      }}>
+    <button
+      className="ms-auto btn btn-dark"
+      onClick={() => {
+        signOut();
+        routeChange();
+      }}
+    >
       Sign out
     </button>
-);}
+  );
+};
 
-const Navigation = ({ currentUserData }) => {
+const Navigation = ({ currentUserData, currentLabel }) => {
+  const pages = [
+    { route: "/", label: "Feed" },
+    { route: "/organizations", label: "Subscribe" },
+    { route: "/manageclubs", label: "Manage" },
+  ];
+
   return (
     <Navbar className="navBar" bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/">ClubBulletin</Navbar.Brand>
+        <Navbar.Brand href="/" className="nav-title">
+          ClubBulletin
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Feed</Nav.Link>
-            <Nav.Link href="/organizations">Subscribe</Nav.Link>
-            <Nav.Link href="/manageclubs">Manage</Nav.Link>
+            {pages.map((page) => {
+              return (
+                <Nav.Link
+                  key={page.label}
+                  href={currentLabel === page.label ? null : page.route}
+                  className={
+                    currentLabel === page.label
+                      ? "current-nav-label"
+                      : "faded-nav-label"
+                  }
+                >
+                  {page.label}
+                </Nav.Link>
+              );
+            })}
             <NavDropdown title={currentUserData.name} id="basic-nav-dropdown">
               {/* <NavDropdown.Divider /> */}
               <NavDropdown.Item href="#action/3.4">

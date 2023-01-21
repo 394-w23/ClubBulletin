@@ -1,0 +1,16 @@
+.current-nav-label {
+  font-weight: 800 !important;
+}
+
+.faded-nav-label {
+  opacity: 80%;
+}
+
+.faded-nav-label:hover {
+  opacity: 100%;
+}
+
+.nav-title {
+  font-weight: 800 !important;
+  color: red !important;
+}
