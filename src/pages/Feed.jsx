@@ -32,17 +32,59 @@ const Feed = ({ user, data }) => {
   const filteredClubIds =
     selection.id === "all" ? currentClubsIds : [selection.id];
 
-  // allClubs is an array <Array: [clubId, clubData], ... >
-  const allClubs = Object.entries(data.clubs);
   // currentClubs is an array [ [clubId, clubData]], ...  ]
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-  // console.log(currentClubs);
 
+  // filter posts containing posts from clubs that the user is subscribed to
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
   );
+
+  // sort all posts by time
+  const sortedPosts = filteredPosts.sort(([_1, post1], [_2, post2]) => {
+    return parseInt(post2.posted) - parseInt(post1.posted);
+  });
+
+  // the collection of <Post> objects
+  const postsResult = sortedPosts.map(([id, post]) => {
+    const currentClub = data.clubs[post.clubId];
+    return <Post key={id} post={post} postId={id} club={currentClub} />;
+  });
+
+  const isUserClubsEmpty = currentClubs.length == 0;
+  const isCurrentFeedEmpty = sortedPosts.length == 0;
+
+  const noSubscriptionsMessage = (
+    <div className="text-center m-3">
+      You haven't subscribed to any club feeds yet! Go to Subscribe to subscribe
+      to a club.
+    </div>
+  );
+
+  // these messages are displayed if the user has subscribed to clubs, but there are no posts
+  const noClubPostsMessage =
+    // show this message if the "All club" feeds is empty
+    selection.id === "all" ? (
+      <div className="text-center m-3">
+        None of your subscribed clubs have posted any messages yet!
+      </div>
+    ) : (
+      // show this message if the user is on the tab of the subscribed club with no posts
+      <div className="text-center m-3">
+        This club hasn't posted any messages yet!
+      </div>
+    );
+
+  // if the user is not subscribed to any clubs, show the "You haven't subscribed to any clubs feeds..." message
+  // Otherwise, check if the feed of messages is empty. If the feed is empty, show a message to the user telling them that
+  // the club(s) have not posted any messages yet. Otherwise, show the posts themselves
+  const displayResult = isUserClubsEmpty
+    ? noSubscriptionsMessage
+    : isCurrentFeedEmpty
+    ? noClubPostsMessage
+    : postsResult;
 
   return (
     <div className="App">
@@ -56,31 +98,7 @@ const Feed = ({ user, data }) => {
         />
 
         <Row>
-          <Col>
-            {/* <div>
-              <Link to ="/organizations" relative="path">
-              <Button varient="primary">Manage</Button>
-              </Link>
-            </div> */}
-            {filteredPosts.length == 0 ? (
-              <div className="text-center m-3">
-                You haven't joined any clubs yet! Go to "Subscribe" to subscribe
-                to a club.
-              </div>
-            ) : (
-              filteredPosts
-                .sort(([_1, post1], [_2, post2]) => {
-                  return parseInt(post2.posted) - parseInt(post1.posted);
-                })
-                .map(([id, post]) => {
-                  const currentClub = data.clubs[post.clubId];
-
-                  return (
-                    <Post key={id} post={post} postId={id} club={currentClub} />
-                  );
-                })
-            )}
-          </Col>
+          <Col>{displayResult}</Col>
         </Row>
       </Container>
     </div>
