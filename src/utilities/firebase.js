@@ -9,14 +9,26 @@ import {
   signOut,
 } from "firebase/auth";
 
+// -- Production Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBQZqOv4h0oW2NPYvj6xLvnrzH5_CH-NgQ",
+//   authDomain: "clubbulletin-e6cf8.firebaseapp.com",
+//   databaseURL: "https://clubbulletin-e6cf8-default-rtdb.firebaseio.com",
+//   projectId: "clubbulletin-e6cf8",
+//   storageBucket: "clubbulletin-e6cf8.appspot.com",
+//   messagingSenderId: "128903378781",
+//   appId: "1:128903378781:web:f9945c665b876759689ab4",
+// };
+
+// -- Test Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBQZqOv4h0oW2NPYvj6xLvnrzH5_CH-NgQ",
-  authDomain: "clubbulletin-e6cf8.firebaseapp.com",
-  databaseURL: "https://clubbulletin-e6cf8-default-rtdb.firebaseio.com",
-  projectId: "clubbulletin-e6cf8",
-  storageBucket: "clubbulletin-e6cf8.appspot.com",
-  messagingSenderId: "128903378781",
-  appId: "1:128903378781:web:f9945c665b876759689ab4",
+  apiKey: "AIzaSyDMwPuqe10GRZZBNPBUpcj2v_vTB5L61fs",
+  authDomain: "clubbulletintest.firebaseapp.com",
+  databaseURL: "https://clubbulletintest-default-rtdb.firebaseio.com",
+  projectId: "clubbulletintest",
+  storageBucket: "clubbulletintest.appspot.com",
+  messagingSenderId: "1064844111586",
+  appId: "1:1064844111586:web:42ce9affef576c142038bb"
 };
 
 const firebase = initializeApp(firebaseConfig);
