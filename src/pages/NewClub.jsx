@@ -1,16 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Navigation from "../components/Navigation/Navigation";
 import Container from "react-bootstrap/Container";
 import { useDbUpdate } from "../utilities/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { useState, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
-import { Link } from "react-router-dom";
 import CloseButton from "react-bootstrap/CloseButton";
 
 function NewClub({ data, user, handleClose }) {
   const [success, setSuccess] = useState();
+  const [create, setCreate] = useState();
   const currentUserId = user.uid;
   const rootAdminId = "HcYJNncMwQQbmnmYKWNln0FbqtG3";
   const currentUserData = data.users[currentUserId];
@@ -28,41 +27,62 @@ function NewClub({ data, user, handleClose }) {
     const formData = new FormData(event.target);
     const formDataObj = Object.fromEntries(formData.entries());
 
+    let clubExists = false;
+
     if (formDataObj.ClubName != "" && formDataObj.ClubDescription != "") {
-      // update /clubs with a new club
-      const newid = uuidv4();
+      console.log(data);
+      for (const [key, value] of Object.entries(data["clubs"])) {
+        if (formDataObj.ClubName !== value.name) {
+          console.log(formDataObj.ClubName !== value.name);
+          clubExists = true;
+          break;
+        }
+      }
+      
+      
+      if (clubExists) {
+        setCreate("danger");
+      } else {
+        // update /clubs with a new club
+        const newid = uuidv4();
 
-      update({
-        ["/clubs"]: {
-          ...data.clubs,
-          [newid]: {
-            description: formDataObj.ClubDescription,
-            admins: ["", rootAdminId, currentUserId],
-            name: formDataObj.ClubName,
-            members: ["", currentUserId],
+        update({
+          ["/clubs"]: {
+            ...data.clubs,
+            [newid]: {
+              description: formDataObj.ClubDescription,
+              admins: ["", rootAdminId, currentUserId],
+              name: formDataObj.ClubName,
+              members: ["", currentUserId],
+            },
           },
-        },
-      });
+        });
 
-      // update /users.<adminId>.clubs with the new club
-      updateUser({
-        ["/clubs"]: [...currentUserData.clubs, newid],
-      });
+        // update /users.<adminId>.clubs with the new club
+        updateUser({
+          ["/clubs"]: [...currentUserData.clubs, newid],
+        });
 
-      // display success to user
-      setSuccess("success");
-      setTimeout(() => closeWindow(), 1000);
+        // display success to user
+        setSuccess("success");
+        setCreate("success");
+        setTimeout(() => closeWindow(), 1000);
+      }
     } else {
       setSuccess("danger");
     }
   };
 
   return (
-    <Container>
-      <Navigation currentUserData={currentUserData} />
+    <Container style={{ padding: "10px" }}>
       {success == "success" && (
         <Alert key={success} variant={success}>
           Club creation was a {success}!
+        </Alert>
+      )}
+      {create=="danger" && (
+        <Alert key={create} variant={create}>
+          Club already exists!
         </Alert>
       )}
       {success == "danger" && (
@@ -78,13 +98,14 @@ function NewClub({ data, user, handleClose }) {
             return <option key={key}>{allUsers[key].name}</option>;
           })}
         </Form.Select> */}
-        <div className="">
-          <h1>Create New Club</h1>
-        </div>
-        <div className="mb-3">
-          <Link to="/manageclubs" relative="path">
-            <Button variant="outline-secondary">Back to manage</Button>
-          </Link>
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+        }}>
+          <h2>Create New Club</h2>
+          <CloseButton onClick={closeWindow} />
+
         </div>
 
         <Form.Label>Club Name</Form.Label>
@@ -101,7 +122,6 @@ function NewClub({ data, user, handleClose }) {
         <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
           Create
         </Button>
-        <CloseButton onClick={closeWindow} />
       </Form>
     </Container>
   );

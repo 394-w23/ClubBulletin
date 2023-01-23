@@ -70,11 +70,9 @@ const ManageClubs = ({ user, data }) => {
               handleClose={handleClose}
             ></NewClub>
           </Modal>
-          <Link to="/newclub" relative="path">
-            <Button className="mobile" variant="outline-primary">
+            <Button className="mobile" variant="outline-primary" onClick={handleShow}>
               Add New Club
             </Button>
-          </Link>
         </div>
         {/* <div className="pageTitle" >
           
