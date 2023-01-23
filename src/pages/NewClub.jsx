@@ -32,13 +32,15 @@ function NewClub({ data, user, handleClose }) {
     if (formDataObj.ClubName != "" && formDataObj.ClubDescription != "") {
       console.log(data);
       for (const [key, value] of Object.entries(data["clubs"])) {
-        if (formDataObj.ClubName !== value.name) {
-          console.log(formDataObj.ClubName !== value.name);
+        console.log(formDataObj.ClubName);
+        console.log(value.name);
+        if (formDataObj.ClubName === value.name) {
           clubExists = true;
           break;
         }
       }
       
+      console.log(clubExists);
       
       if (clubExists) {
         setCreate("danger");
