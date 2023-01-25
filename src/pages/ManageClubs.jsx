@@ -11,6 +11,9 @@ import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import NewClub from "./NewClub";
 import "../styles/ManageClubs.css";
+import SearchBar from "../components/SearchBar/SearchBar";
+
+
 
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin", "join"];
@@ -20,10 +23,17 @@ const ManageClubs = ({ user, data }) => {
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
   currentClubsIds.shift();
+  const [query, setQuery] = useState({ values: { Search: "" } });
   const allClubs = Object.entries(data.clubs);
-  const allClubsIds = allClubs.map(([id, value]) => id);
+  const filteredClubs =
+    query.values.Search === undefined
+      ? allClubs
+      : allClubs.filter(([, val]) =>
+        val.name.toLowerCase().includes(query.values.Search)
+      );
+  const allClubsIds = filteredClubs.map(([id, value]) => id);
   
-  const allAdminClubs = allClubs.filter(([id, value]) =>
+  const allAdminClubs = filteredClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
   const allAdminClubIds = allAdminClubs.map(([id, value]) => id);
@@ -33,6 +43,15 @@ const ManageClubs = ({ user, data }) => {
   const notSubscribedClubs = allClubsIds.filter(
     (id) => !allSubscribedClubs.includes(id)
   );
+
+
+
+  const sortedClubs = filteredClubs.sort(function (club1, club2) {
+    if (club1[1].name < club2[1].name) {
+      return -1;
+    }
+    return 0;
+  });
 
   const isActive = (tab) => { 
     if (tab === selection) {
@@ -74,6 +93,9 @@ const ManageClubs = ({ user, data }) => {
               handleClose={handleClose}
             ></NewClub>
           </Modal>
+          <div className="org-title">
+            <SearchBar query={query} setQuery={setQuery} />
+          </div>
             <Button className="mobile" variant="outline-primary" onClick={handleShow}>
               Add New Club
             </Button>

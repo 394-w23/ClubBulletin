@@ -55,8 +55,8 @@ const Feed = ({ user, data }) => {
 
   const noSubscriptionsMessage = (
     <div className="text-center m-3">
-      You haven't subscribed to any club feeds yet! Go to <a href="/organizations">Subscribe</a> to subscribe
-      to a club.
+      You haven't joined any club feeds yet! Go to <a href="/manageclubs">Clubs</a> to join
+      a club.
     </div>
   );
 

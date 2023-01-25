@@ -30,8 +30,7 @@ const SignOutButton = () => {
 const Navigation = ({ currentUserData, currentLabel }) => {
   const pages = [
     { route: "/", label: "Feed" },
-    { route: "/organizations", label: "Subscribe" },
-    { route: "/manageclubs", label: "Manage" },
+    { route: "/manageclubs", label: "Clubs" },
   ];
 
   return (
