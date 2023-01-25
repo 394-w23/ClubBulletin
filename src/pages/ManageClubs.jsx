@@ -13,8 +13,6 @@ import NewClub from "./NewClub";
 import "../styles/ManageClubs.css";
 import SearchBar from "../components/SearchBar/SearchBar";
 
-
-
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin", "join"];
   const [selection, setSelection] = useState(tabOptions[2]);
@@ -29,10 +27,10 @@ const ManageClubs = ({ user, data }) => {
     query.values.Search === undefined
       ? allClubs
       : allClubs.filter(([, val]) =>
-        val.name.toLowerCase().includes(query.values.Search)
-      );
+          val.name.toLowerCase().includes(query.values.Search)
+        );
   const allClubsIds = filteredClubs.map(([id, value]) => id);
-  
+
   const allAdminClubs = filteredClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
@@ -44,8 +42,6 @@ const ManageClubs = ({ user, data }) => {
     (id) => !allSubscribedClubs.includes(id)
   );
 
-
-
   const sortedClubs = filteredClubs.sort(function (club1, club2) {
     if (club1[1].name < club2[1].name) {
       return -1;
@@ -53,7 +49,7 @@ const ManageClubs = ({ user, data }) => {
     return 0;
   });
 
-  const isActive = (tab) => { 
+  const isActive = (tab) => {
     if (tab === selection) {
       return "nav-link active";
     }
@@ -77,7 +73,7 @@ const ManageClubs = ({ user, data }) => {
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} currentLabel="Manage" />
+        <Navigation currentUserData={currentUserData} currentLabel="Clubs" />
         <h1 className="pageTitle">Manage Clubs</h1>
 
         <div className="org-title" style={{ marginBottom: "50px" }}>
@@ -96,9 +92,13 @@ const ManageClubs = ({ user, data }) => {
           <div className="org-title">
             <SearchBar query={query} setQuery={setQuery} />
           </div>
-            <Button className="mobile" variant="outline-primary" onClick={handleShow}>
-              Add New Club
-            </Button>
+          <Button
+            className="mobile"
+            variant="outline-primary"
+            onClick={handleShow}
+          >
+            Add New Club
+          </Button>
         </div>
         {/* <div className="pageTitle" >
           
