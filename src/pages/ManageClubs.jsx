@@ -13,16 +13,16 @@ import NewClub from "./NewClub";
 import "../styles/ManageClubs.css";
 
 const ManageClubs = ({ user, data }) => {
-  const tabOptions = ["subscribed", "admin"];
-  const [selection, setSelection] = useState(tabOptions[0]);
+  const tabOptions = ["subscribed", "admin", "join"];
+  const [selection, setSelection] = useState(tabOptions[2]);
   const [deleteSuccess, setDeleteSuccess] = useState();
   const currentUserId = user.uid;
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
-  console.log(currentClubsIds);
   currentClubsIds.shift();
   const allClubs = Object.entries(data.clubs);
   const allClubsIds = allClubs.map(([id, value]) => id);
+  
   const allAdminClubs = allClubs.filter(([id, value]) =>
     value.admins.includes(currentUserId)
   );
@@ -30,7 +30,11 @@ const ManageClubs = ({ user, data }) => {
   const allSubscribedClubs = currentClubsIds.filter(
     (id) => !allAdminClubIds.includes(id) && allClubsIds.includes(id)
   );
-  const isActive = (tab) => {
+  const notSubscribedClubs = allClubsIds.filter(
+    (id) => !allSubscribedClubs.includes(id)
+  );
+
+  const isActive = (tab) => { 
     if (tab === selection) {
       return "nav-link active";
     }
@@ -78,6 +82,16 @@ const ManageClubs = ({ user, data }) => {
           
         </div> */}
         <ul className="nav nav-tabs">
+          <li className="nav-item" id={tabOptions[2]} autoComplete="off">
+            <a
+              className={isActive(tabOptions[2])}
+              aria-current="page"
+              key="3"
+              onClick={() => setSelection(tabOptions[2])}
+            >
+              Join Clubs
+            </a>
+          </li>
           <li className="nav-item" id={tabOptions[0]} autoComplete="off">
             <a
               className={isActive(tabOptions[0])}
@@ -155,6 +169,28 @@ const ManageClubs = ({ user, data }) => {
                   club to get started.
                 </div>
               )}
+            </Col>
+          </Row>
+        )}
+        {selection == tabOptions[2] && (
+          <Row>
+            <Col>
+              {notSubscribedClubs.map((id) => {
+                console.log("clubId", id);
+                const clubData = data.clubs[id];
+                console.log("allclubs", data.clubs);
+                return (
+                  <ClubCard
+                    key={id}
+                    clubId={id}
+                    clubData={clubData}
+                    currentClubsIds={currentClubsIds}
+                    currentUserData={currentUserData}
+                    currentUserId={currentUserId}
+                    data={data}
+                  />
+                );
+              })}
             </Col>
           </Row>
         )}
