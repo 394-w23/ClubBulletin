@@ -30,30 +30,26 @@ const Feed = ({ user, data }) => {
   const allPosts = Object.entries(data.posts);
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
-  const filteredClubIds =
-    selection.id === "all" ? currentClubsIds : [selection.id];
+  const filteredClubIds = selection.id === "all" ? currentClubsIds : [selection.id];
+  const allClubData = Object.entries(data.clubs);
 
   // currentClubs is an array [ [clubId, clubData]], ...  ]
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
-
   // filter posts containing posts from clubs that the user is subscribed to
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
   );
-
   // sort all posts by time
   const sortedPosts = filteredPosts.sort(([_1, post1], [_2, post2]) => {
     return parseInt(post2.posted) - parseInt(post1.posted);
   });
-
   // the collection of <Post> objects
   const postsResult = sortedPosts.map(([id, post]) => {
     const currentClub = data.clubs[post.clubId];
     return <Post key={id} post={post} postId={id} club={currentClub} />;
   });
-
   const isUserClubsEmpty = currentClubs.length == 0;
   const isCurrentFeedEmpty = sortedPosts.length == 0;
 
@@ -102,6 +98,17 @@ const Feed = ({ user, data }) => {
 
   // check if selection is all
   // if it's not all --> get the club admins and check if current user is in there.
+  let selectedClubData = {};
+  let isUserAdminOfSelectedClub = false;
+  if (selection.id !== "all") {
+    selectedClubData = allClubData.filter(([id, value]) => selection.id === id);
+    console.log(selectedClubData[0]);
+    const selectedClubAdmin = selectedClubData[0][1].admins;
+    if (selectedClubAdmin.includes(currentUserId)) {
+      console.log("is admin");
+      isUserAdminOfSelectedClub = true;
+    }    
+  }  
 
   // const isUserAdmin =
   // selection.id != "all" && console.log("hi: ", filteredClubIds);
@@ -117,7 +124,18 @@ const Feed = ({ user, data }) => {
           selection={selection}
           setSelection={setSelection}
         />
-
+        {isUserAdminOfSelectedClub && 
+        <Modal show={modalShow} onHide={handleClose}>
+          <CreatePost 
+            currentUserData={currentUserData}
+            clubId={selection.id}
+            data={data}
+            clubData={selectedClubData}
+            modalShow={modalShow}
+            handleClose={handleClose}
+          />
+        </Modal>
+        }
         <Row>
           <Col>{displayResult}</Col>
         </Row>
