@@ -21,7 +21,7 @@ function App() {
   const [profile, profileLoading, profileError] = useProfile();
   const user = profile.user;
   // console.log(profile.user);
-
+  
   if (error) return <h1>Error loading data: {error.toString()}</h1>;
   if (data === undefined) return <h1>Loading data...</h1>;
   if (!data) return <h1>No data found</h1>;
@@ -36,11 +36,11 @@ function App() {
             user ? (
               <Navigate
                 replace
-                to="/"
+                to="/organizations"
                 state={{ inviteLink: window.location.search }}
               />
             ) : (
-              <LogIn />
+              <LogIn/>
             )
           }
         />

@@ -10,7 +10,7 @@ import { useDbData, useDbUpdate } from "../utilities/firebase";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
 import { Modal, FloatingLabel } from "react-bootstrap";
 import CreatePost from "../components/CreatePost/CreatePost";
-
+import "../styles/Feed.css";
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({ id: "all" });
 
@@ -109,7 +109,7 @@ const Feed = ({ user, data }) => {
       isUserAdminOfSelectedClub = true;
     }    
   }  
-
+  
   // const isUserAdmin =
   // selection.id != "all" && console.log("hi: ", filteredClubIds);
   console.log("selection", selection);
@@ -124,17 +124,27 @@ const Feed = ({ user, data }) => {
           selection={selection}
           setSelection={setSelection}
         />
+        
+
         {isUserAdminOfSelectedClub && 
-        <Modal show={modalShow} onHide={handleClose}>
-          <CreatePost 
-            currentUserData={currentUserData}
-            clubId={selection.id}
-            data={data}
-            clubData={selectedClubData}
-            modalShow={modalShow}
-            handleClose={handleClose}
-          />
-        </Modal>
+        
+        
+        <div>
+          <Modal show={modalShow} onHide={handleClose}>
+            <CreatePost 
+              currentUserData={currentUserData}
+              clubId={selection.id}
+              data={data}
+              clubData={selectedClubData}
+              modalShow={modalShow}
+              handleClose={handleClose}
+            />
+          </Modal>
+          <Button className="modalButton" variant="primary" onClick={handleShow}>
+            Create Post
+          </Button>
+        </div>
+        
         }
         <Row>
           <Col>{displayResult}</Col>

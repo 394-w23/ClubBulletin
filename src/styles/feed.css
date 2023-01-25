@@ -1,0 +1,10 @@
+.modalButton{
+    margin: 15px 0 0 0;
+    float: right;
+}
+
+@media screen and (max-width: 767px) {
+    .modalButton{
+        float: none;
+    }
+}
