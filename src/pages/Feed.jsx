@@ -9,6 +9,7 @@ import Navigation from "../components/Navigation/Navigation";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
 import { Modal, FloatingLabel } from "react-bootstrap";
+import CreatePost from "../components/CreatePost/CreatePost";
 
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({ id: "all" });
@@ -85,6 +86,26 @@ const Feed = ({ user, data }) => {
     : isCurrentFeedEmpty
     ? noClubPostsMessage
     : postsResult;
+
+  const [modalShow, setModalShow] = useState(false);
+  const handleClose = () => {
+    setModalShow(false);
+  };
+  const handleShow = () => setModalShow(true);
+
+  const [alertShow, setAlertShow] = useState(false);
+  const alertClose = () => {
+    setDeleteSuccess("");
+    setAlertShow(false);
+  };
+  const handleAlert = () => setAlertShow(true);
+
+  // check if selection is all
+  // if it's not all --> get the club admins and check if current user is in there.
+
+  // const isUserAdmin =
+  // selection.id != "all" && console.log("hi: ", filteredClubIds);
+  console.log("selection", selection);
 
   return (
     <div className="App">
