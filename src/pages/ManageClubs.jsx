@@ -39,7 +39,7 @@ const ManageClubs = ({ user, data }) => {
     (id) => !allAdminClubIds.includes(id) && allClubsIds.includes(id)
   );
   const notSubscribedClubs = allClubsIds.filter(
-    (id) => !allSubscribedClubs.includes(id)
+    (id) => (!allSubscribedClubs.includes(id) && !allAdminClubIds.includes(id))
   );
 
   const sortedClubs = filteredClubs.sort(function (club1, club2) {
@@ -55,6 +55,7 @@ const ManageClubs = ({ user, data }) => {
     }
     return "nav-link";
   };
+  const isSubscribedClubsEmpty = allSubscribedClubs.length == 0;
 
   // Modal variables
   const [newClubModalShow, setNewClubModalShow] = useState(false);
@@ -140,7 +141,11 @@ const ManageClubs = ({ user, data }) => {
         {selection == tabOptions[0] && (
           <Row>
             <Col>
-              {allSubscribedClubs.map((id) => {
+              {
+              isSubscribedClubsEmpty ? <div className="text-center m-3">
+              You aren't subscribed to any clubs yet!
+              </div> :
+              allSubscribedClubs.map((id) => {
                 console.log("clubId", id);
                 const clubData = data.clubs[id];
                 console.log("allclubs", data.clubs);
@@ -155,7 +160,8 @@ const ManageClubs = ({ user, data }) => {
                     data={data}
                   />
                 );
-              })}
+              })
+              }
             </Col>
           </Row>
         )}

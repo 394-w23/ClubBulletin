@@ -36,7 +36,7 @@ function App() {
             user ? (
               <Navigate
                 replace
-                to="/organizations"
+                to="/"
                 state={{ inviteLink: window.location.search }}
               />
             ) : (
