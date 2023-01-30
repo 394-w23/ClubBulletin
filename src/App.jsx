@@ -14,6 +14,7 @@ import LogIn from "./pages/LogIn";
 import { useProfile } from "./utilities/profile";
 import NewClub from "./pages/NewClub";
 import ManageClubs from "./pages/ManageClubs";
+import UploadTest from "./pages/UploadTest";
 
 function App() {
   const [data, error] = useDbData("/"); // get whole database
@@ -75,6 +76,11 @@ function App() {
           exact
           path="/newclub"
           element={<NewClub user={user} data={data} />}
+        />
+        <Route
+          exact
+          path="/uploadtest"
+          element={<UploadTest user={user} data={data} />}
         />
       </Routes>
     </Router>
