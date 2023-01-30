@@ -5,7 +5,7 @@ import "./ClubSelector.css"
 const ClubButton = ({ club, id, selection, setSelection }) => {
   console.log("selection", selection);
   const clubLabel = club === "all" ? "All clubs" : club.name;
-  const isActive = id === selection.id ? "nav-link-active" : "nav-link";
+  const isActive = id === selection.id ? "nav-link active" : "nav-link";
   return (
     <div>
       <li
