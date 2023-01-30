@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import firebase from 'firebase/app'
 import { useCallback, useEffect, useState } from "react";
 import { getDatabase, onValue, ref, update } from "firebase/database";
 import {
@@ -8,6 +9,8 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import 'firebase/storage';
+
 
 // -- Production Firebase configuration
 // const firebaseConfig = {
@@ -31,22 +34,24 @@ const firebaseConfig = {
   appId: "1:1064844111586:web:42ce9affef576c142038bb"
 };
 
-const firebase = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-const database = getDatabase(firebase);
+const database = getDatabase(firebaseApp);
 export const signInWithGoogle = () => {
-  signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
+  signInWithPopup(getAuth(firebaseApp), new GoogleAuthProvider());
 };
-const firebaseSignOut = () => signOut(getAuth(firebase));
+const firebaseSignOut = () => signOut(getAuth(firebaseApp));
 export { firebaseSignOut as signOut };
 
 export const useAuthState = () => {
   const [user, setUser] = useState({});
 
-  useEffect(() => onAuthStateChanged(getAuth(firebase), setUser), []);
+  useEffect(() => onAuthStateChanged(getAuth(firebaseApp), setUser), []);
 
   return [user];
 };
+const storage = firebase.storage()
+
 
 // Initialize Firebase
 
@@ -91,3 +96,7 @@ export const useDbUpdate = (path) => {
 
   return [updateData, result];
 };
+
+export  {
+  storage, firebase as default
+}
