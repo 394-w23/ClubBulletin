@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import storage from "../utilities/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
+import { useDbUpdate } from "../utilities/firebase";
 //add import for storage
 const UploadTest = () => {
   const allInputs = { imgUrl: "" };
@@ -10,7 +10,7 @@ const UploadTest = () => {
   const [imageAsFile, setImageAsFile] = useState("");
 
   const [percent, setPercent] = useState(0);
-
+  const [updateDb] = useDbUpdate("/");
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
   console.log(imageAsFile);
 
@@ -31,7 +31,7 @@ const UploadTest = () => {
     const storageRef = ref(storage, `/files/${file.name}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
 
     const uploadTask = uploadBytesResumable(storageRef, file);
-
+    const hardCodedId = "3b6f6485-cc38-486d-af03-c4ae032e0ad3"
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -45,10 +45,10 @@ const UploadTest = () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log("URL: ", url);
+          updateDb({ [`/clubs/${hardCodedId}/picLink`]: (url) });
+    });
         });
       }
-    );
-  };
 
   return (
     <div className="App">
