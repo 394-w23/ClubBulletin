@@ -77,7 +77,7 @@ const ManageClubs = ({ user, data }) => {
         <Navigation currentUserData={currentUserData} currentLabel="Clubs" />
         <h1 className="pageTitle">Manage Clubs</h1>
 
-        <div className="org-title" style={{ marginBottom: "50px" }}>
+        <div className="org-title" style={{ marginBottom: "10px" }}>
           <Link to="/" relative="path">
             <Button className="mobile" variant="outline-secondary">
               Back to feed
@@ -90,9 +90,6 @@ const ManageClubs = ({ user, data }) => {
               handleClose={handleClose}
             ></NewClub>
           </Modal>
-          <div className="org-title">
-            <SearchBar query={query} setQuery={setQuery} />
-          </div>
           <Button
             className="mobile"
             variant="outline-primary"
@@ -101,9 +98,9 @@ const ManageClubs = ({ user, data }) => {
             Add New Club
           </Button>
         </div>
-        {/* <div className="pageTitle" >
-          
-        </div> */}
+        <div className="org-search">
+            <SearchBar query={query} setQuery={setQuery} />
+        </div>
         <ul className="nav nav-tabs">
           <li className="nav-item" id={tabOptions[2]} autoComplete="off">
             <a
