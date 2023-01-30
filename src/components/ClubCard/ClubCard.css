@@ -1,7 +1,7 @@
 
 .btn-primary {
     color: white;
-    background-color: #836EAA;
-    border-color: #4e2a84;
+    background-color: #836EAA !important;
+    border-color: #4e2a84 !important;
     border-width: 1.5px;
 }
