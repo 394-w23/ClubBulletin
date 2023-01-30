@@ -7,11 +7,11 @@ import {
 } from "react-router-dom";
 import Feed from "./pages/Feed";
 import Organizations from "./pages/Organizations";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDbData, useDbUpdate } from "./utilities/firebase";
 import LogIn from "./pages/LogIn";
 import { useProfile } from "./utilities/profile";
-import "./App.css";
 import NewClub from "./pages/NewClub";
 import ManageClubs from "./pages/ManageClubs";
 

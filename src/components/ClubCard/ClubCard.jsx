@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useDbUpdate } from "../../utilities/firebase";
-
+import "./ClubCard.css"
 
 
 const ClubCard = ({ clubId, clubData, currentClubsIds, currentUserData, currentUserId, data }) => {  

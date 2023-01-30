@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Karma:wght@400;500;600;700&family=Lato:wght@100;300;400;700;900&display=swap');
+
 .current-nav-label {
   font-weight: 800 !important;
 }
@@ -12,5 +14,20 @@
 
 .nav-title {
   font-weight: 800 !important;
-  color: red !important;
+  color: white !important;
+  font-family: 'Karma', serif !important;
+  font-size: 35px !important;
+}
+
+.navBar .nav-link {
+  color: white !important;
+}
+
+#navigationBar {
+  background-color: #4e2a84 !important;
+  /* color: white !important; */
+}
+
+.me-auto {
+  display: flex !important;
 }
