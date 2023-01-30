@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import firebase from 'firebase/app'
+// import firebase from "firebase/app";
 import { useCallback, useEffect, useState } from "react";
 import { getDatabase, onValue, ref, update } from "firebase/database";
 import {
@@ -9,8 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import 'firebase/storage';
-
+import { getStorage } from "firebase/storage";
 
 // -- Production Firebase configuration
 // const firebaseConfig = {
@@ -31,7 +30,7 @@ const firebaseConfig = {
   projectId: "clubbulletintest",
   storageBucket: "clubbulletintest.appspot.com",
   messagingSenderId: "1064844111586",
-  appId: "1:1064844111586:web:42ce9affef576c142038bb"
+  appId: "1:1064844111586:web:42ce9affef576c142038bb",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -50,8 +49,8 @@ export const useAuthState = () => {
 
   return [user];
 };
-const storage = firebase.storage()
 
+const storage = getStorage(firebaseApp);
 
 // Initialize Firebase
 
@@ -97,6 +96,4 @@ export const useDbUpdate = (path) => {
   return [updateData, result];
 };
 
-export  {
-  storage, firebase as default
-}
+export default storage;
