@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useFormData } from "../../utilities/utilities";
-
+import "./searchBar.css"
 const InputField = ({ name, text, state, change }) => (
   <div className="mb-3">
     <input

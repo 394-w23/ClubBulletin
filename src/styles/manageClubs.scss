@@ -1,0 +1,11 @@
+@import "bootstrap";
+
+$mynewcolor:#765DA0;
+$two: rgb(139, 135, 135);
+
+.btn-outline-primary {
+    @include button-outline-variant($mynewcolor, white, $mynewcolor, $mynewcolor);
+}
+.btn-outline-secondary {
+    @include button-outline-variant($two, white, $two, $two);
+}

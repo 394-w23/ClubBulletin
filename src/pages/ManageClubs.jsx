@@ -12,7 +12,7 @@ import { Modal } from "react-bootstrap";
 import NewClub from "./NewClub";
 import "../styles/ManageClubs.css";
 import SearchBar from "../components/SearchBar/SearchBar";
-
+import "../styles/manageClubs.scss"
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin", "join"];
   const [selection, setSelection] = useState(tabOptions[2]);
@@ -80,7 +80,7 @@ const ManageClubs = ({ user, data }) => {
         <div className="org-title" style={{ marginBottom: "10px" }}>
           <Link to="/" relative="path">
             <Button className="mobile" variant="outline-secondary">
-              Back to feed
+              Back to Feed
             </Button>
           </Link>
           <Modal show={newClubModalShow} onHide={handleClose}>

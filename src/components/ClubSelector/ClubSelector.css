@@ -1,0 +1,15 @@
+/* .nav-link-active{
+    color: yellowgreen !important;
+  }
+.nav-link {
+    color: #765DA0 !important;
+  } */
+
+
+.nav-item > a {
+    color: #836EAA ;
+}
+.nav-item > a:hover {
+    color:#dcc9ff;
+  }
+  

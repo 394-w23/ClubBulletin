@@ -1,6 +1,11 @@
+/* 
+.btn-outline-primary{
+    color: #765DA0 !important;
+    background-color: #765DA0 !important;
+} */
 
 
-
+  
 @media screen and (max-width: 767px) {
     .mobile {
 
