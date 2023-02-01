@@ -29,7 +29,7 @@ const SignOutButton = () => {
 const Navigation = ({ currentUserData, currentLabel }) => {
   const pages = [
     { route: "/", label: "Feed" },
-    { route: "/manageclubs", label: "Clubs" },
+    { route: "/manageclubs", label: "Manage" },
   ];
 
   return (
@@ -51,6 +51,7 @@ const Navigation = ({ currentUserData, currentLabel }) => {
                       ? "current-nav-label"
                       : "faded-nav-label"
                   }
+                  data-cy={page.label}
                 >
                   {page.label}
                 </Nav.Link>
