@@ -118,7 +118,7 @@ const Feed = ({ user, data }) => {
     <div className="App">
       <Container>
         <Navigation currentUserData={currentUserData} currentLabel="Feed" />
-        <h1 className="pageTitle">Your Feed</h1>
+        <h1 className="pageTitle" data-cy="pageTitle">Your Feed</h1>
         <ClubSelector
           currentClubs={currentClubs}
           selection={selection}

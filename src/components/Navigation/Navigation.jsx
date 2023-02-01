@@ -51,6 +51,7 @@ const Navigation = ({ currentUserData, currentLabel }) => {
                       ? "current-nav-label"
                       : "faded-nav-label"
                   }
+                  data-cy={page.label}
                 >
                   {page.label}
                 </Nav.Link>

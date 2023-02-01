@@ -75,7 +75,7 @@ const ManageClubs = ({ user, data }) => {
     <div>
       <Container>
         <Navigation currentUserData={currentUserData} currentLabel="Clubs" />
-        <h1 className="pageTitle">Manage Clubs</h1>
+        <h1 className="pageTitle" data-cy="manageClubs">Manage Clubs</h1>
 
         <div className="org-title" style={{ marginBottom: "10px" }}>
           <Link to="/" relative="path">
