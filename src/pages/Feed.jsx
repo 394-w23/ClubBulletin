@@ -54,8 +54,8 @@ const Feed = ({ user, data }) => {
   const isCurrentFeedEmpty = sortedPosts.length == 0;
 
   const noSubscriptionsMessage = (
-    <div className="text-center m-3">
-      You haven't joined any club feeds yet! Go to <a href="/manageclubs">Clubs</a> to join
+    <div data-cy="noSubMsg" className="text-center m-3">
+      You haven't joined any club feeds yet! Go to <a data-cy="noSubLink" href="/manageclubs">Clubs</a> to join
       a club.
     </div>
   );
