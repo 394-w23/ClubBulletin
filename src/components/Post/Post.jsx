@@ -60,6 +60,7 @@ const Post = ({ post, postId, club }) => {
               onClick={() => updateLikeCount(-1)}
               className="post-like-icon"
               style={{ fill: "purple" }}
+              data-cy="pageTitle"
             ></FavoriteIcon>
           ) : (
             <FavoriteBorderIcon
