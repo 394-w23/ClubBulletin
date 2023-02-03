@@ -15,7 +15,7 @@ const AdminCard = ({
   currentUserId,
   data,
   deleteSuccess,
-  setDeleteSuccess
+  setDeleteSuccess,
 }) => {
   const userInClub =
     clubData.members !== undefined
@@ -25,16 +25,15 @@ const AdminCard = ({
   const [modalShow, setModalShow] = useState(false);
   const handleClose = () => {
     setModalShow(false);
-  }
+  };
   const handleShow = () => setModalShow(true);
 
   const [alertShow, setAlertShow] = useState(false);
   const alertClose = () => {
     setDeleteSuccess("");
     setAlertShow(false);
-  }  
+  };
   const handleAlert = () => setAlertShow(true);
-
 
   return (
     <div>
@@ -62,9 +61,15 @@ const AdminCard = ({
         ></DeleteClub>
       </Modal>
 
-      <Card className="post-card my-3" >
+      <Card className="post-card my-3">
         <Card.Header>
           <div className="row">
+            <div className="col-sm-1">
+              <Card.Img
+                src={clubData.picLink}
+                className="post-profile-image"
+              ></Card.Img>
+            </div>
             <div className="col-sm-8 post-header-text">
               <Card.Text className="post-club-name">{clubData.name}</Card.Text>
             </div>

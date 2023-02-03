@@ -12,7 +12,7 @@ import { Modal } from "react-bootstrap";
 import NewClub from "./NewClub";
 import "../styles/ManageClubs.css";
 import SearchBar from "../components/SearchBar/SearchBar";
-import "../styles/manageClubs.scss"
+import "../styles/manageClubs.scss";
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin", "join"];
   const [selection, setSelection] = useState(tabOptions[2]);
@@ -39,7 +39,7 @@ const ManageClubs = ({ user, data }) => {
     (id) => !allAdminClubIds.includes(id) && allClubsIds.includes(id)
   );
   const notSubscribedClubs = allClubsIds.filter(
-    (id) => (!allSubscribedClubs.includes(id) && !allAdminClubIds.includes(id))
+    (id) => !allSubscribedClubs.includes(id) && !allAdminClubIds.includes(id)
   );
 
   const sortedClubs = filteredClubs.sort(function (club1, club2) {
@@ -74,8 +74,10 @@ const ManageClubs = ({ user, data }) => {
   return (
     <div>
       <Container>
-        <Navigation currentUserData={currentUserData} currentLabel="Clubs" />
-        <h1 className="pageTitle" data-cy="manageClubs">Manage Clubs</h1>
+        <Navigation currentUserData={currentUserData} currentLabel="Manage" />
+        <h1 className="pageTitle" data-cy="manageClubs">
+          Manage Clubs
+        </h1>
 
         <div className="org-title" style={{ marginBottom: "10px" }}>
           <Link to="/" relative="path">
@@ -99,7 +101,7 @@ const ManageClubs = ({ user, data }) => {
           </Button>
         </div>
         <div className="org-search">
-            <SearchBar query={query} setQuery={setQuery} />
+          <SearchBar query={query} setQuery={setQuery} />
         </div>
         <ul className="nav nav-tabs">
           <li className="nav-item" id={tabOptions[2]} autoComplete="off">
@@ -138,27 +140,28 @@ const ManageClubs = ({ user, data }) => {
         {selection == tabOptions[0] && (
           <Row>
             <Col>
-              {
-              isSubscribedClubsEmpty ? <div className="text-center m-3">
-              You aren't subscribed to any clubs yet!
-              </div> :
-              allSubscribedClubs.map((id) => {
-                console.log("clubId", id);
-                const clubData = data.clubs[id];
-                console.log("allclubs", data.clubs);
-                return (
-                  <ClubCard
-                    key={id}
-                    clubId={id}
-                    clubData={clubData}
-                    currentClubsIds={currentClubsIds}
-                    currentUserData={currentUserData}
-                    currentUserId={currentUserId}
-                    data={data}
-                  />
-                );
-              })
-              }
+              {isSubscribedClubsEmpty ? (
+                <div className="text-center m-3">
+                  You aren't subscribed to any clubs yet!
+                </div>
+              ) : (
+                allSubscribedClubs.map((id) => {
+                  console.log("clubId", id);
+                  const clubData = data.clubs[id];
+                  console.log("allclubs", data.clubs);
+                  return (
+                    <ClubCard
+                      key={id}
+                      clubId={id}
+                      clubData={clubData}
+                      currentClubsIds={currentClubsIds}
+                      currentUserData={currentUserData}
+                      currentUserId={currentUserId}
+                      data={data}
+                    />
+                  );
+                })
+              )}
             </Col>
           </Row>
         )}

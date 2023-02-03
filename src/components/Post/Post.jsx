@@ -12,9 +12,6 @@ import { useDbUpdate } from "../../utilities/firebase";
 import "./Post.css";
 
 const Post = ({ post, postId, club }) => {
-  const tempImgUrl =
-    "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.jpg";
-
   const [updatePost] = useDbUpdate(`/posts/${postId}`);
 
   const updateLikeCount = (change) => {
@@ -37,7 +34,10 @@ const Post = ({ post, postId, club }) => {
         <div className="col-sm-12">
           <div className="row">
             <div className="col-sm-1">
-              <Card.Img src={tempImgUrl} className="post-profile-image"></Card.Img>
+              <Card.Img
+                src={club.picLink}
+                className="post-profile-image"
+              ></Card.Img>
             </div>
             <div className="col-sm-8 post-header-text">
               <Card.Text className="post-club-name">{club.name}</Card.Text>
