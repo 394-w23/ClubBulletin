@@ -4,7 +4,8 @@ import storage from "../utilities/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useDbUpdate } from "../utilities/firebase";
 //add import for storage
-const UploadTest = () => {
+
+const UploadTest = (clubId) => {
   const allInputs = { imgUrl: "" };
 
   const [imageAsFile, setImageAsFile] = useState("");
@@ -13,11 +14,6 @@ const UploadTest = () => {
   const [updateDb] = useDbUpdate("/");
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
   console.log(imageAsFile);
-
-  const handleImageAsFile = (e) => {
-    const image = e.target.files[0];
-    setImageAsFile((imageFile) => image);
-  };
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -31,7 +27,6 @@ const UploadTest = () => {
     const storageRef = ref(storage, `/files/${file.name}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
 
     const uploadTask = uploadBytesResumable(storageRef, file);
-    const hardCodedId = "3b6f6485-cc38-486d-af03-c4ae032e0ad3"
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -45,7 +40,7 @@ const UploadTest = () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log("URL: ", url);
-          updateDb({ [`/clubs/${hardCodedId}/picLink`]: (url) });
+          updateDb({ [`/clubs/${clubId}/picLink`]: (url) });
     });
         });
       }
@@ -54,11 +49,7 @@ const UploadTest = () => {
     <div className="App">
       {/* //form for handling file upload */}
       <form>
-        <input
-          // allows you to reach into your file directory and upload image to the browser
-          type="file"
-          onChange={handleUpload}
-        />
+        
       </form>
     </div>
   );

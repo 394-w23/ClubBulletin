@@ -201,9 +201,7 @@ const ManageClubs = ({ user, data }) => {
           <Row>
             <Col>
               {notSubscribedClubs.map((id) => {
-                console.log("clubId", id);
                 const clubData = data.clubs[id];
-                console.log("allclubs", data.clubs);
                 return (
                   <ClubCard
                     key={id}

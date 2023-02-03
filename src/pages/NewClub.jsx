@@ -10,6 +10,11 @@ import CloseButton from "react-bootstrap/CloseButton";
 function NewClub({ data, user, handleClose }) {
   const [success, setSuccess] = useState();
   const [create, setCreate] = useState();
+  const [imageAsFile, setImageAsFile] = useState("");
+  const [percent, setPercent] = useState(0);
+  const [updateDb] = useDbUpdate("/");
+  const allInputs = { imgUrl: "" };
+  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
   const currentUserId = user.uid;
   const rootAdminId = "HcYJNncMwQQbmnmYKWNln0FbqtG3";
   const currentUserData = data.users[currentUserId];
@@ -21,32 +26,28 @@ function NewClub({ data, user, handleClose }) {
     setMsgSuccess("");
     handleClose();
   };
+  const newid = uuidv4();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const formDataObj = Object.fromEntries(formData.entries());
+    
+    console.log(formDataObj);
 
     let clubExists = false;
 
     if (formDataObj.ClubName != "" && formDataObj.ClubDescription != "") {
       console.log(data);
       for (const [key, value] of Object.entries(data["clubs"])) {
-        console.log(formDataObj.ClubName);
-        console.log(value.name);
         if (formDataObj.ClubName === value.name) {
           clubExists = true;
           break;
         }
       }
-      
-      console.log(clubExists);
-      
       if (clubExists) {
         setCreate("danger");
       } else {
-        // update /clubs with a new club
-        const newid = uuidv4();
 
         update({
           ["/clubs"]: {
@@ -82,7 +83,7 @@ function NewClub({ data, user, handleClose }) {
           Club creation was a {success}!
         </Alert>
       )}
-      {create=="danger" && (
+      {create == "danger" && (
         <Alert key={create} variant={create}>
           Club already exists!
         </Alert>
@@ -120,6 +121,12 @@ function NewClub({ data, user, handleClose }) {
           as="textarea"
           rows={3}
         ></Form.Control>
+
+        <Form.Label>Add Photo</Form.Label>
+        <input
+          type="file"
+          // onChange={handleUpload}
+        />
 
         <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
           Create
