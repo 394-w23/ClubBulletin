@@ -146,9 +146,9 @@ const ManageClubs = ({ user, data }) => {
                 </div>
               ) : (
                 allSubscribedClubs.map((id) => {
-                  console.log("clubId", id);
+                  // console.log("clubId", id);
                   const clubData = data.clubs[id];
-                  console.log("allclubs", data.clubs);
+                  // console.log("allclubs", data.clubs);
                   return (
                     <ClubCard
                       key={id}
@@ -203,7 +203,11 @@ const ManageClubs = ({ user, data }) => {
         {selection == tabOptions[2] && (
           <Row>
             <Col>
-              {notSubscribedClubs.map((id) => {
+              {notSubscribedClubs.length == 0 ? (
+                <div className="text-center m-3">
+                  You are subscribed to all the clubs!
+                </div>
+              ) : (notSubscribedClubs.map((id) => {
                 const clubData = data.clubs[id];
                 return (
                   <ClubCard
@@ -216,7 +220,7 @@ const ManageClubs = ({ user, data }) => {
                     data={data}
                   />
                 );
-              })}
+              }))}
             </Col>
           </Row>
         )}

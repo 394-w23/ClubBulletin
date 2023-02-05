@@ -102,17 +102,15 @@ const Feed = ({ user, data }) => {
   let isUserAdminOfSelectedClub = false;
   if (selection.id !== "all") {
     selectedClubData = allClubData.filter(([id, value]) => selection.id === id);
-    console.log(selectedClubData[0]);
     const selectedClubAdmin = selectedClubData[0][1].admins;
     if (selectedClubAdmin.includes(currentUserId)) {
-      console.log("is admin");
       isUserAdminOfSelectedClub = true;
     }    
   }  
   
   // const isUserAdmin =
   // selection.id != "all" && console.log("hi: ", filteredClubIds);
-  console.log("selection", selection);
+  // console.log("selection", selection);
 
   return (
     <div className="App">

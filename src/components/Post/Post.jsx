@@ -24,8 +24,6 @@ const Post = ({ post, postId, club }) => {
       ? "3 hours ago"
       : moment(new Date(parseInt(post.posted))).fromNow();
 
-  console.log(postTimeLabel);
-
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (

@@ -13,6 +13,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
   connectAuthEmulator,
   signInWithCredential,
@@ -67,9 +68,7 @@ export { firebaseSignOut as signOut };
 
 export const useAuthState = () => {
   const [user, setUser] = useState({});
-
   useEffect(() => onAuthStateChanged(auth, setUser), []);
-
   return [user];
 };
 

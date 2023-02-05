@@ -13,7 +13,7 @@ const UploadTest = (clubId) => {
   const [percent, setPercent] = useState(0);
   const [updateDb] = useDbUpdate("/");
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
-  console.log(imageAsFile);
+  // console.log(imageAsFile);
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
@@ -39,7 +39,7 @@ const UploadTest = (clubId) => {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log("URL: ", url);
+          // console.log("URL: ", url);
           updateDb({ [`/clubs/${clubId}/picLink`]: (url) });
     });
         });

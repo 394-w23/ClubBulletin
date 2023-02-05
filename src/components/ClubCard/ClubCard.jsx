@@ -14,7 +14,6 @@ const ClubCard = ({
 }) => {
   const [updateClub] = useDbUpdate(`/clubs/${clubId}`);
   const [updateUser] = useDbUpdate(`/users/${currentUserId}`);
-  // console.log('clubData members', clubData.members);
 
   const userInClub =
     clubData.members !== undefined
