@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useFormData } from "../../utilities/utilities";
-import "./searchBar.css"
+import "./searchBar.css";
 const InputField = ({ name, text, state, change }) => (
   <div className="mb-3">
     <input
+      data-cy="search-bar-input-field"
       placeholder="Search"
       className="form-control"
       id={name}

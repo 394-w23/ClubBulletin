@@ -39,7 +39,7 @@ const ClubCard = ({
   //
 
   return (
-    <Card className="post-card my-3">
+    <Card className="post-card my-3" data-cy="club-card">
       <Card.Header>
         <div className="row">
           <div className="col-sm-1">

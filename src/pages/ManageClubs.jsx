@@ -27,7 +27,7 @@ const ManageClubs = ({ user, data }) => {
     query.values.Search === undefined
       ? allClubs
       : allClubs.filter(([, val]) =>
-          val.name.toLowerCase().includes(query.values.Search)
+          val.name.toLowerCase().includes(query.values.Search.toLowerCase())
         );
   const allClubsIds = filteredClubs.map(([id, value]) => id);
 
@@ -207,20 +207,22 @@ const ManageClubs = ({ user, data }) => {
                 <div className="text-center m-3">
                   You are subscribed to all the clubs!
                 </div>
-              ) : (notSubscribedClubs.map((id) => {
-                const clubData = data.clubs[id];
-                return (
-                  <ClubCard
-                    key={id}
-                    clubId={id}
-                    clubData={clubData}
-                    currentClubsIds={currentClubsIds}
-                    currentUserData={currentUserData}
-                    currentUserId={currentUserId}
-                    data={data}
-                  />
-                );
-              }))}
+              ) : (
+                notSubscribedClubs.map((id) => {
+                  const clubData = data.clubs[id];
+                  return (
+                    <ClubCard
+                      key={id}
+                      clubId={id}
+                      clubData={clubData}
+                      currentClubsIds={currentClubsIds}
+                      currentUserData={currentUserData}
+                      currentUserId={currentUserId}
+                      data={data}
+                    />
+                  );
+                })
+              )}
             </Col>
           </Row>
         )}
