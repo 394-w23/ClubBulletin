@@ -11,6 +11,7 @@ const ClubButton = ({ club, id, selection, setSelection }) => {
         className="nav-item"
         id={id}
         autoComplete="off"
+        data-cy="clubSelection"
       >
         <a className={isActive} aria-current="page" key={id} onClick={() => setSelection({id})}>{clubLabel}</a>
       </li>
