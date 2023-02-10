@@ -58,6 +58,7 @@ const ClubCard = ({
           {clubData.description}
         </Card.Text>
         <Button
+          data-cy="subscribeButton"
           onClick={() => toggleClubSubscription()}
           variant={userInClub ? "danger" : "primary"}
         >

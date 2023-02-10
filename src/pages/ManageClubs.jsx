@@ -110,6 +110,7 @@ const ManageClubs = ({ user, data }) => {
               aria-current="page"
               key="3"
               onClick={() => setSelection(tabOptions[2])}
+              data-cy="manageClubTab"
             >
               Join Clubs
             </a>
@@ -120,6 +121,7 @@ const ManageClubs = ({ user, data }) => {
               aria-current="page"
               key="2"
               onClick={() => setSelection(tabOptions[0])}
+              data-cy="manageClubTab"
             >
               Subscribed Clubs
             </a>
@@ -130,6 +132,7 @@ const ManageClubs = ({ user, data }) => {
               aria-current="page"
               key="1"
               onClick={() => setSelection(tabOptions[1])}
+              data-cy="manageClubTab"
             >
               Admin Clubs
             </a>
