@@ -96,6 +96,7 @@ const ManageClubs = ({ user, data }) => {
             className="mobile"
             variant="outline-primary"
             onClick={handleShow}
+            data-cy="addClubButton"
           >
             Add New Club
           </Button>
