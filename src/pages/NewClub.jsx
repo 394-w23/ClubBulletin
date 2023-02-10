@@ -113,7 +113,7 @@ function NewClub({ data, user, handleClose }) {
           Club creation failed. Please check your inputs and try again.
         </Alert>
       )}
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} data-cy="newClubForm">
         {/* <Form.Label>Club Admin</Form.Label>
         <Form.Select aria-label="Club Admins" name="ClubAdmin">
           <option>Choose admin</option>
@@ -133,7 +133,7 @@ function NewClub({ data, user, handleClose }) {
         </div>
 
         <Form.Label>Club Name</Form.Label>
-        <Form.Control type="text" name="ClubName"></Form.Control>
+        <Form.Control type="text" name="ClubName" data-cy="clubName"></Form.Control>
 
         <Form.Label style={{ marginTop: "20px" }}>Club Description</Form.Label>
         <Form.Control
@@ -141,12 +141,13 @@ function NewClub({ data, user, handleClose }) {
           name="ClubDescription"
           as="textarea"
           rows={3}
+          data-cy="clubDescription"
         ></Form.Control>
 
         <Form.Label style={{ marginTop: "20px" }}>Add Photo</Form.Label>
-        <Form.Control type="file" name="ClubPic"></Form.Control>
+        <Form.Control type="file" name="ClubPic" data-cy="clubPic"></Form.Control>
 
-        <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="createClubSubmitButton">
+        <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="submitNewClub">
           Create
         </Button>
       </Form>
