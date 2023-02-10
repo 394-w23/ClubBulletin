@@ -145,7 +145,7 @@ const ManageClubs = ({ user, data }) => {
           <Row>
             <Col>
               {isSubscribedClubsEmpty ? (
-                <div className="text-center m-3">
+                <div data-cy="notSubscribed" className="text-center m-3">
                   You aren't subscribed to any clubs yet!
                 </div>
               ) : (
