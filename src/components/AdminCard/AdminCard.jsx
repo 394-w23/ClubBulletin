@@ -87,7 +87,7 @@ const AdminCard = ({
             <Button variant="primary" onClick={handleShow}>
               Create Post
             </Button>
-            <Button variant="danger" onClick={handleAlert}>
+            <Button variant="danger" data-cy="delete-button" onClick={handleAlert}>
               Delete Club
             </Button>
           </div>

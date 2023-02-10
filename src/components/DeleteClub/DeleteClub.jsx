@@ -82,7 +82,7 @@ function DeleteClub({
             {/* {deleteSuccess == "success" && <Alert key="success" variant="success">
                 Club deletion was a success!
             </Alert>} */}
-            {deleteSuccess == "danger" && <Alert key="danger" variant="danger">
+            {deleteSuccess == "danger" && <Alert key="danger" data-cy="deleteFail" variant="danger">
                 Club deletion failed. Please confirm the club you're deleting.
             </Alert>}
             <div
@@ -92,15 +92,15 @@ function DeleteClub({
                     marginBottom: "10px",
                 }}
             >
-                <h2>Are you sure?</h2>
+                <h2 data-cy="delete-confirmation">Are you sure?</h2>
                 <CloseButton onClick={handleClose} />
             </div>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Label>Enter name of the club to confirm:</Form.Label>
-                <Form.Control type="text" name="Confirmation"></Form.Control>
+                <Form.Control type="text" data-cy="confirmationField" name="Confirmation"></Form.Control>
 
-                <Button variant="danger" type="submit" style={{ marginTop: "10px" }}>
+                <Button variant="danger" data-cy="confirmButton" type="submit" style={{ marginTop: "10px" }}>
                     Delete Club
                 </Button>
             </Form>

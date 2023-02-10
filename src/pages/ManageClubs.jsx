@@ -173,7 +173,7 @@ const ManageClubs = ({ user, data }) => {
           <Row>
             <div width="70px" align="center">
               {deleteSuccess == "success" && (
-                <Alert key="success" variant="success">
+                <Alert key="success" data-cy="deleteSuccess" variant="success">
                   Club was successfully deleted!
                 </Alert>
               )}
