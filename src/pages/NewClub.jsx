@@ -109,7 +109,7 @@ function NewClub({ data, user, handleClose }) {
         </Alert>
       )}
       {success == "danger" && (
-        <Alert key={success} variant={success}>
+        <Alert key={success} variant={success} data-cy="createClubError">
           Club creation failed. Please check your inputs and try again.
         </Alert>
       )}
@@ -128,7 +128,7 @@ function NewClub({ data, user, handleClose }) {
             marginBottom: "10px",
           }}
         >
-          <h2>Create New Club</h2>
+          <h2 data-cy='createClubModalHeader'>Create New Club</h2>
           <CloseButton onClick={closeWindow} />
         </div>
 
@@ -146,7 +146,7 @@ function NewClub({ data, user, handleClose }) {
         <Form.Label style={{ marginTop: "20px" }}>Add Photo</Form.Label>
         <Form.Control type="file" name="ClubPic"></Form.Control>
 
-        <Button variant="primary" type="submit" style={{ marginTop: "20px" }}>
+        <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="createClubSubmitButton">
           Create
         </Button>
       </Form>
