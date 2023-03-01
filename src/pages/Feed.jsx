@@ -13,6 +13,7 @@ import CreatePost from "../components/CreatePost/CreatePost";
 import "../styles/Feed.css";
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({ id: "all" });
+  console.log(data);
 
   const currentUserId = user.uid;
 
@@ -106,7 +107,7 @@ const Feed = ({ user, data }) => {
     if (selectedClubAdmin.includes(currentUserId)) {
       isUserAdminOfSelectedClub = true;
     }    
-  }  
+  }
   
   // const isUserAdmin =
   // selection.id != "all" && console.log("hi: ", filteredClubIds);
