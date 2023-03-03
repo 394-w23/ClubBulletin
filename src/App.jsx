@@ -20,7 +20,6 @@ function App() {
   const [data, error] = useDbData("/"); // get whole database
   const [profile, profileLoading, profileError] = useProfile();
   const user = profile.user;
-  console.log(useProfile());
 
   // console.log(profile.user);
 

@@ -13,7 +13,6 @@ vi.mock("./utilities/firebase", async () => {
   const original = await vi.importActual("./utilities/firebase");
   return {
     ...original,
-    useAuthState: vi.fn(),
     useDbData: vi.fn(),
   };
 });
@@ -28,7 +27,7 @@ vi.mock("./utilities/profile", async () => {
 
 const user = { email: "user@northwetern.edu" };
 
-const profile = [
+const userLoggedInProfile = [
   {
     user: {
       uid: "IuQspQhlilOjDASGQ8dki50HjhT2",
@@ -67,6 +66,8 @@ const profile = [
   null,
 ];
 
+const userNotLoggedIn = [{}, null, null];
+
 const data = [
   {
     clubs: {
@@ -87,6 +88,7 @@ const data = [
           "pC5DrFpxFcNQdFe5Q4ZRpN5ZN1u1",
           "IvEyS51SktZ7rHZBY1LDlQfcA963",
           "IuQspQhlilOjDASGQ8dki50HjhT2",
+          "ZeJvfdj3vIaDAdjZBCB8XDoBaJh1",
         ],
         name: "test club",
         picLink:
@@ -230,6 +232,11 @@ const data = [
 ];
 
 describe("no user is logged in", () => {
+  beforeEach(() => {
+    useProfile.mockReturnValue(userNotLoggedIn);
+    useDbData.mockReturnValue(data);
+  });
+
   it("shows the login page", async () => {
     render(<App />);
     await screen.findByText("Sign in to view posts and subscribe to clubs.");
@@ -237,9 +244,10 @@ describe("no user is logged in", () => {
 });
 
 describe("mock user is logged in", () => {
-  useProfile.mockReturnValue(profile);
-  useAuthState.mockReturnValue(user);
-  useDbData.mockReturnValue(data);
+  beforeEach(() => {
+    useProfile.mockReturnValue(userLoggedInProfile);
+    useDbData.mockReturnValue(data);
+  });
 
   it("loads your feed", async () => {
     render(<App />);
@@ -249,8 +257,13 @@ describe("mock user is logged in", () => {
     // fireEvent.click(manageClubsButton);
     // expect(await screen.findByText('Manage Clubs')).toBeDefined();
   });
+
   it("loads your first club", async () => {
-    await screen.findByText("Test Club");
+    render(<App />);
+    await screen.findByText("test club")[0];
+
+    // test club's first post
+    await screen.findByText("hi")[0];
   });
 });
 

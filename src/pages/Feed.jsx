@@ -38,6 +38,7 @@ const Feed = ({ user, data }) => {
   const currentClubs = Object.entries(data.clubs).filter(([id, value]) =>
     currentClubsIds.includes(id)
   );
+
   // filter posts containing posts from clubs that the user is subscribed to
   const filteredPosts = allPosts.filter(([id, value]) =>
     filteredClubIds.includes(value.clubId)
@@ -53,6 +54,8 @@ const Feed = ({ user, data }) => {
   });
   const isUserClubsEmpty = currentClubs.length == 0;
   const isCurrentFeedEmpty = sortedPosts.length == 0;
+
+  console.log(sortedPosts);
 
   const noSubscriptionsMessage = (
     <div data-cy="noSubMsg" className="text-center m-3">
