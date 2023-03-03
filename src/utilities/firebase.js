@@ -51,16 +51,15 @@ const storage = getStorage();
 // connectDatabaseEmulator(database, "127.0.0.1", 9000);
 // connectStorageEmulator(storage, "localhost", 9199);
 
-signInWithCredential(auth, GoogleAuthProvider.credential(
-  '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
-));
+// signInWithCredential(auth, GoogleAuthProvider.credential(
+//   '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
+// ));
 
-if (import.meta.env.NODE_ENV !== 'production') {
-  
+// if (import.meta.env.NODE_ENV !== 'production') {
 
-  // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-  // import.meta.env.EMULATION = true;
-}
+//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
+//   // import.meta.env.EMULATION = true;
+// }
 
 export const signInWithGoogle = () => {
   signInWithPopup(auth, new GoogleAuthProvider());

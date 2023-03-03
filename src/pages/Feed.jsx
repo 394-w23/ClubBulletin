@@ -17,20 +17,21 @@ const Feed = ({ user, data }) => {
   const currentUserId = user.uid;
 
   // something something postId to delete posts later (warning)
-  if (data.users[currentUserId] === undefined) {
-    const [updateDb] = useDbUpdate("/");
-    updateDb({
-      ["/users"]: {
-        ...data.users,
-        [user.uid]: { clubs: [""], ["name"]: user.displayName },
-      },
-    });
-  }
+  // if (data.users[currentUserId] === undefined) {
+  //   const [updateDb] = useDbUpdate("/");
+  //   updateDb({
+  //     ["/users"]: {
+  //       ...data.users,
+  //       [user.uid]: { clubs: [""], ["name"]: user.displayName },
+  //     },
+  //   });
+  // }
 
   const allPosts = Object.entries(data.posts);
   const currentUserData = data.users[currentUserId];
   const currentClubsIds = Object.values(currentUserData.clubs);
-  const filteredClubIds = selection.id === "all" ? currentClubsIds : [selection.id];
+  const filteredClubIds =
+    selection.id === "all" ? currentClubsIds : [selection.id];
   const allClubData = Object.entries(data.clubs);
 
   // currentClubs is an array [ [clubId, clubData]], ...  ]
@@ -55,8 +56,11 @@ const Feed = ({ user, data }) => {
 
   const noSubscriptionsMessage = (
     <div data-cy="noSubMsg" className="text-center m-3">
-      You haven't joined any club feeds yet! Go to <a data-cy="noSubLink" href="/manageclubs">Clubs</a> to join
-      a club.
+      You haven't joined any club feeds yet! Go to{" "}
+      <a data-cy="noSubLink" href="/manageclubs">
+        Clubs
+      </a>{" "}
+      to join a club.
     </div>
   );
 
@@ -105,9 +109,9 @@ const Feed = ({ user, data }) => {
     const selectedClubAdmin = selectedClubData[0][1].admins;
     if (selectedClubAdmin.includes(currentUserId)) {
       isUserAdminOfSelectedClub = true;
-    }    
+    }
   }
-  
+
   // const isUserAdmin =
   // selection.id != "all" && console.log("hi: ", filteredClubIds);
   // console.log("selection", selection);
@@ -116,34 +120,36 @@ const Feed = ({ user, data }) => {
     <div className="App">
       <Container>
         <Navigation currentUserData={currentUserData} currentLabel="Feed" />
-        <h1 className="pageTitle" data-cy="pageTitle">Your Feed</h1>
+        <h1 className="pageTitle" data-cy="pageTitle">
+          Your Feed
+        </h1>
         <ClubSelector
           currentClubs={currentClubs}
           selection={selection}
           setSelection={setSelection}
         />
-        
 
-        {isUserAdminOfSelectedClub && 
-        
-        
-        <div>
-          <Modal show={modalShow} onHide={handleClose}>
-            <CreatePost 
-              currentUserData={currentUserData}
-              clubId={selection.id}
-              data={data}
-              clubData={selectedClubData}
-              modalShow={modalShow}
-              handleClose={handleClose}
-            />
-          </Modal>
-          <Button className="modalButton" variant="primary" onClick={handleShow}>
-            Create Post
-          </Button>
-        </div>
-        
-        }
+        {isUserAdminOfSelectedClub && (
+          <div>
+            <Modal show={modalShow} onHide={handleClose}>
+              <CreatePost
+                currentUserData={currentUserData}
+                clubId={selection.id}
+                data={data}
+                clubData={selectedClubData}
+                modalShow={modalShow}
+                handleClose={handleClose}
+              />
+            </Modal>
+            <Button
+              className="modalButton"
+              variant="primary"
+              onClick={handleShow}
+            >
+              Create Post
+            </Button>
+          </div>
+        )}
         <Row>
           <Col>{displayResult}</Col>
         </Row>
