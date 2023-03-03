@@ -50,10 +50,9 @@ const storage = getStorage();
 // connectAuthEmulator(auth, "http://127.0.0.1:9099");
 // connectDatabaseEmulator(database, "127.0.0.1", 9000);
 // connectStorageEmulator(storage, "localhost", 9199);
-
-signInWithCredential(auth, GoogleAuthProvider.credential(
-  '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
-));
+// signInWithCredential(auth, GoogleAuthProvider.credential(
+//   '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
+// ));
 
 if (import.meta.env.NODE_ENV !== 'production') {
   

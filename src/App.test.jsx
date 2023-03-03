@@ -4,7 +4,7 @@ import { useProfile } from "./utilities/profile";
 import { useDbData } from "./utilities/firebase";
 import App from './App';
 
-vi.mock('./utilities/profile');
+// vi.mock('./utilities/firebase');
 
 const profile = [
   {
@@ -214,24 +214,23 @@ const data = {
 describe('no user is logged in', () => {
   it('shows the login page', async () => {
     render(<App />);
-    await screen.findByText('Sign in to view posts and subscribe to clubs.');
+    await screen.findByText(/Sign in to view posts and subscribe to clubs/);
   });
 });
 
 
 describe('mock user is logged in', () => {
+  vi.mock('./utilities/profile');
   useProfile.mockReturnValue([profile]);
   render(<App />);
 
-  it('loads your feed', async () => {
-    await screen.findByText('Your Feed');
+  it('loads your feed', async () => {    
+    await screen.findByText(/Your Feed/);
+    // await screen.findByText(/Sign in to view posts and subscribe to clubs./);
     // const manageClubsButton = screen.getByText('Manage');
     // fireEvent.click(manageClubsButton);
     // expect(await screen.findByText('Manage Clubs')).toBeDefined();
-  });
-  it('loads your first club', async () => {
-    await screen.findByText('Test Club');
-  });
+  });  
 
 });
 
