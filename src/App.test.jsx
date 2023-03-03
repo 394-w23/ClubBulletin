@@ -253,9 +253,9 @@ describe("mock user is logged in", () => {
     render(<App />);
     await screen.findByText("Your Feed");
 
-    // const manageClubsButton = screen.getByText('Manage');
-    // fireEvent.click(manageClubsButton);
-    // expect(await screen.findByText('Manage Clubs')).toBeDefined();
+    const manageClubsButton = screen.getByText("Manage");
+    fireEvent.click(manageClubsButton);
+    expect(await screen.findByText("Manage")).toBeDefined();
   });
 
   it("loads your first club", async () => {
