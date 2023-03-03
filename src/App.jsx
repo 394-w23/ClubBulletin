@@ -19,7 +19,8 @@ import UploadTest from "./pages/UploadTest";
 function App() {
   const [data, error] = useDbData("/"); // get whole database
   const [profile, profileLoading, profileError] = useProfile();
-  const user = profile.user;
+  console.log(useProfile());
+  const user = profile.user;  
   // console.log(profile.user);
   
   if (error) return <h1>Error loading data: {error.toString()}</h1>;

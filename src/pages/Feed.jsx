@@ -13,7 +13,6 @@ import CreatePost from "../components/CreatePost/CreatePost";
 import "../styles/Feed.css";
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({ id: "all" });
-  console.log(data);
 
   const currentUserId = user.uid;
 

@@ -5,12 +5,41 @@ import { useDbData } from "./utilities/firebase";
 import App from './App';
 
 vi.mock('./utilities/profile');
-const profile = {
-  'uid': "yzr2CLCgskTUupMHfR2mcuFTffo1",
-  'displayName': "Alex Feng",
-  'email': "alexfeng2024@u.northwestern.edu",
-  'photoURL': "https://lh3.googleusercontent.com/a/AEdFTp7x13g7CiRUW1yvgkc4dbC3v-4ae1KROf5ZWaEw=s96-c"  
-}
+
+const profile = [
+  {
+      "user": {
+          "uid": "yzr2CLCgskTUupMHfR2mcuFTffo1",
+          "email": "alexfeng2024@u.northwestern.edu",
+          "emailVerified": true,
+          "displayName": "Alex Feng",
+          "isAnonymous": false,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp7x13g7CiRUW1yvgkc4dbC3v-4ae1KROf5ZWaEw=s96-c",
+          "providerData": [
+              {
+                  "providerId": "google.com",
+                  "uid": "104770163327567357965",
+                  "displayName": "Alex Feng",
+                  "email": "alexfeng2024@u.northwestern.edu",
+                  "phoneNumber": null,
+                  "photoURL": "https://lh3.googleusercontent.com/a/AGNmyxbtO_hzu5ldQJN-xW-u8cRHUnpN_hd6IfXKrq8R=s96-c"
+              }
+          ],
+          "stsTokenManager": {
+              "refreshToken": "APJWN8fBib4P_VnMv8X4qPT54VPRRkcbGV810vslSlDpaDT1Oss--x8RPQx8EpnmGgO0ctgshZN0hkM-IBRFmDXdMSJ4auKWpfm6yk19E-QAJMPZBQThqsXv-Mffyr3duLWQo8gQ-sAEyVoRMljnsohtPaEfR0lnxhR_k8hmZy3Wayso8E-PkztIsXEVhzKOuMhOVJtTK70hfEjDS1uZ6r9lvUDliQfZccTu6ZK0_9Tlvhb6KdxJrc-8i4r96e7E8sWyTpsY52F_CDsix5z83SDN2IKihCVN4qLg0iHizuE7SxpjbidfTOtgUJqXFtIcRcA7K69gCBQJpkVrNc5DxguLJOf2B6BIsWCLbtZeN8ndxxHIJE1hyAqeqmuY3noK7xYgUTTQ_UQNlKgGHYQZDor1dUmDun5BykCH6Js5NCkIqTDdvysuRxA",
+              "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY4NzZiNzIxNDAwYmZhZmEyOWQ0MTFmZTYwODE2YmRhZWMyM2IzODIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQWxleCBGZW5nIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDd4MTNnN0NpUlVXMXl2Z2tjNGRiQzN2LTRhZTFLUk9mNVpXYUV3PXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2NsdWJidWxsZXRpbnRlc3QiLCJhdWQiOiJjbHViYnVsbGV0aW50ZXN0IiwiYXV0aF90aW1lIjoxNjc3NTM4MTEzLCJ1c2VyX2lkIjoieXpyMkNMQ2dza1RVdXBNSGZSMm1jdUZUZmZvMSIsInN1YiI6Inl6cjJDTENnc2tUVXVwTUhmUjJtY3VGVGZmbzEiLCJpYXQiOjE2Nzc3MDkzNzUsImV4cCI6MTY3NzcxMjk3NSwiZW1haWwiOiJhbGV4ZmVuZzIwMjRAdS5ub3J0aHdlc3Rlcm4uZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDQ3NzAxNjMzMjc1NjczNTc5NjUiXSwiZW1haWwiOlsiYWxleGZlbmcyMDI0QHUubm9ydGh3ZXN0ZXJuLmVkdSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.QLFK2wpdkBHh1xobpyudtT38UpRDAmJ8Oq7sKw7Iq9rPublqjeAKcDhrbxkRVAR0IvLOLAIVyHLh8Jf9ft9veGh3u9fpHWHdZWVP9-yDCckWjyPNm5jFNdgreXFH6VQHiIIiE4Nmq0SWc-uJEdzS-bhcBTH74W4SamvorlATVvpJgqxPG5bgfWDplIm0BWDG-AFtR4rneJgxQjhYvhuA_t7IV2rToi56tfVFA70_vUVySOb7CXoRNngShbyBcfnYwvx6vR9e4aVYo7LDngnMX9HUkL2DzeZMnzxIvugfBwk4mxtm8oRI_FeHvWCLHFBA3zQshj_IC-UGlfZpmkHPHA",
+              "expirationTime": 1677712976012
+          },
+          "createdAt": "1674415690122",
+          "lastLoginAt": "1677538113048",
+          "apiKey": "AIzaSyDMwPuqe10GRZZBNPBUpcj2v_vTB5L61fs",
+          "appName": "[DEFAULT]"
+      },
+      "isAdmin": null
+  },
+  null,
+  null
+]
 const data = {
   "clubs": {
       "3b6f6485-cc38-486d-af03-c4ae032e0ad3": {
@@ -190,21 +219,21 @@ describe('no user is logged in', () => {
 });
 
 
-// describe('mock user is logged in', () => {
-//   useProfile.mockReturnValue([profile]);
-//   render(<App />);
+describe('mock user is logged in', () => {
+  useProfile.mockReturnValue([profile]);
+  render(<App />);
 
-//   it('loads your feed', async () => {
-//     await screen.findByText('Your Feed');
-//     // const manageClubsButton = screen.getByText('Manage');
-//     // fireEvent.click(manageClubsButton);
-//     // expect(await screen.findByText('Manage Clubs')).toBeDefined();
-//   });
-//   it('loads your first club', async () => {
-//     await screen.findByText('Test Club');
-//   });
+  it('loads your feed', async () => {
+    await screen.findByText('Your Feed');
+    // const manageClubsButton = screen.getByText('Manage');
+    // fireEvent.click(manageClubsButton);
+    // expect(await screen.findByText('Manage Clubs')).toBeDefined();
+  });
+  it('loads your first club', async () => {
+    await screen.findByText('Test Club');
+  });
 
-// });
+});
 
 // describe('without logged in user', () => {
 //   beforeEach(() => {
