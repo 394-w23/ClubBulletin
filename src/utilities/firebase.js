@@ -49,7 +49,7 @@ const storage = getStorage();
 
 
 
-if (!windows.EMULATION && import.meta.env.NODE_ENV !== 'production') {
+if (import.meta.env.NODE_ENV === 'development') {
 
   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
   import.meta.env.EMULATION = true;
