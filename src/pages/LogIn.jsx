@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { signInWithGoogle, signOut, useAuthState } from "../utilities/firebase";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-// import "../styles/LogIn.css";
-import "src/styles/LogIn.css";
+import "../styles/LogIn.css";
 import { Container } from "react-bootstrap";
 const SignInButton = () => (
   <button className="ms-auto btn btn-dark" onClick={signInWithGoogle}>
