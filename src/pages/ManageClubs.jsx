@@ -10,9 +10,9 @@ import Alert from "react-bootstrap/Alert";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import NewClub from "./NewClub";
-import "../styles/ManageClubs.css";
+import "../styles/manageClubs.css";
 import SearchBar from "../components/SearchBar/SearchBar";
-import "../styles/ManageClubs.scss";
+import "../styles/manageClubs.scss";
 const ManageClubs = ({ user, data }) => {
   const tabOptions = ["subscribed", "admin", "join"];
   const [selection, setSelection] = useState(tabOptions[2]);
