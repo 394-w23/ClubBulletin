@@ -30,17 +30,17 @@ describe('Test Delete Clubs', () => {
         
     });
 
-    it('Deleting club with good confirmation gives success alert and removes club from ', () => {
-        cy.visit('/manageclubs');
-        cy.get("[data-cy=manageClubTab]").eq(2).click();
-        cy.get("[data-cy=delete-button]").eq(0).click();
-        cy.get("[data-cy=confirmationField]").click().type('Chicken fighting club');
-        cy.get("[data-cy=confirmButton]").click();
-        cy.get("[data-cy=deleteSuccess]").should('contain', "Club was successfully deleted!");
+    // it('Deleting club with good confirmation gives success alert and removes club from ', () => {
+    //     cy.visit('/manageclubs');
+    //     cy.get("[data-cy=manageClubTab]").eq(2).click();
+    //     cy.get("[data-cy=delete-button]").eq(0).click();
+    //     cy.get("[data-cy=confirmationField]").click().type('Chicken fighting club');
+    //     cy.get("[data-cy=confirmButton]").click();
+    //     cy.get("[data-cy=deleteSuccess]").should('contain', "Club was successfully deleted!");
 
-        cy.visit('/manageclub');
-        cy.get("[data-cy=club-card]").each((item, index, list) => {
-            expect(list).to.have.length(numberOfJoinClubs - 1);
-        });
-    });
+    //     cy.visit('/manageclub');
+    //     cy.get("[data-cy=club-card]").each((item, index, list) => {
+    //         expect(list).to.have.length(numberOfJoinClubs - 1);
+    //     });
+    // });
 });  

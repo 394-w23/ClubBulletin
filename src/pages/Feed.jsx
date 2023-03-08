@@ -10,7 +10,7 @@ import { useDbData, useDbUpdate } from "../utilities/firebase";
 import ClubSelector from "../components/ClubSelector/ClubSelector";
 import { Modal, FloatingLabel } from "react-bootstrap";
 import CreatePost from "../components/CreatePost/CreatePost";
-import "../styles/Feed.css";
+import "../styles/feed.css";
 const Feed = ({ user, data }) => {
   const [selection, setSelection] = useState({ id: "all" });
 
