@@ -47,18 +47,19 @@ const auth = getAuth(firebaseApp);
 const database = getDatabase(firebaseApp);
 const storage = getStorage();
 
-// connectAuthEmulator(auth, "http://127.0.0.1:9099");
-// connectDatabaseEmulator(database, "127.0.0.1", 9000);
-// connectStorageEmulator(storage, "localhost", 9199);
-// signInWithCredential(auth, GoogleAuthProvider.credential(
-//   '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
-// ));
 
-// if (import.meta.env.NODE_ENV !== 'production') {
 
-//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-//   // import.meta.env.EMULATION = true;
-// }
+if (import.meta.env.NODE_ENV !== 'production') {
+
+  // set flag to avoid connecting twice, e.g., because of an editor hot-reload
+  import.meta.env.EMULATION = true;
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
+  connectStorageEmulator(storage, "localhost", 9199);
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "WJQpqYu0v7LYTd7MON8FSKblsR8D", "email": "testuser@gmail.com", "displayName":"test user", "email_verified": false}'
+  ));
+}
 
 export const signInWithGoogle = () => {
   signInWithPopup(auth, new GoogleAuthProvider());

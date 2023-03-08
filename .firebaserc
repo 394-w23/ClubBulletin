@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "clubbulletin-e6cf8"
-  }
+  },
+  "targets": {
+    "clubbulletin-e6cf8": {
+      "hosting": {
+        "testing_site": [
+          "clubBulletinTesting"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

@@ -1,1 +1,48 @@
-{"clubs":{"-NNE8pShmtSpMT4ISZdk":{"admins":["WJQpqYu0v7LYTd7MON8FSKblsR8D"],"description":"our chickens are the best fighters","members":["","WJQpqYu0v7LYTd7MON8FSKblsR8D"],"name":"Chicken fighting club"},"fadlkfjlkj11":{"admins":["","WJQpqYu0v7LYTd7MON8FSKblsR8D"],"description":"Bringing community together through gaming! Novices and competitive players alike are welcome. Club meetings are Thursdays, 7-9pm in Kresge 2345.","members":["","WJQpqYu0v7LYTd7MON8FSKblsR8D"],"name":"ESport Robotics"}},"posts":{"0":"","-NNE9iFN_6HJf1ov1_i8":{"clubId":"-NNE8pShmtSpMT4ISZdk","content":"woohoo this is a post for chicken fighting","likeCount":0,"posted":"1674707523397","title":"Call for chickens!!"},"IFFSZ9valZEajS4py":{"clubId":"fadlkfjlkj11","content":"lesgo esports","likeCount":3,"posted":"1674707523397","title":"call for esports players"},"IIDNEA9valZEajS450Cd":{"clubId":"-NNE8pShmtSpMT4ISZdk","content":"woohoo this is a second post for chicken fighting","likeCount":3,"posted":"1674707523397","title":"Call for so many chickens!!"},"IPPPPFFffsxpy":{"clubId":"fadlkfjlkj11","content":"another such call for esports","likeCount":3,"posted":"1674707523397","title":"please esporters come here"}},"users":{"0":"","WJQpqYu0v7LYTd7MON8FSKblsR8D":{"clubs":[""]}}}
+{
+  "clubs": {
+    "-NNE8pShmtSpMT4ISZdk": {
+      "admins": [""],
+      "description": "our chickens are the best fighters",
+      "members": [""],
+      "name": "Chicken fighting club"
+    },
+    "fadlkfjlkj11": {
+      "admins": [""],
+      "description": "Bringing community together through gaming! Novices and competitive players alike are welcome. Club meetings are Thursdays, 7-9pm in Kresge 2345.",
+      "members": [""],
+      "name": "ESport Robotics"
+    }
+  },
+  "posts": {
+    "0": "",
+    "-NNE9iFN_6HJf1ov1_i8": {
+      "clubId": "-NNE8pShmtSpMT4ISZdk",
+      "content": "woohoo this is a post for chicken fighting",
+      "likeCount": 0,
+      "posted": "1674707523397",
+      "title": "Call for chickens!!"
+    },
+    "IFFSZ9valZEajS4py": {
+      "clubId": "fadlkfjlkj11",
+      "content": "lesgo esports",
+      "likeCount": 3,
+      "posted": "1674707523397",
+      "title": "call for esports players"
+    },
+    "IIDNEA9valZEajS450Cd": {
+      "clubId": "-NNE8pShmtSpMT4ISZdk",
+      "content": "woohoo this is a second post for chicken fighting",
+      "likeCount": 3,
+      "posted": "1674707523397",
+      "title": "Call for so many chickens!!"
+    },
+    "IPPPPFFffsxpy": {
+      "clubId": "fadlkfjlkj11",
+      "content": "another such call for esports",
+      "likeCount": 3,
+      "posted": "1674707523397",
+      "title": "please esporters come here"
+    }
+  },
+  "users": { "0": "", "WJQpqYu0v7LYTd7MON8FSKblsR8D": { "clubs": [""] } }
+}
