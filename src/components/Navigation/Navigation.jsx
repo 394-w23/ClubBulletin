@@ -4,8 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../utilities/firebase";
-import "./navigation.css";
-import "../../styles/navigation.css";
+// import "./navigation.css";
+// import "../../styles/navigation.css";
 
 const SignOutButton = () => {
   let navigate = useNavigate();

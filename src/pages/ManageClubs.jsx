@@ -10,7 +10,7 @@ import Alert from "react-bootstrap/Alert";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import NewClub from "./NewClub";
-import "../styles/manageClubs.css";
+// import "../styles/manageClubs.css";
 import SearchBar from "../components/SearchBar/SearchBar";
 import "../styles/manageClubs.scss";
 const ManageClubs = ({ user, data }) => {
