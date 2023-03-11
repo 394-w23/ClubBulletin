@@ -55,12 +55,18 @@ const Feed = ({ user, data }) => {
   const isUserClubsEmpty = currentClubs.length == 0;
   const isCurrentFeedEmpty = sortedPosts.length == 0;
 
-  console.log(sortedPosts);
-
   const noSubscriptionsMessage = (
-    <div data-cy="noSubMsg" className="text-center m-3">
+    <div
+      data-cy="noSubMsg"
+      className="text-center m-3"
+      data-testid="feed-no-subscriptions-message"
+    >
       You haven't joined any club feeds yet! Go to{" "}
-      <a data-cy="noSubLink" href="/manageclubs">
+      <a
+        data-cy="noSubLink"
+        href="/manageclubs"
+        data-testid="feed-no-subscriptions-message-anchor"
+      >
         Clubs
       </a>{" "}
       to join a club.
@@ -71,12 +77,12 @@ const Feed = ({ user, data }) => {
   const noClubPostsMessage =
     // show this message if the "All club" feeds is empty
     selection.id === "all" ? (
-      <div className="text-center m-3">
+      <div className="text-center m-3" data-testid="feed-no-posts-all-message">
         None of your subscribed clubs have posted any messages yet!
       </div>
     ) : (
       // show this message if the user is on the tab of the subscribed club with no posts
-      <div className="text-center m-3">
+      <div className="text-center m-3" data-testid="feed-no-posts-club-message">
         This club hasn't posted any messages yet!
       </div>
     );

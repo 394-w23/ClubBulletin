@@ -27,7 +27,7 @@ const Post = ({ post, postId, club }) => {
   const [isPostLiked, setIsPostLiked] = useState(false);
 
   return (
-    <Card className="post-card my-3">
+    <Card className="post-card my-3" data-testid="feed-post">
       <Card.Header>
         <div className="col-sm-12">
           <div className="row">
@@ -52,18 +52,18 @@ const Post = ({ post, postId, club }) => {
         <Card.Text className="card-post-content">{post.content}</Card.Text>
       </Card.Body>
       <ListGroup variant="flush">
-        <div>
+        <div className="post-like-count-label">
           {isPostLiked ? (
             <FavoriteIcon
               onClick={() => updateLikeCount(-1)}
-              className="post-like-icon"
+              className="post-like-icon post-favorite-icon"
               style={{ fill: "purple" }}
               data-cy="pageTitle"
             ></FavoriteIcon>
           ) : (
             <FavoriteBorderIcon
               onClick={() => updateLikeCount(1)}
-              className="post-like-icon"
+              className="post-like-icon post-favorite-border-icon"
             ></FavoriteBorderIcon>
           )}
           {post.likeCount} {post.likeCount == 1 ? "like" : "likes"}
