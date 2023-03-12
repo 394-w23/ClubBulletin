@@ -83,7 +83,7 @@ const userWithSubscriptionsNoPostsData = [
     clubs: {
       "club-id-1": {
         admins: [],
-        members: ["IuQspQhlilOjDASGQ8dki50HjhT2"],
+        members: ["user-id-1"],
         name: "Test Club 1",
       },
     },
