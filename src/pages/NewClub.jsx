@@ -133,7 +133,7 @@ function NewClub({ data, user, handleClose }) {
         </div>
 
         <Form.Label>Club Name</Form.Label>
-        <Form.Control type="text" name="ClubName" data-cy="clubName"></Form.Control>
+        <Form.Control type="text" name="ClubName" data-cy="clubName" data-testid="add-club-name"></Form.Control>
 
         <Form.Label style={{ marginTop: "20px" }}>Club Description</Form.Label>
         <Form.Control
@@ -142,12 +142,13 @@ function NewClub({ data, user, handleClose }) {
           as="textarea"
           rows={3}
           data-cy="clubDescription"
+          data-testid="add-club-description"
         ></Form.Control>
 
         <Form.Label style={{ marginTop: "20px" }}>Add Photo</Form.Label>
-        <Form.Control type="file" name="ClubPic" data-cy="clubPic"></Form.Control>
+        <Form.Control type="file" name="ClubPic" data-cy="clubPic" data-testid="add-club-pic"></Form.Control>
 
-        <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="submitNewClub">
+        <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="submitNewClub" data-testid="submit-new-club">
           Create
         </Button>
       </Form>
