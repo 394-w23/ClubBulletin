@@ -97,6 +97,7 @@ const ManageClubs = ({ user, data }) => {
             variant="outline-primary"
             onClick={handleShow}
             data-cy="addClubButton"
+            data-testid="add-club-button"
           >
             Add New Club
           </Button>
@@ -192,11 +193,12 @@ const ManageClubs = ({ user, data }) => {
                       data={data}
                       deleteSuccess={deleteSuccess}
                       setDeleteSuccess={setDeleteSuccess}
+                      data-testid="admin-club-card"
                     />
                   );
                 })
               ) : (
-                <div className="text-center m-3">
+                <div className="text-center m-3" data-testid="no-admins-message">
                   Clubs that you are an admin for will appear here. Add a new
                   club to get started.
                 </div>
