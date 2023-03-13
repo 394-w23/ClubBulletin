@@ -135,6 +135,7 @@ const ManageClubs = ({ user, data }) => {
               key="1"
               onClick={() => setSelection(tabOptions[1])}
               data-cy="manageClubTab"
+              data-testid="adminClubsTab"
             >
               Admin Clubs
             </a>
