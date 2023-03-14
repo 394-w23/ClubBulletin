@@ -36,7 +36,7 @@ const AdminCard = ({
   const handleAlert = () => setAlertShow(true);
 
   return (
-    <div data-testid="admin-club-checker">
+    <div>
       <Modal show={modalShow} onHide={handleClose}>
         <CreatePost
           currentUserData={currentUserData}
