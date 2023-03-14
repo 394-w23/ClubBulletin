@@ -36,7 +36,7 @@ const AdminCard = ({
   const handleAlert = () => setAlertShow(true);
 
   return (
-    <div>
+    <div data-testid="admin-club-checker">
       <Modal show={modalShow} onHide={handleClose}>
         <CreatePost
           currentUserData={currentUserData}
@@ -71,7 +71,7 @@ const AdminCard = ({
               ></Card.Img>
             </div>
             <div className="col-sm-8 post-header-text">
-              <Card.Text className="post-club-name">{clubData.name}</Card.Text>
+              <Card.Text className="post-club-name" data-testid="admin-club-name">{clubData.name}</Card.Text>
             </div>
           </div>
         </Card.Header>
@@ -87,7 +87,7 @@ const AdminCard = ({
             <Button variant="primary" onClick={handleShow}>
               Create Post
             </Button>
-            <Button variant="danger" data-cy="delete-button" onClick={handleAlert}>
+            <Button variant="danger" data-cy="delete-button" data-testid="delete-club-button" onClick={handleAlert}>
               Delete Club
             </Button>
           </div>

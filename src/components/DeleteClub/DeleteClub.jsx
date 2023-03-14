@@ -98,9 +98,9 @@ function DeleteClub({
 
             <Form onSubmit={handleSubmit}>
                 <Form.Label>Enter name of the club to confirm:</Form.Label>
-                <Form.Control type="text" data-cy="confirmationField" name="Confirmation"></Form.Control>
+                <Form.Control type="text" data-cy="confirmationField" name="Confirmation" data-testid="delete-club-confirm-name"></Form.Control>
 
-                <Button variant="danger" data-cy="confirmButton" type="submit" style={{ marginTop: "10px" }}>
+                <Button variant="danger" data-cy="confirmButton" type="submit" style={{ marginTop: "10px" }} data-testid="delete-club-confirm-button">
                     Delete Club
                 </Button>
             </Form>
