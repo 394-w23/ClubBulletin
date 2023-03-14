@@ -113,7 +113,7 @@ function NewClub({ data, user, handleClose }) {
           Club creation failed. Please check your inputs and try again.
         </Alert>
       )}
-      <Form onSubmit={handleSubmit} data-cy="newClubForm">
+      <Form onSubmit={handleSubmit} data-cy="newClubForm" data-testid="add-club-form">
         {/* <Form.Label>Club Admin</Form.Label>
         <Form.Select aria-label="Club Admins" name="ClubAdmin">
           <option>Choose admin</option>
