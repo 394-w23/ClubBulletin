@@ -37,23 +37,24 @@ const data = {
 
 const data_admin = {
     clubs: {
-        uid: "38ce7dbc-0ff0-475e-9b47-0d41f99c17fb",
-        admins: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
-        members: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
-        description: "Testing",
-        name: "Test Name",
-        picLink: "https://firebasestorage.googleapis.com/v0/b/clubbulletin-e6cf8.appspot.com/o/files%2FScreen%20Shot%202023-03-12%20at%204.20.07%20PM.png?alt=media&token=d17905f8-0f4d-4123-a4c9-a2dd05416d08"
+        "38ce7dbc-0ff0-475e-9b47-0d41f99c17fb": {
+            admins: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
+            members: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
+            description: "Testing",
+            name: "Test Name",
+            picLink: "https://firebasestorage.googleapis.com/v0/b/clubbulletin-e6cf8.appspot.com/o/files%2FScreen%20Shot%202023-03-12%20at%204.20.07%20PM.png?alt=media&token=d17905f8-0f4d-4123-a4c9-a2dd05416d08"
+        }
     },
     posts: {},
     users: {
         "yaIVzjyxUyd9zrk7zqCpbhL9DvX2": {
-            clubs: [],
+            clubs: ["38ce7dbc-0ff0-475e-9b47-0d41f99c17fb"],
             name: "Maya Blumovitz",
         },
     },
 };
 
-describe("Mock tabs before new club is added", () => {
+describe("Testing adding a new club", () => {
 
     it("ManageClubs is rendered, no admin clubs appear, and new club will be clicked", async () => {
         const { wrapper } = render(
@@ -74,8 +75,8 @@ describe("Mock tabs before new club is added", () => {
         expect(messageElement.textContent).toEqual(noAdminsMessage);
     });
 
-    it("NewClub modal is rendered and test info is inputted. New club now appears in admin.", async () => {
-        
+    it("NewClub modal is rendered and test info is inputted. Club creation is successful.", async () => {
+
         const { wrapper } = render(
             <ManageClubs user={user} data={data}></ManageClubs>,
             { wrapper: MemoryRouter }
@@ -89,66 +90,58 @@ describe("Mock tabs before new club is added", () => {
         userEvent.type(screen.queryByTestId('add-club-description'), 'Testing Add Club Description!')
         const file = new File(['(⌐□_□)'], 'test.png', { type: 'image/png' });
 
-        const addClubForm = screen.queryByTestId("add-club-form");
-        // act(() => {
-        //     submitNewClubElement.click();
-        // });
-        fireEvent.submit(addClubForm);
+        const submitNewClubElement = screen.queryByTestId("submit-new-club");
+        fireEvent.click(submitNewClubElement);
 
- // UNCOMMENT
-
-        // await waitFor(() => {
-        //     expect(handleClose).toHaveBeenCalled();
-        // });
-
-        // screen.debug();
-
-        // await waitFor(() => {
-        //     expect(mockUseDbUpdate).toHaveBeenCalledWith({
-        //         "/clubs": {
-        //             [expect.any(String)]: {
-        //                 description: "Testing Add Club Description!",
-        //                 admins: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
-        //                 name: "Testing Add Club!",
-        //                 members: ["yaIVzjyxUyd9zrk7zqCpbhL9DvX2"],
-        //                 picLink: expect.any(String),
-        //             },
-        //         },
-        //     });
-        //     expect(mockUseDbUpdate).toHaveBeenCalledWith({
-        //         "/users/yaIVzjyxUyd9zrk7zqCpbhL9DvX2/clubs": [expect.any(String)],
-        //     });
-        //     expect(handleClose).toHaveBeenCalled();
-
-        // });
+        expect(screen.findByText("Club creation was a success!")).toBeDefined();
     });
 });
 
+describe("Testing deleting a club", () => {
 
-// LEAVE OUT
-            // const submitNewClubElement = screen.queryByTestId("submit-new-club");
-            // act(() => {
-            //     submitNewClubElement.click();
-            // });
+    it("ManageClubs is rendered, one admin clubs appears", async () => {
+        const { wrapper } = render(
+            <ManageClubs user={user} data={data_admin}></ManageClubs>,
+            { wrapper: MemoryRouter }
+        );
+        const adminClubs = screen.queryByTestId("adminClubsTab");
+        act(() => {
+            adminClubs.click();
+        });
 
-            // const newClubElement = await screen.queryByTestId("admin-club-card");
-            // expect(newClubElement).toBeDefined();
+        const adminClubElement = await screen.queryByTestId("admin-club-card");
+        expect(adminClubElement).toBeDefined();
 
-            // const newClubName = await screen.queryByTestId("admin-club-name");
-            // screen.debug();
-            // expect(newClubName.innerText).toEqual('Testing Add Club!');
+        const adminClubName = await screen.queryByTestId("admin-club-name");
+        expect(adminClubName).toBeDefined();
+        expect(adminClubName.textContent).toEqual('Test Name');
+    });
 
+    it("Delete club button is clicked. Club is successfully deleted.", async () => {
 
-            // const deleteAdminClub = await screen.queryByTestId("delete-club-button");
-            // act(() => {
-            //     deleteAdminClub.click();
-            // });
+        const { wrapper } = render(
+            <ManageClubs user={user} data={data_admin}></ManageClubs>,
+            { wrapper: MemoryRouter }
+        );
+        const adminClubs = screen.queryByTestId("adminClubsTab");
+        act(() => {
+            adminClubs.click();
+        });
 
-            // userEvent.type(screen.queryByTestId('delete-club-confirm-name'), 'Testing Add Club!')
-            // const confirmDeleteAdminClub = await screen.queryByTestId("delete-club-confirm-button");
-            // act(() => {
-            //     confirmDeleteAdminClub.click();
-            // });
+        const deleteAdminClub = await screen.queryByTestId("delete-club-button");
+        expect(deleteAdminClub).toBeDefined();
+        fireEvent.click(deleteAdminClub);
 
-            // expect(messageElement).toBeDefined();
-            // expect(messageElement.textContent).toEqual(noAdminsMessage);
+        const deleteConfirmation = await screen.queryByTestId('delete-club-confirm-name');
+        expect(deleteConfirmation).toBeDefined();
+        fireEvent.change(deleteConfirmation, {
+            target: { value: "Test Name" },
+        });
+
+        const confirmDeleteAdminClub = await screen.queryByTestId("delete-club-confirm-button");
+        fireEvent.click(confirmDeleteAdminClub);
+
+        const checkDeletion = await screen.findByText("Club was successfully deleted!");
+        expect(checkDeletion).toBeDefined();
+    });
+});
