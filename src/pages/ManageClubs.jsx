@@ -113,6 +113,7 @@ const ManageClubs = ({ user, data }) => {
               key="3"
               onClick={() => setSelection(tabOptions[2])}
               data-cy="manageClubTab"
+              data-testid="joinClubsTab"
             >
               Join Clubs
             </a>
@@ -124,6 +125,7 @@ const ManageClubs = ({ user, data }) => {
               key="2"
               onClick={() => setSelection(tabOptions[0])}
               data-cy="manageClubTab"
+              data-testid="subscribeClubTab"
             >
               Subscribed Clubs
             </a>
