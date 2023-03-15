@@ -11,6 +11,7 @@ const InputField = ({ name, text, state, change }) => (
       name={name}
       defaultValue={state.values?.[name]}
       onChange={change}
+      data-testid="search-bar"
     />
     <div className="invalid-feedback">{state.errors?.[name]}</div>
   </div>
