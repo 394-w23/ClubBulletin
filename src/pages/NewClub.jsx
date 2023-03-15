@@ -128,14 +128,14 @@ function NewClub({ data, user, handleClose }) {
             marginBottom: "10px",
           }}
         >
-          <h2 data-cy='createClubModalHeader'>Create New Club</h2>
+          <h2 data-testid="create-new-club-title" data-cy='createClubModalHeader'>Create New Club</h2>
           <CloseButton onClick={closeWindow} />
         </div>
 
-        <Form.Label>Club Name</Form.Label>
+        <Form.Label data-test-id="add-club-name-title">Club Name</Form.Label>
         <Form.Control type="text" name="ClubName" data-cy="clubName" data-testid="add-club-name"></Form.Control>
 
-        <Form.Label style={{ marginTop: "20px" }}>Club Description</Form.Label>
+        <Form.Label data-testid="add-club-description-title" style={{ marginTop: "20px" }}>Club Description</Form.Label>
         <Form.Control
           type="text"
           name="ClubDescription"
@@ -145,7 +145,7 @@ function NewClub({ data, user, handleClose }) {
           data-testid="add-club-description"
         ></Form.Control>
 
-        <Form.Label style={{ marginTop: "20px" }}>Add Photo</Form.Label>
+        <Form.Label data-testid="add-photo-title" style={{ marginTop: "20px" }}>Add Photo</Form.Label>
         <Form.Control type="file" name="ClubPic" data-cy="clubPic" data-testid="add-club-pic"></Form.Control>
 
         <Button variant="primary" type="submit" style={{ marginTop: "20px" }} data-cy="submitNewClub" data-testid="submit-new-club">
