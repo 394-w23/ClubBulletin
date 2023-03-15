@@ -81,9 +81,11 @@ const ManageClubs = ({ user, data }) => {
 
         <div className="org-title" style={{ marginBottom: "10px" }}>
           <Link to="/" relative="path">
+            <div data-testid="backFeed">
             <Button className="mobile" variant="outline-secondary">
               Back to Feed
             </Button>
+            </div>
           </Link>
           <Modal show={newClubModalShow} onHide={handleClose}>
             <NewClub

@@ -129,25 +129,34 @@ const data_admin = {
     },
 };
 
-describe("User can go back to feed on Manage Clubs page by clicking on 'Back to Feed' button ", async () => {
+describe("User can search for clubs on Manage Clubs Page", async () => {
   beforeEach(() => {
     useDbData.mockReturnValue(data);
   });
 
-  it("find button and click it", async () => {
+  it("search Anime, and only the get the Anime Club", () => {
     const { wrapper } = render(
       <ManageClubs user={user} data={data}></ManageClubs>,
       { wrapper: MemoryRouter }
     );
-
-    const backButton = screen.getByTestId("backFeed");
-    expect(backButton).toBeInTheDocument();
-    const { getAllByRole } = within(backButton);
-    const button = getAllByRole("button")[0];
-    act(() => {
-        button.click();
-    });
+    const searchBar = screen.getByTestId('search-bar');
+    fireEvent.change(searchBar, { target: { value: 'Anime' } });
+    expect(screen.getByText('Anime')).toBeInTheDocument();
+    expect(screen.queryByText('Math')).not.toBeInTheDocument();
+    expect(screen.queryByText('Chess')).not.toBeInTheDocument();
+    expect(screen.queryByText('Glee')).not.toBeInTheDocument();
   });
-
+  it("search Math, and only the get the Math Club", () => {
+    const { wrapper } = render(
+      <ManageClubs user={user} data={data}></ManageClubs>,
+      { wrapper: MemoryRouter }
+    );
+    const searchBar = screen.getByTestId('search-bar');
+    fireEvent.change(searchBar, { target: { value: 'Math' } });
+    expect(screen.getByText('Math')).toBeInTheDocument();
+    expect(screen.queryByText('Anime')).not.toBeInTheDocument();
+    expect(screen.queryByText('Chess')).not.toBeInTheDocument();
+    expect(screen.queryByText('Glee')).not.toBeInTheDocument();
+  });
   
 });
