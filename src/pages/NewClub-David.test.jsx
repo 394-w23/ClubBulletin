@@ -8,8 +8,6 @@ import { debug } from "vitest-preview";
 import "@testing-library/jest-dom";
 import { act } from "react-test-renderer";
 
-import App from "../App";
-import NewClub from "../pages/NewClub";
 import ManageClubs from "../pages/ManageClubs";
 
 vi.mock("../utilities/firebase", async () => {

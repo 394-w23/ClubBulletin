@@ -20,6 +20,7 @@ const SignOutButton = () => {
         signOut();
         routeChange();
       }}
+      data-testid="sign-out-button"
     >
       Sign out
     </button>
@@ -38,7 +39,7 @@ const Navigation = ({ currentUserData, currentLabel }) => {
         <Navbar.Brand href="/" className="nav-title">
           ClubBulletin
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle data-testid="navbar-toggle"aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {pages.map((page) => {
@@ -57,10 +58,10 @@ const Navigation = ({ currentUserData, currentLabel }) => {
                 </Nav.Link>
               );
             })}
-            <NavDropdown title={currentUserData.name} id="basic-nav-dropdown">
+            <NavDropdown  title={currentUserData.name} data-testid="signout-dropdown" id="basic-nav-dropdown">
               {/* <NavDropdown.Divider /> */}
-              <NavDropdown.Item href="#action/3.4">
-                <SignOutButton></SignOutButton>
+              <NavDropdown.Item data-testid="signout-dropdown-inner" href="#action/3.4">
+                <SignOutButton data-testid='signout-button-outer'></SignOutButton>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
