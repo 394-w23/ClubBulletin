@@ -84,7 +84,7 @@ const AdminCard = ({
               Edit Club
             </Button> */}
 
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" data-testid="create-post-button" onClick={handleShow}>
               Create Post
             </Button>
             <Button variant="danger" data-cy="delete-button" data-testid="delete-club-button" onClick={handleAlert}>

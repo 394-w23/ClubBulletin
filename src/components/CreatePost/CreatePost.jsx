@@ -77,17 +77,18 @@ function CreatePost({
             )}
             <Form onSubmit={handleSubmit}>
                 <Form.Label>Post Title</Form.Label>
-                <Form.Control type="text" name="PostTitle"></Form.Control>
+                <Form.Control type="text" name="PostTitle" data-testid="create-post-title"></Form.Control>
 
                 <Form.Label>Post Content</Form.Label>
                 <Form.Control
                     type="text"
                     name="PostContent"
+                    data-testid="create-post-body"
                     as="textarea"
                     rows={3}
                 ></Form.Control>
 
-                <Button variant="primary" type="submit" style={{ marginTop: "10px" }}>
+                <Button variant="primary" type="submit" data-testid="submit-create-post" style={{ marginTop: "10px" }}>
                     Submit
                 </Button>
             </Form>
