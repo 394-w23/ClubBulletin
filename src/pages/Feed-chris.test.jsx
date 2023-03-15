@@ -142,6 +142,8 @@ describe("User can go back to feed on Manage Clubs page by clicking on 'Back to 
 
     const backButton = screen.getByTestId("backFeed");
     expect(backButton).toBeInTheDocument();
+    expect(backButton).toHaveTextContent("Back to Feed");
+    expect(backButton).not.toHaveTextContent("Create Club");
     const { getAllByRole } = within(backButton);
     const button = getAllByRole("button")[0];
     act(() => {
